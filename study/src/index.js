@@ -1,17 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom/client';
-import Footer from './Footer/footer';
 import reportWebVitals from './reportWebVitals';
-import IndexMain from './Body/indexMain';
-import SideBar from './SideBar/SideBarMenu';
-import GongMuWon from './공무원/공무원';
-
+import Hole from './공개면외자';
+import './css/sb-admin-2.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GongMuWon/>
+    <Hole/>
   </React.StrictMode>
 );
 

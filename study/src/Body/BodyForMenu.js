@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from '../Footer/footer';
 import HeaderNav from '../Header/HeaderNav';
+import Button from '@mui/material/Button';
 
 function BodyForMenu() {
     return (
@@ -9,7 +10,8 @@ function BodyForMenu() {
             <div id="content">
 
                 <HeaderNav/>
-
+                
+                <Button variant="contained">Hello World</Button>;
                 <div className="container-fluid">
                     <section className="py-5">
                         <div className="container px-4 px-lg-5 mt-5">

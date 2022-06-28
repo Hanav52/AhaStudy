@@ -50,7 +50,7 @@ function SideBar() {
                 <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">게시판 목록:</h6>
+                        <h6 className="collapse-header">게시판 목록</h6>
                         <a className="collapse-item" href="blank03.html">자격증</a>
                     </div>
                 </div>
@@ -112,6 +112,7 @@ function SideBar() {
             </div>
         </ul>
     );
+    
 }
 
 export default SideBar;

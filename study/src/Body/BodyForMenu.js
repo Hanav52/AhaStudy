@@ -1,7 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import BasicTabs from '../Component/Component';
 import Footer from '../Footer/footer';
 import HeaderNav from '../Header/HeaderNav';
-import Button from '@mui/material/Button';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 function BodyForMenu() {
     return (
@@ -11,19 +16,17 @@ function BodyForMenu() {
 
                 <HeaderNav/>
                 
-                <Button variant="contained">Hello World</Button>;
                 <div className="container-fluid">
                     <section className="py-5">
                         <div className="container px-4 px-lg-5 mt-5">
                           <nav className="navbar navbar-light bg-light">
                             <div className="container-fluid">
-                              <a className="navbar-brand" href="blank0.html">값이 들어감</a>
-                              <form className="d-flex">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-outline-success" type="submit">Search</button>
-                              </form>
+                              <a className="navbar-brand" href="blank">공무원</a>
                             </div>
                           </nav>
+
+                <BasicTabs/>
+
                             <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 <div className="col mb-5">
                                     <div className="card h-100">

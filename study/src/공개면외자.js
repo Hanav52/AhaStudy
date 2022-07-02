@@ -4,6 +4,7 @@ import BodyForMenu from './BodyForMenu';
 import { BrowserRouter, BrowserRouter as Route, Link, Router, Switch } from "react-router-dom";
 import SignIn from './Login';
 import React from 'react';
+import SignUp from './Register';
 
 
 function Hole() {
@@ -19,7 +20,10 @@ function Hole() {
                     <BodyForMenu/>
                 </Route>
                 <Route path="/login">
-                  <SignIn/>
+                    <SignIn/>
+                </Route>
+                <Route path="/register">
+                    <SignUp/>
                 </Route>
             </Switch>
             </>

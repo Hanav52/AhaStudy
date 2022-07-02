@@ -10,7 +10,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter as Route, Router } from 'react-router-dom';
+import { BrowserRouter as Route, Router, Switch, useHistory } from 'react-router-dom';
+import SignUp from './Register';
 
 function Copyright(props) {
   return (
@@ -36,9 +37,6 @@ export default function SignIn() {
       password: data.get('password'),
     });
   };
-  const register = () => {
-    window.location.href="/register";
-  }
   return (
     <Route path='/login'>
     <ThemeProvider theme={theme}>
@@ -94,9 +92,11 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link variant="body2" onClick={register}>
+              <Route path='/register'>
+                <Link variant="body2" href="register">
                   {"계정이 없으십니까? 회원가입"}
                 </Link>
+                </Route>
               </Grid>
             </Grid>
           </Box>

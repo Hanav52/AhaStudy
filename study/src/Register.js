@@ -9,7 +9,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter as Link, Route } from "react-router-dom";
+import { BrowserRouter as Route } from "react-router-dom";
+import Link from '@mui/material/Link';
 
 
 function Copyright(props) {
@@ -113,9 +114,9 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                {/* <Link to="/" variant="body2">
+                <Link variant="body2">
                   계정이 있으십니까? 로그인
-                </Link> */}
+                </Link>
               </Grid>
             </Grid>
           </Box>

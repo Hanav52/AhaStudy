@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import './css/sb-admin-2.min.css';
 import Hole from './공개면외자';
 import SignIn from './Login';
+import SignUp from './Register';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

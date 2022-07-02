@@ -1,10 +1,15 @@
 import { Link } from '@mui/material';
+import { BrowserRouter, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+
 
 function SideBar() {
+
   return (
+    <Route>
         <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <Link className="sidebar-brand d-flex align-items-center justify-content-center" href="index.js" underline="none">
+            <Link className="sidebar-brand d-flex align-items-center justify-content-center" underline="none">
                 <div className="sidebar-brand-icon rotate-n-15">
                     <i className="fas fa-laugh-wink"></i>
                 </div>
@@ -14,7 +19,7 @@ function SideBar() {
             <hr className="sidebar-divider my-0"/>
 
             <li className="nav-item active">
-                <Link className="nav-link" href="Profile.js" underline="none">
+                <Link className="nav-link" href="www.naver.com" underline="none">
                     <i className="fas fa-fw fa-tachometer-alt"></i>
                     <span>내 정보</span></Link>
             </li>
@@ -112,6 +117,7 @@ function SideBar() {
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div> */}
         </ul>
+        </Route>
     );
     
 }

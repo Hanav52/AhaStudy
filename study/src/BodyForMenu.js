@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BasicTabs from '../Component/Component';
-import Footer from '../Footer/footer';
-import HeaderNav from '../Header/HeaderNav';
+import BasicTabs from './Component';
+import Footer from './Footer/footer';
+import HeaderNav from './Header/HeaderNav';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';

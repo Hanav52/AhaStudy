@@ -1,21 +1,33 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SideBar from './SideBar/SideBarMenu';
-import BodyForMenu from './Body/BodyForMenu';
-import SimpleAccordion from './SideBar/SimpleAccordian';
-import BasicTabs from './Component/Component';
-
+import SideBar from './SideBarMenu';
+import BodyForMenu from './BodyForMenu';
+import { BrowserRouter, BrowserRouter as Route, Link, Router, Switch } from "react-router-dom";
+import SignIn from './Login';
+import React from 'react';
 
 
 function Hole() {
     return (
-        <div id='page-top'>
+    <div>
+        <BrowserRouter>
+            <div id='page-top'>
             <div id='wrapper'>
-                <SideBar/>
-                <BodyForMenu/>
+            <>
+            <Switch>
+                <Route exact path="/">
+                    <SideBar/>
+                    <BodyForMenu/>
+                </Route>
+                <Route path="/login">
+                  <SignIn/>
+                </Route>
+            </Switch>
+            </>
             </div>
-        
-        </div>
-        );
+            </div>
+        </BrowserRouter>
+    </div>
+    );
 }
 
 export default Hole;

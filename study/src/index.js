@@ -2,8 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import Hole from './공개면외자';
 import './css/sb-admin-2.min.css';
+import Hole from './공개면외자';
+import SignIn from './Login';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -17,7 +17,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://www.naver.com/">
+      <Link color="inherit" href="https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1">
         Aha Study
       </Link>{' '}
       {new Date().getFullYear()}
@@ -69,6 +69,7 @@ export default function SignUp() {
                   label="성"
                   autoFocus
                 />
+                <div className='invalid-feedback'>입력해주세요</div>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -85,7 +86,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="이메일"
+                  label="아이디"
                   name="email"
                   autoComplete="email"
                 />
@@ -109,12 +110,13 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              href="login"
             >
               로그인
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link variant="body2">
+                <Link variant="body2" href="login">
                   계정이 있으십니까? 로그인
                 </Link>
               </Grid>

@@ -17,7 +17,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1">
       Aha Study
       </Link>{' '}
       {new Date().getFullYear()}
@@ -62,7 +62,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="이메일"
+              label="아이디"
               name="email"
               autoComplete="email"
               autoFocus
@@ -82,14 +82,15 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              href="/"
             >
               로그인
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="Register.js" variant="body2">
+                {/* <Link href="Register.js" variant="body2">
                   비밀번호를 잊으셨습니까?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
               <Route path='/register'>

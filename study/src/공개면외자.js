@@ -5,6 +5,7 @@ import { BrowserRouter, BrowserRouter as Route, Link, Router, Switch } from "rea
 import SignIn from './Login';
 import React from 'react';
 import SignUp from './Register';
+import Blog from './Header/NNav';
 
 
 function Hole() {
@@ -16,7 +17,6 @@ function Hole() {
             <>
             <Switch>
                 <Route exact path="/">
-                    <SideBar/>
                     <BodyForMenu/>
                 </Route>
                 <Route path="/login">

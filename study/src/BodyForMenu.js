@@ -7,6 +7,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Header from './Header/HHeader';
+import Blog from './Header/NNav';
 
 function BodyForMenu() {
     return (
@@ -14,7 +16,7 @@ function BodyForMenu() {
 
             <div id="content">
 
-                <HeaderNav/>
+                <Blog/>
                 
                 <div className="container-fluid">
                     <section className="py-5">

@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './css/sb-admin-2.min.css';
-import Hole from './공개면외자';
+import BasicTabs from './Component';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Hole/>
+    <BasicTabs/>
   </React.StrictMode>
 );
 

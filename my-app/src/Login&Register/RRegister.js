@@ -1,6 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/ss.css';
 
 function App() {
     window.addEventListener('load', () => {

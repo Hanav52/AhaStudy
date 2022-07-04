@@ -10,6 +10,8 @@ import Hole from './전체/통합 copy';
 import Footer from './Footer/Footer';
 import RealMain from './Body/BodyImage';
 import BasicCard from './Body/test';
+import Test from './Login&Register/test';
+import App from './Login&Register/RRegister';
 ReactDOM.render(
   <React.StrictMode>
     <Hole/>

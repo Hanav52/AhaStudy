@@ -1,20 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import Real from './real';
-import ProHeader from './사용 x/Header';
-import Nav1 from './Nav1/Nav1';
-import Nav2 from './Nav2/Nav2';
-import Nav from './NavBody/Nav';
-import Hole from './전체/통합 copy';
-import Footer from './Footer/Footer';
-import RealMain from './Body/BodyImage';
-import BasicCard from './Body/test';
+import SignUp from './Login&Register/Register';
+import Hole from './전체/통합';
+import SignIn from './Login&Register/Login copy';
+import Join from './Login&Register/Join';
 import Test from './Login&Register/test';
-import App from './Login&Register/RRegister';
+import Users from './Login&Register/ttest';
 ReactDOM.render(
   <React.StrictMode>
-    <Hole/>
+    <Join/>
   </React.StrictMode>,
   document.getElementById('root')
 );

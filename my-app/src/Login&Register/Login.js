@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Route, Router, Switch, useHistory } from 'react-router-dom';
-import SignUp from './Register';
 
 function Copyright(props) {
   return (

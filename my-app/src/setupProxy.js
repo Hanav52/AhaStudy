@@ -7,4 +7,10 @@ module.exports = function(app){
           changeOrigin: true
       })
   )
+  app.use(
+    createProxyMiddleware('/user', {
+        target: 'http://bestinwoo.hopto.org:8080/auth/',
+        changeOrigin: true
+    })
+)
 };

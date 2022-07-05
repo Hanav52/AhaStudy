@@ -38,3 +38,35 @@ function Test() {
   );
 }
 export default Test;
+axios.post('http://bestinwoo.hopto.org:8080/auth/signup', data, {
+                headers: {
+                'Content-Type': 'application/json'
+                }
+              }
+            ).then(function (response) {
+                console.log(response)
+                if(response.data.count == 1) {
+                    setPopup({
+                        open: true,
+                        title: "가입 축하드립니다.",
+                        mesaage: "가입 완료!",
+                        callback: function(){
+                            history.push("/login");
+                        }
+                    })
+                } //else {
+                //     axios.get(`http://bestinwoo.hopto.org:8080/auth/user/${userId}`)
+                //         .then(function (response) {
+                //             console.log(response)
+                //         }).catch(function (error) {
+                //             console.log(error);
+                //         }).then(function() {
+                //             // 항상 실행
+                //         });
+                    
+                // }
+            }).catch(function (error) {
+                console.log(error)
+            }).then(function() {
+
+            })

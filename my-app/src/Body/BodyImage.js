@@ -1,4 +1,3 @@
-import "../css/stylemain.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "../Footer/Footer";
 import { BrowserRouter as Link } from "react-router-dom";

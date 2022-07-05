@@ -6,6 +6,7 @@ import React from 'react';
 import SignUp from '../Login&Register/Register';
 import Nav from '../NavBody/Nav';
 import RealMain from '../Body/BodyImage';
+import Join from '../Login&Register/Join';
 
 
 function Hole() {
@@ -22,7 +23,7 @@ function Hole() {
                     <SignIn/>
                 </Route>
                 <Route path="/register">
-                    <SignUp/>
+                    <Join/>
                 </Route>
             </Switch>
             </>

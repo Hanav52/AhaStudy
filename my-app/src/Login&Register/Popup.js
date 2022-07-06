@@ -18,7 +18,7 @@ function Popup({open, setPopup, message, title, callback}) {
           <Modal.Body>{message}</Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={handleClose}>
-              OK
+              확인
             </Button>
           </Modal.Footer>
         </Modal>

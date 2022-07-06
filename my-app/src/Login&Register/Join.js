@@ -13,6 +13,7 @@ import Popup from './Popup';
 
 function Join() {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
+    const [checkId, setCheckId] = useState("")
     // id, password, confirmuserid, confirmpassword 확인하는 구간
     const [userId, setUserId] = useState("");
     const [confirmUserId, setConfirmUserId] = useState("");
@@ -26,9 +27,13 @@ function Join() {
     // userid form에 change가 있을 때마다 validation check를 하고 결과를 useriderror state에 저장한다.
     const onChangeUserId = (e) => {
         const userIdRegex = /^[A-Za-z0-9+]{4,}$/;
-        if ((!e.target.value || (userIdRegex.test(e.target.value)))) setUserIdError(false);
+        if ((!e.target.value || (userIdRegex.test(e.target.value)))) {
+            setUserIdError(false);
+        }
         else setUserIdError(true);
         setUserId(e.target.value);
+
+        
     };
     const onChangePassword = (e) => {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -68,7 +73,6 @@ function Join() {
 
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
     // axios.defaults.withCredentials = true;
-
     const onSubmit = (e) => {
         if(validation()) {
             axios.post('http://bestinwoo.hopto.org:8080/auth/signup', data, {
@@ -87,26 +91,9 @@ function Join() {
                             history.push("/login");
                         }
                     })
-                } else {
-                     axios.get(`http://bestinwoo.hopto.org:8080/auth/user/${userId}`)
-                         .then(function (response) {
-                             console.log(response)
-                         }).catch(function (error) {
-                             console.log(error);
-                         }).then(function() {
-                             // 항상 실행
-                         });
-                    
-                 }
+                }
             }).catch(function (error) {
-                axios.get(`http://bestinwoo.hopto.org:8080/auth/user/${userId}`)
-                         .then(function (response) {
-                             console.log(response)
-                         }).catch(function (error) {
-                             console.log(error);
-                         }).then(function() {
-                             // 항상 실행
-                         });
+                
             }).then(function() {
 
             })
@@ -119,9 +106,24 @@ function Join() {
 
     }
     const onIdSubmit = (e) => {
-        if(userId === confirmUserId) return;
+        axios.get(`http://bestinwoo.hopto.org:8080/auth/user/${userId}` , userId , {
+            headers: {
+                'Content-Type': 'application/json'
+                }
+        })
+             .then(function (response) {
+                 console.log(response)
+                 if(userId === confirmUserId) {
+                    console.log(response.data.data)
+                 }
+           }).catch(function (error) {
+                 console.log(error);
+           }).then(function() {
+                             // 항상 실행
+           });
+        
+        return;
     }
-
     return (
         <BrowserRouter>
         <Route path="/register">
@@ -129,11 +131,14 @@ function Join() {
         <Popup open = {popup.open} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
             <Container className="panel">
                 <Form>
-                    <Form.Group as={Row} className="mb-3">
+                    <Form.Group as={Row} className="col-10 mb-3">
                         <Col sm>
                             <Form.Control maxLength={20} placeholder="UserID" value={userId} onChange={onChangeUserId} />
                             {userIdError && <div className="invalid-input">아이디는 4글자 이상 영어와 숫자를 사용해야 합니다. 예시 : AhaStudy52</div>}
                         </Col>
+                        <Button variant="secondary" onClick={onIdSubmit}>
+                            중복확인
+                        </Button>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Col sm>

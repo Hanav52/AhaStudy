@@ -19,6 +19,7 @@ function Join() {
     const [confirmUserId, setConfirmUserId] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [register, setRegister] = useState(false);
     // id, password, confirmuserid, confirmpassword error부분 확인
     const [userIdError, setUserIdError] = useState(false);
     const [confirmUserIdError, setConfirmUserIdError] = useState(false);
@@ -29,6 +30,7 @@ function Join() {
         const userIdRegex = /^[A-Za-z0-9+]{4,}$/;
         if ((!e.target.value || (userIdRegex.test(e.target.value)))) {
             setUserIdError(false);
+            setRegister(false);
         }
         else setUserIdError(true);
         setUserId(e.target.value);
@@ -91,6 +93,7 @@ function Join() {
                             history.push("/login");
                         }
                     })
+                    
                 }
             }).catch(function (error) {
                 
@@ -112,15 +115,13 @@ function Join() {
                 }
         })
              .then(function (response) {
-                 console.log(response)
-                 if(userId === confirmUserId) {
-                    console.log(response.data.data)
-                 }
-           }).catch(function (error) {
-                 console.log(error);
-           }).then(function() {
-                             // 항상 실행
-           });
+                 alert(response.data.data);
+                 setRegister(true);
+                }).catch(function (error) {
+                alert(error.response.data.errorMessages)
+                }).then(function() {
+                                    // 항상 실행
+                });
         
         return;
     }
@@ -154,13 +155,13 @@ function Join() {
                     </Form.Group>
                     <br />
                     <div className="d-grid gap-1">
-                        <Button variant="secondary" onClick={onSubmit}>
+                    <Button variant="secondary" onClick={onSubmit} disabled={!register}>
                             회원가입
                         </Button>
                     </div>
                 </Form>
                 <br />
-                <span className="text">Have an account? <Link to="/login" className="link">Sign In</Link></span>
+                <span className="text">계정을 가지고 계십니까?<Link to="/login" className="link">로그인</Link></span>
             </Container>
         </div>
         </Route>

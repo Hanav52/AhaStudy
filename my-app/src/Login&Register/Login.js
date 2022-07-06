@@ -11,6 +11,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Route, Router, Switch, useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
+import Popup from './Popup';
+
 
 function Copyright(props) {
   return (
@@ -25,17 +29,45 @@ function Copyright(props) {
   );
 }
 
+
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    const history = useHistory({forceRefresh: true});
+    const [userId, setUserId] = useState("");
+    const [password, setPassword] = useState("");
+    const [token, setToken] = useState();
+    const data = { id: userId, password: password };
+
+    axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
+    // axios.defaults.withCredentials = true;
+    const onSubmit = (e) => {
+            axios.post('http://bestinwoo.hopto.org:8080/auth/login', data, {
+                headers: {
+                'Content-Type': 'application/json'
+                }
+              }
+            ).then(function (response) {
+                setToken(response.data.accessToken);
+                history.push("/");
+    
+            }).catch(function (error) {
+                alert("아이디 및 비밀번호를 틀리셨습니다.");
+            }).then(function() {
+
+            })
+        
+
+        
+        
+
+    }
+    const changeUser = (e) => {
+      setUserId(e.target.value);
+    }
+    const changePassword = (e) => {
+      setPassword(e.target.value)
+    }
   return (
     <Route path='/login'>
     <ThemeProvider theme={theme}>
@@ -55,41 +87,40 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
               id="email"
               label="아이디"
-              name="email"
               autoComplete="email"
               autoFocus
+              value={userId}
+              onChange={changeUser}
+              
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="password"
               label="비밀번호"
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={changePassword}
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              href="/"
+              onClick={onSubmit}
             >
               로그인
             </Button>
             <Grid container>
               <Grid item xs>
-                {/* <Link href="Register.js" variant="body2">
-                  비밀번호를 잊으셨습니까?
-                </Link> */}
               </Grid>
               <Grid item>
               <Route path='/register'>

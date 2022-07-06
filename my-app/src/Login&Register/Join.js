@@ -13,7 +13,6 @@ import Popup from './Popup';
 
 function Join() {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
-    const [checkId, setCheckId] = useState("")
     // id, password, confirmuserid, confirmpassword 확인하는 구간
     const [userId, setUserId] = useState("");
     const [confirmUserId, setConfirmUserId] = useState("");
@@ -22,7 +21,6 @@ function Join() {
     const [register, setRegister] = useState(false);
     // id, password, confirmuserid, confirmpassword error부분 확인
     const [userIdError, setUserIdError] = useState(false);
-    const [confirmUserIdError, setConfirmUserIdError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
     // userid form에 change가 있을 때마다 validation check를 하고 결과를 useriderror state에 저장한다.
@@ -51,17 +49,6 @@ function Join() {
         else setConfirmPasswordError(true);
         setConfirmPassword(e.target.value);
     };
-    
-    // const onChangeUserName = (e) => {
-    //     setUserNameError(false);
-    //     setUserName(e.target.value)
-    // };
-    // const onChangeEmail = (e) => {
-    //     const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    //     if (!e.target.value || emailRegex.test(e.target.value)) setEmailError(false);
-    //     else setEmailError(true);
-    //     setEmail(e.target.value);
-    // };
     const history = useHistory();
     const validation = () => {
         if(!userId) setUserIdError(true);

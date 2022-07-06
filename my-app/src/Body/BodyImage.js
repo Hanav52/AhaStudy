@@ -1,14 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "../Footer/Footer";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Link, useHistory } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Swal from 'sweetalert2'
 import Nav from "../NavBody/Nav";
 import Section from "./section";
+import SignIn from '../Login&Register/Login';
 
-function RealMain() {
+function RealMain(props) {
+  const history = useHistory();
 
+  console.log(props.token);  
   return (
     /* 메인 이미지 섹션  footer 부분 */
     <div>
@@ -43,7 +46,7 @@ function RealMain() {
                 </div>
               </div>
               <div className="login-mainsubtitle">
-              <Link to="/login"><button type="button" className="head-blog btn btn lg btn-warning">로그인</button></Link>
+              <Link to='login'><button type="button" className="head-blog btn btn lg btn-warning">로그인</button></Link>
               <Link><button type="button" className="head-blog btn btn lg btn-outline-warning">글 작성하기</button></Link>
               </div>
             </div>

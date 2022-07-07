@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import BasicCard from './test';
+import '../css/stylemain.css'
 
 function Section() {
     return (

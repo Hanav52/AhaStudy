@@ -2,14 +2,14 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import './css/sb-admin-2.min.css';
 import BasicTabs from './Component';
+import HeaderNav from './Header/HeaderNav';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BasicTabs/>
+    <HeaderNav/>
   </React.StrictMode>
 );
 

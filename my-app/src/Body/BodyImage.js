@@ -11,7 +11,10 @@ import SignIn from '../Login&Register/Login';
 function RealMain(props) {
   const history = useHistory();
 
-  console.log(props.token);  
+  const onMakeList = () => {
+  }
+
+  console.log(props);  
   return (
     /* 메인 이미지 섹션  footer 부분 */
     <div>
@@ -47,7 +50,7 @@ function RealMain(props) {
               </div>
               <div className="login-mainsubtitle">
               <Link to='login'><button type="button" className="head-blog btn btn lg btn-warning">로그인</button></Link>
-              <Link><button type="button" className="head-blog btn btn lg btn-outline-warning">글 작성하기</button></Link>
+              <Link><button type="button" className="head-blog btn btn lg btn-outline-warning" onClick={onMakeList}>글 작성하기</button></Link>
               </div>
             </div>
           </div>

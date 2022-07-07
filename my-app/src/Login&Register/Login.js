@@ -13,7 +13,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Route, Router, Switch, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import Popup from './Popup';
 
 
 function Copyright(props) {
@@ -123,11 +122,9 @@ export default function SignIn() {
               <Grid item xs>
               </Grid>
               <Grid item>
-              <Route path='/register'>
-                <Link variant="body2" href="register">
-                  {"계정이 없으십니까? 회원가입"}
+                <Link underline="hover" href="register">
+                  계정이 없으십니까? 회원가입
                 </Link>
-                </Route>
               </Grid>
             </Grid>
           </Box>

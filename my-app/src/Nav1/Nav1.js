@@ -13,6 +13,7 @@ function Nav1() {
     useEffect(() => {
         setVisible(window.localStorage.getItem("State"));
     },[]);
+    console.log(visible);
 
     return(
         <div className="head-container">

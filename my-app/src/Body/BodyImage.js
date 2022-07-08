@@ -7,13 +7,25 @@ import Swal from 'sweetalert2'
 import Nav from "../NavBody/Nav";
 import Section from "./section";
 import SignIn from '../Login&Register/Login';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function RealMain() {
   const history = useHistory();
 
+  const [visible, setVisible] = useState();
+  useEffect(() => {
+      setVisible(window.localStorage.getItem("State"));
+  },[]);
+
   const onMakeList = () => {
+    if(visible === "false") {
+      alert("로그인 후 이용해주세요.");
+    }
   }
-  console.log(window.localStorage.getItem("LoginId"));
+
+  
+
   return (
     /* 메인 이미지 섹션  footer 부분 */
     <div>
@@ -48,8 +60,9 @@ function RealMain() {
                 </div>
               </div>
               <div className="login-mainsubtitle">
-              <Link to='login'><button type="button" className="head-blog btn btn lg btn-warning">로그인</button></Link>
-              <Link><button type="button" className="head-blog btn btn lg btn-outline-warning" onClick={onMakeList}>글 작성하기</button></Link>
+              {visible ?  <button type="button" className="head-blog btn btn lg btn-warning"><Link to='login'>로그인</Link></button> : 
+                          <button type="button" className="head-blog btn btn lg btn-warning"><Link to='login'>로그아웃</Link></button>}
+              <button onClick={onMakeList} type="button" className="head-blog btn btn lg btn-outline-warning" ><Link>글 작성하기</Link></button>
               </div>
             </div>
           </div>

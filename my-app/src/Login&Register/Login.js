@@ -35,8 +35,8 @@ export default function SignIn() {
     const history = useHistory({forceRefresh: true});
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState();
     const data = { id: userId, password: password };
+    const [state, setState] = useState(false);
 
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
     // axios.defaults.withCredentials = true;
@@ -47,7 +47,10 @@ export default function SignIn() {
                 }
               }
             ).then(function (response) {
-                setToken(response.data.accessToken);
+                window.localStorage.setItem("LoginId" , JSON.stringify(response.data.loginId));
+                window.localStorage.setItem("AccessToken", JSON.stringify(response.data.accessToken));
+                window.localStorage.setItem("RefreshToken", JSON.stringify(response.data.refreshToken));
+                window.localStorage.setItem("State", JSON.stringify(!state)); //false 에서 true로 변환 로그인 버튼에서 알림, 아이디, 프로필이 나와야한다.
                 history.push("/");
     
             }).catch(function (error) {

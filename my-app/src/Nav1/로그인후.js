@@ -12,8 +12,20 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function AccountMenu() {
+  // local저장소
+  const [LoginId, setLoginId] = useState();
+  useEffect(() => {
+    setLoginId(window.localStorage.getItem("LoginId"));
+  },[])
+
+  const LogoutUser = () => {
+    
+  }
+ 
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -26,6 +38,7 @@ export default function AccountMenu() {
     <div>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Typography sx={{ minWidth: 100 }}>알림</Typography>
+        <Typography sx={{ minWidth: 100 }}>{LoginId}</Typography>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -78,7 +91,7 @@ export default function AccountMenu() {
           <Avatar /> 내 정보
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={LogoutUser}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

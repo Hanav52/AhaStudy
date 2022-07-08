@@ -8,13 +8,12 @@ import Nav from "../NavBody/Nav";
 import Section from "./section";
 import SignIn from '../Login&Register/Login';
 
-function RealMain(props) {
+function RealMain() {
   const history = useHistory();
 
   const onMakeList = () => {
   }
-
-  console.log(props);  
+  console.log(window.localStorage.getItem("LoginId"));
   return (
     /* 메인 이미지 섹션  footer 부분 */
     <div>

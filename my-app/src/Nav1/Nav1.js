@@ -9,7 +9,10 @@ import AccountMenu from './로그인후';
 //첫번째 줄 메뉴
 function Nav1() {
     
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState();
+    useEffect(() => {
+        setVisible(window.localStorage.getItem("State"));
+    },[]);
 
     return(
         <div className="head-container">

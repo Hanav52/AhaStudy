@@ -19,7 +19,7 @@ function RealMain() {
   },[]);
 
   const onMakeList = () => {
-    if(visible === "false") {
+    if(visible === window.localStorage.getItem("State")) {
       alert("로그인 후 이용해주세요.");
     }
   }

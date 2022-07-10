@@ -8,11 +8,11 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
 import { useEffect } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function AccountMenu() {
   // local저장소
@@ -21,8 +21,33 @@ export default function AccountMenu() {
     setLoginId(window.localStorage.getItem("LoginId"));
   },[])
 
-  const LogoutUser = () => {
+  const history = useHistory();
+
+  const token = window.localStorage.getItem("AccessToken");
+  
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const config = {
+    'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
     
+  };
+
+
+  const LogoutUser = () => {
+    axios.post("http://bestinwoo.hopto.org:8080/auth/logout", config)
+      .then(function (response) {
+        localStorage.removeItem("LoginId");
+        localStorage.removeItem("AccessToken");
+        localStorage.removeItem("AccessTokenExpiresIn");
+        localStorage.removeItem("RefreshToken");
+        localStorage.removeItem("RefreshTokenExpiresIn");
+        localStorage.removeItem("State");
+        alert(response.data.data);
+        history.push("/");
+      }).catch(function (error) {
+        console.log(error)
+      }).then(function() {
+          // 항상 실행
+      });
   }
  
 

@@ -13,14 +13,13 @@ function Nav1() {
     useEffect(() => {
         setVisible(window.localStorage.getItem("State"));
     },[]);
-    console.log(visible);
 
     return(
         <div className="head-container">
             <div className="head-brand">
                 <Link to="/">Aha Study</Link>
             </div>
-            {visible ? <button type="button" className="head-blog btn btn lg btn-warning"><Link to="/login">로그인</Link></button> : <AccountMenu/>}
+            {!visible ? <button type="button" className="head-blog btn btn lg btn-warning"><Link to="/login">로그인</Link></button> : <AccountMenu/>}
         </div>
     )
 }

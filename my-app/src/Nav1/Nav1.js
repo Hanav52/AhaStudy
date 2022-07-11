@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Nav2 from "../Nav2/Nav2";
 import AccountMenu from './로그인후';
+import moment from 'moment';
 
 
 //첫번째 줄 메뉴
@@ -13,6 +14,11 @@ function Nav1() {
     useEffect(() => {
         setVisible(window.localStorage.getItem("State"));
     },[]);
+
+    // if (moment(expireAt).diff(moment()) < 0 && refreshToken) {
+    //     const body = {
+    //       refreshToken,
+    //     };
 
     return(
         <div className="head-container">

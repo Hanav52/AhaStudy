@@ -15,11 +15,6 @@ function Nav1() {
         setVisible(window.localStorage.getItem("State"));
     },[]);
 
-    // if (moment(expireAt).diff(moment()) < 0 && refreshToken) {
-    //     const body = {
-    //       refreshToken,
-    //     };
-
     return(
         <div className="head-container">
             <div className="head-brand">

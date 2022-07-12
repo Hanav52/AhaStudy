@@ -40,7 +40,7 @@ export default function AccountMenu() {
         localStorage.removeItem("AccessTokenExpiresIn");
         localStorage.removeItem("RefreshToken");
         localStorage.removeItem("RefreshTokenExpiresIn");
-        localStorage.removeItem("State");
+        localStorage.setItem("State", false);
         alert(response.data.data);
         history.push("/");
       }).catch(function (error) {

@@ -15,7 +15,6 @@ import axios from 'axios';
 function RealMain() {
   const history = useHistory();
   const t2 = new Date();
-  const m2 = t2.getTime();
 // localstorage에서 데이터 받아오기
   const [visible, setVisible] = useState();
   const [LoginId, setLoginId] = useState();
@@ -34,34 +33,47 @@ function RealMain() {
       setRefreshTokenExpiresIn(window.localStorage.getItem("RefreshTokenExpiresIn"));
   },[]);
 
+  
+  const t1 = Number(AccessTokenExpiresIn);
+  const diff2 = moment.duration(t1 - t2).asMilliseconds(); // 400000이하로 떨어지면
+
   const onMakeList = () => {
-    if(visible === window.localStorage.getItem("State")) {
+    if(!visible === window.localStorage.getItem("State")) {
       alert("로그인 후 이용해주세요.");
+    } else {
+      alert("글 작성하기");
+      // 400000이하로 떨어지면
+      if(diff2 < 400000) {
+        axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+          accessToken : AccessToken,
+          refreshToken: RefreshToken
+      })
+      .then(function (response) {
+        localStorage.removeItem("AccessToken");
+        localStorage.removeItem("AccessTokenExpiresIn");
+        localStorage.removeItem("RefreshToken");
+        localStorage.removeItem("RefreshTokenExpiresIn");
+        localStorage.setItem("AccessToken", response.data.accessToken);
+        localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
+        localStorage.setItem("RefreshToken", response.data.refreshToken);
+        localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
+        // 글작성하는 곳으로
+
+      }).catch(function (error) {
+        console.log(error)
+      }).then(function() {
+          // 항상 실행
+      });
+      } else {
+        // 글 작성하는 곳으로 이동
+      }
     }
-  }
-  const t1 = (moment(AccessTokenExpiresIn).diff(moment()) < 0 && RefreshToken)
-  console.log(t1);
-  const diff2 = moment.duration(t1 - t2).asSeconds();
 
-  const onMake  = () => {
-    
-    axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
-      accessToken : AccessToken,
-      refreshToken: RefreshToken
-  })
-  .then(function (response) {
-    console.log(response)
-    localStorage.setItem("AccessToken", response.data.accessToken);
-    localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
-    localStorage.setItem("RefreshToken", response.data.refreshToken);
-    localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
-  }).catch(function (error) {
-    console.log(error)
-  }).then(function() {
-      // 항상 실행
-  });
   }
 
+
+
+  
 
 
 
@@ -140,7 +152,7 @@ function RealMain() {
               <div className="login-mainsubtitle">
               {!visible ?  <button type="button" className="head-blog btn btn lg btn-warning"><Link to='login'>로그인</Link></button> : 
                           <button type="button" className="head-blog btn btn lg btn-warning"><Link to='login'>로그아웃</Link></button>}
-              <button onClick={onMake} type="button" className="head-blog btn btn lg btn-outline-warning" ><Link>글 작성하기</Link></button>
+              <button onClick={onMakeList} type="button" className="head-blog btn btn lg btn-outline-warning" ><Link>글 작성하기</Link></button>
               </div>
             </div>
           </div>

@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import styled from "styled-components";
+import TagBox from './TagBox';
+import axios from "axios";
 
 export default function App() {
   const editorRef = useRef(null);
@@ -8,11 +11,35 @@ export default function App() {
       console.log(editorRef.current.getContent());
     }
   };
+  const TitleInput = styled.input`
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
+`;
+const upload = () => {
+    const formData = new FormData();
+    const file = document.getElementById("file");
+    formData.append("file", file.files[0]);
+    axios.post("upload", formData, {
+    headers: {
+         "Content-Type" : "multipart/form-data" 
+    }
+  }).then(function(res){
+  });
+}
+  const change= (e) => {
+    console.log(e.target.value)
+  } 
   return (
     <>
       <div>
-        제목 적는부분
+        <TitleInput placeholder="제목을 입력하세요." />
+        <TagBox/>
+        <p></p>
       </div>
+      
       <Editor
         apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
         onInit={(evt, editor) => editorRef.current = editor}
@@ -32,6 +59,10 @@ export default function App() {
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
+      <div>
+        <p></p>
+        <input type="file" name="file"/>
+      </div>
       <button onClick={log}>Log editor content</button>
     </>
   );

@@ -70,7 +70,7 @@ export default function CustomizedDialogs() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          글 쓰기
+          작성
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <App/>

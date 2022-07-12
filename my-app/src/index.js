@@ -8,9 +8,11 @@ import Join from './Login&Register/Join';
 import Test from './Login&Register/test';
 import Users from './Login&Register/ttest';
 import RealMain from './Body/BodyImage';
+import App from './글작성/Modal';
+import CustomizedDialogs from './글작성/Modaal';
 ReactDOM.render(
   <React.StrictMode>
-    <Hole/>
+    <CustomizedDialogs/>
   </React.StrictMode>,
   document.getElementById('root')
 );

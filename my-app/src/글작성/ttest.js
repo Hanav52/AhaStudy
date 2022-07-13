@@ -12,16 +12,23 @@ const Survey = () => {
     for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i]);
     }
-
-    let dataSet = {
-      name: "Hong gil dong",
-      phone: "010-1234-1234",
-      birth: "2001-09-11",
+    const token = window.localStorage.getItem("AccessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const Title = window.localStorage.getItem("titlevalue");
+    const TagStroage = window.localStorage.getItem("localTags");
+    const ContentValue = window.localStorage.getItem("contentvalue");
+    formData.append("title", Title);
+    formData.append("content", ContentValue);
+    formData.append("boardId", 1);
+    formData.append("tags", TagStroage);
+  
+    const config = {
+      'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
+      'Content-Type': 'multipart/form-data'
     };
 
-    formData.append("data", JSON.stringify(dataSet));
+    axios.post("http://bestinwoo.hopto.org:8080/post", formData, config);
 
-    console.log(formData);
   };
 
   return (

@@ -19,17 +19,14 @@ export default function App() {
   const [titlevalue, setTitleValue] = useState();
   const [contentvalue, setContentValue] = useState();
   window.localStorage.setItem("titlevalue", titlevalue);
-    
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-      setContentValue(editorRef.current.getContent());
-    }
-  };
+  useEffect(()=> {
+  })
+
   window.localStorage.setItem("contentvalue", contentvalue);
   // 제목, 태그, 내용, 이미지
-
-  
+  const log = (e) => {
+    setContentValue(e.level.content);
+  }
 
   return (
     <>
@@ -41,8 +38,7 @@ export default function App() {
       
       <Editor
         apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
-        onChange={(event) => setContentValue(event.target.value)}
-        onInit={(evt, editor) => editorRef.current = editor}
+        onChange={log}
         initialValue="글 작성시 위에있는 태그 포함과 Enter를 쳐주세요"
         init={{
           forced_root_block : false,

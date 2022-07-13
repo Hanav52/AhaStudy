@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import CustomizedDialogs from "../글작성/Modaal";
 
 export default function AccountMenu() {
   // local저장소

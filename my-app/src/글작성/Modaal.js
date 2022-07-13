@@ -10,6 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import App from './Modal';
+import axios from "axios";
+import { useState } from 'react';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -50,21 +52,31 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const token = window.localStorage.getItem("AccessToken");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const Title = window.localStorage.getItem("titlevalue");
+  const TagStroage = window.localStorage.getItem("localTags");
+  const ContentValue = window.localStorage.getItem("contentvalue");
+  let frm = new FormData();
+  frm.append("title", Title);
+  frm.append("content", ContentValue);
+  frm.append("boardId", 1);
+  frm.append("tags", TagStroage);
+  let photoFile = document.getElementById("photo");
+  frm.append("file", photoFile);
+  
+  const config = {
+    'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
+    'Content-Type': 'multipart/form-data'
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-  const handleClose = (e) => {
-    const Title = window.localStorage.getItem("titlevalue");
-    const TagStroage = window.localStorage.getItem("localTags");
-    const ContentValue = window.localStorage.getItem("contentvalue")
-    
-   
-    let formData = new FormData();
-    setOpen(true);
+  const handleClose = () => { 
+    setOpen(false);
   };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     e.persist();
@@ -72,17 +84,27 @@ export default function CustomizedDialogs() {
     let files = e.target.profile_files.files;
     let formData = new FormData();
     for (let i = 0; i < files.length; i++) {
-      formData.append("files", files[i]);
+      formData.append("file", files[i]);
     }
-    let dataSet = {
-      name: "Hong gil dong",
-      phone: "010-1234-1234",
-      birth: "2001-09-11",
-    };
+    const token = window.localStorage.getItem("AccessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const Title = window.localStorage.getItem("titlevalue");
+    const TagStroage = window.localStorage.getItem("localTags");
+    const ContentValue = window.localStorage.getItem("contentvalue");
+    formData.append("title", Title);
+    formData.append("content", ContentValue);
+    formData.append("boardId", 1);
+    formData.append("tags", TagStroage);
+  
 
-    formData.append("data", JSON.stringify(dataSet));
+    axios.post("http://bestinwoo.hopto.org:8080/post", formData, config).then(function (response) {
+      console.log(response)
+    }).catch(function (error) {
+        // 오류발생시 실행
+    }).then(function() {
+        // 항상 실행
+    }); 
 
-    console.log(formData);
   };
 
   return (
@@ -101,18 +123,23 @@ export default function CustomizedDialogs() {
         <DialogContent dividers>
           <App/>
           <p></p>
-          <form onClick={(e) => handleClose(e)}>
-          <input
-            type="file"
-            name="profile_files"
-            multiple="multiple"
-          />
-          </form>
+          {/* <form>
+          <input type="file" name="photo" id="photo" />
+          </form> */}
+          
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+        <form onSubmit={(e) => onSubmit(e)}>
+            <input
+              type="file"
+              name="profile_files"
+              multiple="multiple"
+            />
+            <button type="submit" onClick={handleClose}>업로드</button>
+          {/* <Button autoFocus onClick={handleClose}>
             저장하기
-          </Button>
+          </Button> */}
+          </form>
         </DialogActions>
       </BootstrapDialog>
     </div>

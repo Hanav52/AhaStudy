@@ -58,7 +58,6 @@ function RealMain() {
         localStorage.setItem("RefreshToken", response.data.refreshToken);
         localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
         // 글작성하는 곳으로
-
       }).catch(function (error) {
         console.log(error)
       }).then(function() {

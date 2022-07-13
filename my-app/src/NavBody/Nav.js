@@ -13,7 +13,7 @@ function Nav() {
                 <div className="inner">
                     <Nav1/>
                 </div>
-                    {/* <Nav2/> */}
+                    <Nav2/>
             </header>
         </BrowserRouter>
   );

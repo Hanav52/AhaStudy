@@ -55,8 +55,34 @@ export default function CustomizedDialogs() {
   const handleClickOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleClose = (e) => {
+    const Title = window.localStorage.getItem("titlevalue");
+    const TagStroage = window.localStorage.getItem("localTags");
+    const ContentValue = window.localStorage.getItem("contentvalue")
+    
+   
+    let formData = new FormData();
+    setOpen(true);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    e.persist();
+
+    let files = e.target.profile_files.files;
+    let formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+    let dataSet = {
+      name: "Hong gil dong",
+      phone: "010-1234-1234",
+      birth: "2001-09-11",
+    };
+
+    formData.append("data", JSON.stringify(dataSet));
+
+    console.log(formData);
   };
 
   return (
@@ -74,6 +100,14 @@ export default function CustomizedDialogs() {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <App/>
+          <p></p>
+          <form onClick={(e) => handleClose(e)}>
+          <input
+            type="file"
+            name="profile_files"
+            multiple="multiple"
+          />
+          </form>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

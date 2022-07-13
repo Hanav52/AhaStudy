@@ -1,50 +1,51 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import styled from "styled-components";
 import TagBox from './TagBox';
 import axios from "axios";
 
-export default function App() {
-  const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
-  const TitleInput = styled.input`
+
+const TitleInput = styled.input`
   outline: none;
   border: none;
   font-size: 1.5rem;
   padding-bottom: 0.5rem;
   width: 100%;
 `;
-const upload = () => {
-    const formData = new FormData();
-    const file = document.getElementById("file");
-    formData.append("file", file.files[0]);
-    axios.post("upload", formData, {
-    headers: {
-         "Content-Type" : "multipart/form-data" 
+
+export default function App() {
+  const editorRef = useRef(null);
+  const [titlevalue, setTitleValue] = useState();
+  const [contentvalue, setContentValue] = useState();
+  window.localStorage.setItem("titlevalue", titlevalue);
+    
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+      setContentValue(editorRef.current.getContent());
     }
-  }).then(function(res){
-  });
-}
-  const change= (e) => {
-    console.log(e.target.value)
-  } 
+  };
+  window.localStorage.setItem("contentvalue", contentvalue);
+  // 제목, 태그, 내용, 이미지
+
+  
+
   return (
     <>
       <div>
-        <TitleInput placeholder="제목을 입력하세요." />
+        <TitleInput placeholder="제목을 입력하세요." calss="title" name='title' onChange={(event) => setTitleValue(event.target.value)}></TitleInput>
         <TagBox/>
         <p></p>
       </div>
       
       <Editor
         apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
+        onChange={(event) => setContentValue(event.target.value)}
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue="글 작성시 태그를 꼭 포함시켜주세요"
+        initialValue="글 작성시 위에있는 태그 포함과 Enter를 쳐주세요"
         init={{
+          forced_root_block : false,
           height: 500,
           menubar: false,
           plugins: [
@@ -59,11 +60,6 @@ const upload = () => {
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <div>
-        <p></p>
-        <input type="file" name="file"/>
-      </div>
-      <button onClick={log}>Log editor content</button>
     </>
   );
 }

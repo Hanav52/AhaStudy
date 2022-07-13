@@ -101,7 +101,7 @@ const TagBox = () => {
     },
     [input, insertTag],
   );
-
+    window.localStorage.setItem("localTags",localTags);
   return (
     <TagBoxBlock>
       <h6>태그</h6>

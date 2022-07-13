@@ -1,7 +1,5 @@
 import React, { useState } from "react"
-import { Button } from "antd"
 import Axios from "axios"
-import UploadImage from "./Sections/UploadImage"
 import { useHistory } from "react-router-dom"
 
 const CreateList = () => {
@@ -30,8 +28,8 @@ const CreateList = () => {
 
   return (
     <div>
-      <UploadImage onDrop={onDrop} />
-      <Button size="large" onClick={onCreate}>생성하기</Button>
+      <button onDrop={onDrop} />
+      <buttons size="large" onClick={onCreate}>생성하기</buttons>
     </div>
   )
 }

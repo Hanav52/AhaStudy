@@ -25,6 +25,9 @@ function Hole() {
                 <Route path="/register">
                     <Join/>
                 </Route>
+                {/* <Route path="/bodyformenu">
+                    <BodyForMenu/>
+                </Route> */}
             </Switch>
             </>
         </BrowserRouter>

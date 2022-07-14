@@ -52,7 +52,7 @@ export default function SignIn() {
                 window.localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
                 window.localStorage.setItem("RefreshToken", response.data.refreshToken);
                 window.localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
-                window.localStorage.setItem("State", !state); //false 에서 true로 변환 로그인 버튼에서 알림, 아이디, 프로필이 나와야한다.
+                window.localStorage.setItem("State", true); //false 에서 true로 변환 로그인 버튼에서 알림, 아이디, 프로필이 나와야한다.
                 history.push("/");
     
             }).catch(function (error) {

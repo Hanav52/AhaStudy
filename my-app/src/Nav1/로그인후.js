@@ -47,7 +47,9 @@ export default function AccountMenu() {
       }).catch(function (error) {
         console.log(error)
       }).then(function() {
-          // 항상 실행
+        localStorage.removeItem("State")
+        alert("로그인이 만료되었습니다.");
+        history.push("login");
       });
   }
  

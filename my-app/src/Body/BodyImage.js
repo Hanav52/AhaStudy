@@ -71,50 +71,8 @@ function RealMain() {
   }
 
   // api 연동 부분
-
+  console.log(visible)
   
-
-
-
-  // // const tokenExpiration = AccessTokenExpiresIn || new Date(new Date().getTime() + 60 * 1000 * 60);
-  // // //setAccessTokenExpiresIn(tokenExpiration)
-  // // console.log(AccessTokenExpiresIn)
-  // // if(AccessTokenExpiresIn < 160) {
-  // //   console.log(AccessTokenExpiresIn)
-  // // }
-  // console.log(AccessTokenExpiresIn)
-  // const date1 = new Date(AccessTokenExpiresIn);
-  
-  // console.log(date1);
-  // const refresh = () => {
-  //   // const RefreshToken = localStorage.getItem("RefreshToken");
-  //   // const AccessTokenExpiresIn = localStorage.getItem("AccessTokenExpiresIn");
-    
-  
-  //   // 토큰이 만료되었고, refreshToken 이 저장되어 있을 때
-  //   if (moment(AccessTokenExpiresIn, 'YYYYMMDDHHmmss').diff(moment()) < 0 && RefreshToken) {
-  //     const config = { accessToken : AccessToken, refreshToken : RefreshToken };
-  
-  //     // 토큰 갱신 서버통신
-  //     axios.post("http://bestinwoo.hopto.org:8080/auth/logout", config)
-  //     .then(function (response) {
-  //       console.log(response)
-  //     }).catch(function (error) {
-  //         // 오류발생시 실행
-  //     }).then(function() {
-  //         // 항상 실행
-  //     });
-  
-  //     // token = data.data.accessToken;
-  //     // localStorage.setItem("accessToken", data.data.accessToken);
-  //     // localStorage.setItem(
-  //     //   "expiresAt",
-  //     //   moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
-  //     // );
-  //   }
-  
-  // };
-
   return (
     /* 메인 이미지 섹션  footer 부분 */
     <div>
@@ -132,9 +90,6 @@ function RealMain() {
             </div>
           </div>
         </section>
-        <Section/>
-        <Section/>
-        <Section/>
         <Section/>
         <section>
           <div className="inner3">

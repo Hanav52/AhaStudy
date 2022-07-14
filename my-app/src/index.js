@@ -8,14 +8,13 @@ import Join from './Login&Register/Join';
 import Test from './Login&Register/test';
 import Users from './Login&Register/ttest';
 import RealMain from './Body/BodyImage';
-import App from './글작성/Modal';
 import CustomizedDialogs from './글작성/Modaal';
 import CreateList from './글작성/BLob';
 import Survey from './글작성/ttest';
 import BodyForMenu from './Body/BodyForMenu';
 ReactDOM.render(
   <React.StrictMode>
-    <BodyForMenu/>
+    <Hole/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -5,121 +5,67 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Nav from '../NavBody/Nav';
+import axios from 'axios';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
+import '../css/stylemain.css';
+
+function BodyBodySearch() {
+    return(
+        <div className='inner'>
+            <div className='bodybodyheader'>
+            <input
+                type="search"
+                className="formSearch"
+                placeholder="영화 이름 입력"
+            />
+            
+            <input
+                type="search"
+                className="formSearch"
+                placeholder="영화 이름 입력"
+            />
+            </div>
+        </div>
+    )
+}
+function BodyBodyBody() {
+    return(
+    <div className='inner'>
+         여기는 게시글입니다.
+    </div>
+    )
+}
 
 function BodyForMenu() {
+    const config = {
+        'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
+      };
+    const token = window.localStorage.getItem("AccessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.get("http://bestinwoo.hopto.org:8080/board", config)
+    .then(function (response) {
+        console.log(response.data)
+    }).then(function (error) {
+        console.log(error)
+    })
+    const data = () => {
+    }
+    
+
     return (
-        <div id="content-wrapper" className="d-flex flex-column">
-
-            <div id="content">
-
-                <div className="container-fluid">
-                    <section className="py-5">
-                        <div className="container px-4 px-lg-5 mt-5">
-                          <nav className="navbar navbar-light bg-light">
-                            <div className="container-fluid">
-                              <a className="navbar-brand" href="blank">공무원</a>
-                            </div>
-                          </nav>
-
-
-                            <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                                <div className="col mb-5">
-                                    <div className="card h-100">
-                                        <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                        <div className="card-body p-4">
-                                            <div className="text-center">
-                                                <h5 className="fw-bolder">게시글</h5>
-                                                작성자 : 이준기
-                                            </div>
-                                        </div>
-                                        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="blank">자세히보기</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col mb-5">
-                                    <div className="card h-100">
-                                        <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                        <div className="card-body p-4">
-                                            <div className="text-center">
-                                                <h5 className="fw-bolder">Special Item</h5>
-                                                <div className="d-flex justify-content-center small text-warning mb-2">
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                </div>
-                                                <span className="text-muted text-decoration-line-through">$20.00</span>
-                                                $18.00
-                                            </div>
-                                        </div>
-                                        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="blank">Add to cart</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col mb-5">
-                                    <div className="card h-100">
-                                        <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                        <div className="card-body p-4">
-                                            <div className="text-center">
-                                                <h5 className="fw-bolder">Special Item</h5>
-                                                <div className="d-flex justify-content-center small text-warning mb-2">
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                </div>
-                                                <span className="text-muted text-decoration-line-through">$20.00</span>
-                                                $18.00
-                                            </div>
-                                        </div>
-                                        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="blank">Add to cart</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col mb-5">
-                                    <div className="card h-100">
-                                        <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                        <div className="card-body p-4">
-                                            <div className="text-center">
-                                                <h5 className="fw-bolder">Special Item</h5>
-                                                <div className="d-flex justify-content-center small text-warning mb-2">
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                    <div className="bi-star-fill"></div>
-                                                </div>
-                                                <span className="text-muted text-decoration-line-through">$20.00</span>
-                                                $18.00
-                                            </div>
-                                        </div>
-                                        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="blank">Add to cart</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <nav aria-label="Page navigation example">
-                          <ul className="pagination">
-                            <li className="page-item"><a className="page-link" href="blank0.html">이전</a></li>
-                            <li className="page-item"><a className="page-link" href="blank0.html">1</a></li>
-                            <li className="page-item"><a className="page-link" href="blank0.html">2</a></li>
-                            <li className="page-item"><a className="page-link" href="blank0.html">3</a></li>
-                            <li className="page-item"><a className="page-link" href="blank0.html">다음</a></li>
-                          </ul>
-                        </nav>
-                    </section>
-                </div>
-
-            </div>
-            <Footer/>
+        <>
+        <BrowserRouter>
+        <Route path="/bodyformenu">
+        <Nav/>
+        <div className='bodybody'>
+            <BodyBodySearch/>
+            <BodyBodyBody/>
         </div>
+        <Footer/>
+        </Route>
+        </BrowserRouter>
+        </>
         );
 }
 

@@ -542,6 +542,10 @@ footer {
   
 }
 
+.bodybody {
+  padding-top: 200px;
+}
+
 #backtotop {
   background-color: rgb(47, 48, 89);
   width: 40px;

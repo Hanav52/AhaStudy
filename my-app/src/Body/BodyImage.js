@@ -71,7 +71,7 @@ function RealMain() {
   }
 
   // api 연동 부분
-  console.log(visible)
+  //console.log(visible)
   
   return (
     /* 메인 이미지 섹션  footer 부분 */

@@ -11,7 +11,9 @@ import RealMain from './Body/BodyImage';
 import CustomizedDialogs from './글작성/Modaal';
 import CreateList from './글작성/BLob';
 import Survey from './글작성/ttest';
-import BodyForMenu from './Body/BodyForMenu';
+import BodyForMenu from './Body/Body1~6/BodyForMenu1';
+import App from './Body/App';
+import App1 from './Body/Posts/Posts1';
 ReactDOM.render(
   <React.StrictMode>
     <Hole/>

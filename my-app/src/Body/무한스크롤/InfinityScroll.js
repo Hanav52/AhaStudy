@@ -2,33 +2,115 @@ import React, { useEffect, useState } from "react";
 import { getComments } from "./api1";
 import { BrowserRouter } from "react-router-dom";
 import { Button, ButtonGroup } from "@mui/material";
-import Nav from "../../NavBody/Nav";
+import {  BiSearchAlt2 } from "react-icons/bi";
+import axios from "axios";
+
+
+//제목 검색 부분
+function SerarchBar({ onClick, onChange }) {
+  return (
+    <>
+      <div className="input-group">
+        <input
+          type="search"
+          className="form-control rounded"
+          placeholder="제목 입력"
+          onChange={onChange}
+        />
+        <button type="button" id="search_btn" onClick={onClick}>
+          <BiSearchAlt2 className="search_icon"></BiSearchAlt2>
+        </button>
+      </div>
+    </>
+  );
+}
+//태그 검색 부분
+function SearchTagBar({ onClick, onChange }) {
+  return (
+    <>
+      <div className="input-group">
+        <input
+          type="search"
+          className="form-control rounded"
+          placeholder="태그 입력"
+          onChange={onChange}
+        />
+        <button type="button" id="search_btn" onClick={onClick}>
+          <BiSearchAlt2 className="search_icon"></BiSearchAlt2>
+        </button>
+      </div>
+    </>
+  );
+}
+
 
 function InfinityScroll() {
   const [comments, setComments] = useState([]);
   const [page, setPage] = useState(0);
   const [Desc, setDesc] = useState("writeDate,desc");
-    let timeInterver = '';
-  console.log(localStorage.getItem("category"))
+  let timeInterver = '';
+
+  //검색 호출시 사용
+  const url = "http://bestinwoo.hopto.org:8080/post";
+  const [item, setItem] = useState("");
+
+  const searchItem = event => {
+    setItem(event.target.value);
+  };
+  const fetchMovie = async () => {
+    try {
+      const response = await axios.get(url, {
+        params: {
+          boardId: localStorage.getItem("category"),
+          keyword: item,
+          size: 9,
+          sort: Desc
+        }
+      })
+      setComments();
+      const newMovieList = response.data.data.content;
+      setComments(newMovieList);
+      localStorage.setItem("totalElements", response.data.data.totalElements);
+      
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  //태그 검색시 사용
+  const [tag, setTag] = useState("");
+
+  const searchTag = event => {
+    setTag(event.target.value);
+    console.log(tag);
+  };
+
+  const fetchTag = async () => {
+    try {
+      const response = await axios.get(url, {
+        params: {
+          boardId: localStorage.getItem("category"),
+          tagName: tag,
+          page: page-1,
+          size: 9,
+          sort: Desc
+        }
+      })
+      const newMovieList = response.data.data.content;
+      setComments(newMovieList);
+      localStorage.setItem("totalElements", response.data.data.totalElements);
+      
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  
     function BodyBodySearch() {
       return(
           <div className='inner'>
             <div className='bodybodyheader'>
-              <input
-                  type="search"
-                  className="formSearch"
-                  placeholder="영화 이름 입력"
-              />
-              
-              <input
-                  type="search"
-                  className="formSearch"
-                  placeholder="영화 이름 입력"
-              />
-              <p></p>
               <ButtonGroup variant="text" aria-label="text button group">
                 <Button onClick={() => setDesc("writeDate,desc")}>최신순</Button>
-                <Button onClick={() => setDesc("writeDate,asc")}>조회순</Button>
+                <Button onClick={() => setDesc("views,desc")}>조회순</Button>
                 <Button onClick={() => setDesc("replyCount,desc")}>댓글순</Button>
               </ButtonGroup>
             </div>  
@@ -76,7 +158,6 @@ function InfinityScroll() {
   return (
     <>
     <BrowserRouter>
-    <Nav/>
     <div className="bodybody">
       {/* <label>
         페이지 당 표시할 게시물 수:&nbsp;
@@ -100,10 +181,12 @@ function InfinityScroll() {
                     <div class="roadmap-title">{localStorage.getItem("title")}</div>
                     <div class="roadmap-title">글쓰기</div>
                 </div>
+                <SerarchBar onClick={fetchMovie} onChange={searchItem}></SerarchBar>
+                <SearchTagBar onClick={fetchTag} onChange={searchTag}></SearchTagBar>
                 <BodyBodySearch/>
-                <ul class="class-list" data-position="0">
+                <ul class="class-list1" data-position="0">
                 {comments.map(({boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId}) => (
-        <li class="class-card" key={id}>
+        <li class="class-card1" key={boardId}>
         <img alt="게시글" class="class-image" />
         <a href="http://school.fastcampus.co.kr/blog/all/113/" target="blank">
           <div class="class-container">
@@ -128,7 +211,6 @@ function InfinityScroll() {
             </div>
             </section>
             </div>
-      {/*  */}
       </BrowserRouter>
     </>
   );

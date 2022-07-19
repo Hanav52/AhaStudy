@@ -26,15 +26,16 @@ export default function AccountMenu() {
 
   const token = window.localStorage.getItem("AccessToken");
   
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const config = {
-    'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
-    
+    'Authorization': 'Bearer ' + token,
   };
 
-
   const LogoutUser = () => {
-    axios.post("http://bestinwoo.hopto.org:8080/auth/logout", config)
+    axios.post("http://bestinwoo.hopto.org:8080/auth/logout",{} ,{
+      headers: {
+        'Authorization': `Bearer ` + window.localStorage.getItem("AccessToken")
+      }
+    })
       .then(function (response) {
         localStorage.removeItem("LoginId");
         localStorage.removeItem("AccessToken");
@@ -45,11 +46,12 @@ export default function AccountMenu() {
         alert(response.data.data);
         history.push("/");
       }).catch(function (error) {
+        alert("로그인이 만료되었습니다.");
+        history.push("login");
         console.log(error)
       }).then(function() {
         localStorage.removeItem("State")
-        alert("로그인이 만료되었습니다.");
-        history.push("login");
+        
       });
   }
  

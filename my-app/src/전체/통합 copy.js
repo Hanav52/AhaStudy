@@ -13,6 +13,7 @@ function Hole() {
     <div>
         <body>
         <BrowserRouter>
+        <Nav/>
             <>
             <Switch>
                 <Route exact path="/">

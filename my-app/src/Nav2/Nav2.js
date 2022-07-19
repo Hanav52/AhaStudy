@@ -7,15 +7,18 @@ function Nav2() {
 
   const [data, setData] = useState([]);
 
+  const instance = axios.create({
+    baseURL: 'http://bestinwoo.hopto.org:8080/',
+  });
+
   useEffect(()=> {
-    axios.get(`http://bestinwoo.hopto.org:8080/board`)
+    instance.get("/board")
     .then(function(response) {
       setData(response.data.data)
     }).then(function(error) {
     }) 
   },[])
   let nameList1;
-  //localStorage.setItem("id", JSON.stringify(data));
   for(let i = 0; i < data.length; i++){
     nameList1 = data.map((name) => 
     <li className="nav-item fw-bold link-warning" key={name.id}>

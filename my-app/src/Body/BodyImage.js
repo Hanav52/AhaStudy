@@ -4,9 +4,7 @@ import { BrowserRouter as Link, useHistory } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Swal from 'sweetalert2'
-import Nav from "../NavBody/Nav";
 import Section from "./section";
-import SignIn from '../Login&Register/Login';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import moment from "moment";
@@ -36,9 +34,9 @@ function RealMain() {
   
   const t1 = Number(AccessTokenExpiresIn);
   const diff2 = moment.duration(t1 - t2).asMilliseconds(); // 400000이하로 떨어지면
-
+console.log(visible)
   const onMakeList = () => {
-    if(!visible === window.localStorage.getItem("State")) {
+    if(visible === null) {
       alert("로그인 후 이용해주세요.");
     } else {
       alert("글 작성하기");
@@ -78,7 +76,6 @@ function RealMain() {
     <div>
         <BrowserRouter>
         <Route exact path="/">
-        <Nav/>
         <section>
           <div className="inner1">
             <div className="main1">

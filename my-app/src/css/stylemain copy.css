@@ -291,30 +291,6 @@ section {
   overflow: hidden;
   gap: 20px 2%;  
   flex-wrap: wrap;
-  justify-content:space-around;
-}
-.class-list1 {
-  display: flex;
-  list-style: none;
-  padding: 1rem 0;
-  margin: 0;
-  overflow: hidden;
-  gap: 20px 2%;  
-  flex-wrap: wrap;
-}
-.class-card1 {
-  width: 240px;
-  /* box-shadow: 블럭에 그림자를 적용하는 CSS 기능
-     https://developer.mozilla.org/ko/docs/Web/CSS/box-shadow
-     offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
-  border-radius: 8px;
-  margin: 0 10px;
-  transition: 0.4s;
-  /* IE11 에서는 flex 설정시, 디폴트로 flex 아이템들에 고정 너비를 무시 */
-  flex-shrink: 0;
-  width: 30%;
-  
 }
 
 .class-card {
@@ -328,7 +304,6 @@ section {
   transition: 0.4s;
   /* IE11 에서는 flex 설정시, 디폴트로 flex 아이템들에 고정 너비를 무시 */
   flex-shrink: 0;
-
 }
 
 .class-card:hover {

@@ -6,6 +6,7 @@ import Nav from '../NavBody/Nav';
 import RealMain from '../Body/BodyImage';
 import Join from '../Login&Register/Join';
 import Posts from '../Body/Posts/Posts';
+import DetailPage from '../Body/상세페이지/DetailPage';
 
 
 function Hole() {
@@ -27,6 +28,9 @@ function Hole() {
                 </Route>
                 <Route path="/post">
                     <Posts/>
+                </Route>
+                <Route path="/Detail">
+                    <DetailPage/>
                 </Route>
             </Switch>
             </>

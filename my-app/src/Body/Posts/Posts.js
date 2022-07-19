@@ -1,9 +1,8 @@
 import { Button, ButtonGroup } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Link, Route, useParams } from "react-router-dom";
 import Footer from "../../Footer/Footer";
-import Nav from "../../NavBody/Nav";
 import Pagination from "../Pagination";
 import imgA from '../Posts/201845093_이준기.PNG';
 import { getComments } from "../무한스크롤/api1";
@@ -141,24 +140,9 @@ function Posts() {
     }, [page, Desc]);
 
   return (
-    <BrowserRouter>
+    <>
       <Route path="/post">
-      <div className="bodybody">
-      {/* <label>
-        페이지 당 표시할 게시물 수:&nbsp;
-        <select
-          type="number"
-          value={limit}
-          onChange={({ target: { value } }) => setLimit(Number(value))}
-        >
-          <option value="10">10</option>
-          <option value="12">12</option>
-          <option value="20">20</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
-      </label> */}
-      
+      <div className="bodybody"> 
       <section>
             <div class="inner">
             <div class="roadmap-container">
@@ -173,7 +157,7 @@ function Posts() {
                 {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
                     <li class="class-card1" key={id}>
                       <img src={imgA} alt="게시글" class="class-image" />
-                      <a href="http://school.fastcampus.co.kr/blog/all/113/" target="blank">
+                      <Link to="/Detail" onClick={() => localStorage.setItem("postId", id)}>
                         <div class="class-container">
                           <div class="class-skill">
                             <div class="class-type">작성자 : {writerLoginId}</div>
@@ -188,7 +172,7 @@ function Posts() {
                           <div class="class-detail">댓글수 : {replyCount}</div>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </li>
                 ))}
                 </ul>
@@ -206,7 +190,7 @@ function Posts() {
         <Footer/>
       </footer>
       </Route>
-    </BrowserRouter>
+    </>
   );
 }
 

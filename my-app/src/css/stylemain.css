@@ -786,6 +786,35 @@ footer {
   font-size: 14px;
   letter-spacing: -.3px;
 }
+.Detail-Side {
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  margin-top: 57px;
+  width: 100%;
+}
+.Side-B {
+  padding: 0 58px;
+  flex: 1 1 260px;
+  display: flex;
+}
+.Side-Back {
+  min-width: 40px;
+  color: #1b1c1d;
+    border-color: #e9ecef;
+    background-color: #fff;
+    padding: 11px;
+    border-radius: 8px;
+    border: 1px solid;
+    height: 40px;
+    line-height: 1.43;
+    font-size: 14px;
+    letter-spacing: -.3px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
 #backtotop {
   background-color: rgb(47, 48, 89);

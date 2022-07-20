@@ -54,6 +54,8 @@ function Posts() {
   const params = useParams();
   const [Desc, setDesc] = useState("writeDate,desc");
 
+  
+
 //검색 호출시 사용
   const url = "http://bestinwoo.hopto.org:8080/post";
   const [item, setItem] = useState("");
@@ -157,7 +159,9 @@ function Posts() {
                 {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
                     <li class="class-card1" key={id}>
                       <img src={imgA} alt="게시글" class="class-image" />
-                      <Link to="/Detail" onClick={() => localStorage.setItem("postId", id)}>
+                      <Link to="/Detail" onClick={() => {
+                        localStorage.setItem("writerLoginId", writerLoginId)
+                        localStorage.setItem("postId", id)}}>
                         <div class="class-container">
                           <div class="class-skill">
                             <div class="class-type">작성자 : {writerLoginId}</div>

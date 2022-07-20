@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import styled from "styled-components";
 import axios from "axios";
+import UpdateTagBox from './UpdateTagBox';
 
 
 const TitleInput = styled.input`
@@ -13,26 +14,59 @@ const TitleInput = styled.input`
   width: 100%;
 `;
 
-export default function App1() {
-  const editorRef = useRef(null);
+export default function UpdateDetailModal() {
+  // 제목
   const [titlevalue, setTitleValue] = useState();
+  // 내용
   const [contentvalue, setContentValue] = useState();
-  window.localStorage.setItem("titlevalue", titlevalue);
+  // 제목과 내용을 localStorage에 덮어서 저장한다.
   useEffect(()=> {
-  })
-
+  window.localStorage.setItem("titlevalue", titlevalue);
   window.localStorage.setItem("contentvalue", contentvalue);
-  // 제목, 태그, 내용, 이미지
+  },[contentvalue, titlevalue])
+
+  // 제목, 태그, 내용을 보낸다.
   const log = (e) => {
     setContentValue(e.level.content);
   }
 
+  //api에서 받은 response.data.data 저장하기
+  const [detail, setDetail] = useState([]);
+
+  //  /post에서 받아온 postId와 wirterLoginId 불러오기
+  const postId = localStorage.getItem("postId");
+
+  //api instance 생성
+    const instance = axios.create({
+        baseURL: 'http://bestinwoo.hopto.org:8080/',
+      });
+
+      useEffect(()=> {
+        try {
+        instance.get(`/post/${postId}`)
+        .then(function(response) {
+          console.log(response.data.data);
+          setDetail(response.data.data);
+        })} catch(ex){
+          console.log("오류")
+        }
+      },[])
+  // useEffect(()=>{
+  //   ContentDetail();
+  // },[])
+
   return (
     <>
+      <div>
+        <TitleInput placeholder={detail.title} calss="title" name={detail.title} onChange={(event) => setTitleValue(event.target.value)}>
+        </TitleInput>
+        <UpdateTagBox></UpdateTagBox>
+        <p></p>
+      </div> 
       <Editor
         apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
         onChange={log}
-        initialValue="글 작성시 위에있는 태그 포함과 Enter를 쳐주세요"
+        initialValue={detail.content}
         init={{
           forced_root_block : false,
           height: 500,
@@ -47,8 +81,7 @@ export default function App1() {
           'alignright alignjustify | bullist numlist outdent indent | ' +
           'removeformat | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-        }}
-      />
+        }}></Editor>
     </>
   );
 }

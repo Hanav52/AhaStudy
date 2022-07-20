@@ -1,38 +1,106 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Route, useParams } from "react-router-dom";
-import App1 from "./Modal";
+import { useHistory } from "react-router-dom";
+import UpdateDetail from "./사용안함";
+import App1 from "./사용안함";
+import FormDialog from "./UpdatePage";
+import UpdatePage from "./UpdatePage";
+import App from "../../글작성/Modal";
 
 function DetailPage() {
 
+  const history = useHistory();
+
   //로그인 유무 판단
-  const [visible, setVisible] = useState(false);
-  // useEffect(()=>{
-  //   setVisible(window.localStorage.getItem("State"));
-  // },[visible])
-  
+  const [visible, setVisible] = useState(true);
+  // 게시글 본인 유무 판단
+  const [ContentVisible, setContentVisible] = useState(false);
+  // 댓글 본인 유무 판단
+  const [CommentVisible, setCommentVisible] = useState(false)
+  // posts에서 클릭했을시 현재 사용자의 로그인 상태와 게시글이 본인 게시글인지 확인한다.
+  const ContentDetail = async () => {
+    try {
+      // 로그인 유무를 visible로 판단
+        if(visible === true) {
+          // 게시글이 본인껀지 판단
+          //localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId"
+            if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
+            console.log("본인글");
+            setContentVisible(true);
+            
+            }
+            else {
+                console.log("본인이 아닙니다.");
+                setContentVisible(false);
+            }
+        }
+        else {
+            console.log("로그인x");
+            setContentVisible(false);
+        }
+    }
+    catch(e) {
+        console.log(e);
+    }
+}
+//   // posts에서 클릭했을시 현재 사용자의 로그인 상태와 댓글이 본인 댓글인지 확인한다.
+//   const CommentDetail = async () => {
+//     try {
+//       // 로그인 유무를 visible로 판단
+//         if(visible === true) {
+//           // 게시글이 본인껀지 판단
+//             if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
+//             console.log("본인글");
+//             setContentVisible(true);
+              
+//             }
+//             else {
+//                 console.log("본인이 아닙니다.");
+//                 setContentVisible(false);
+//             }
+//         }
+//         else {
+//             console.log("로그인x");
+//             setContentVisible(false);
+//         }
+//     }
+//     catch(e) {
+//         console.log(e);
+//     }
+// }
+  useEffect(()=>{
+    ContentDetail();
+    // CommentDetail();
+  },[])
 
   //api에서 받은 response.data.data 저장하기
   const [detail, setDetail] = useState([]);
 
-  // //  /post에서 받아온 postId 불러오기
-  // const postId = localStorage.getItem("postId");
+  //  /post에서 받아온 postId와 wirterLoginId 불러오기
+  const postId = localStorage.getItem("postId");
+  // 다시 저장하기
+  window.localStorage.setItem("postId", postId);
 
-  // // api instance 생성
-  //   const instance = axios.create({
-  //       baseURL: 'http://bestinwoo.hopto.org:8080/',
-  //     });
+  //api instance 생성
+    const instance = axios.create({
+        baseURL: 'http://bestinwoo.hopto.org:8080/',
+      });
+  // api header 부분 토큰이 들어가있다.
+    const config = {
+      'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
+      };
     
-  //     useEffect(()=> {
-  //       try {
-  //       instance.get(`/post/${postId}`)
-  //       .then(function(response) {
-  //         console.log(response.data.data);
-  //         setDetail(response.data.data);
-  //       })} catch(ex){
-  //         console.log("오류")
-  //       }
-  //     },[])
+      useEffect(()=> {
+        try {
+        instance.get(`/post/${postId}`)
+        .then(function(response) {
+          console.log(response.data.data);
+          setDetail(response.data.data);
+        })} catch(ex){
+          console.log("오류")
+        }
+      },[])
 
 
   // html 부분
@@ -41,23 +109,29 @@ function DetailPage() {
         <Route path="/Detail">
           <div className="inner">
             <div className="Detail-section">
+              <div className="Detail-Side">
+                <div className="Side-B">
+                  <button className="Side-Back" onClick={()=>history.go("/post")}>뒤로
+                  </button>
+                </div>
+              </div>
               <div className="Detail-content">
                 <div className="Detail-hole">
                   <div className="Detail-title">
                     <div className="Detail-titl-header">
-                      <h1>{detail.title}안녕하세요</h1>
+                      <h1>{detail.title}</h1>
                     </div>
                     <div className="Detail-title-subheader">
-                      <h5>{detail.writerLoginId}이준기</h5>
-                      <h6>&nbsp;· {detail.writeDate}2022.07.19</h6>
+                      <h5>{detail.writerLoginId}</h5>
+                      <h6>&nbsp;· {detail.writeDate}</h6>
                       <div className="subheader-changedelete">
-                        {visible === true ? <><button>수정</button><button>삭제</button></> : <div></div>}
+                        {ContentVisible === true ? <><UpdatePage/><button>삭제</button></> : <div></div>}
                       </div>
                     </div>
                   </div>
                   <div className="Detail-title Ccontent">
                     <div className="Detail-body">
-                      <h1>{detail.content}내요내뇽내요ㅐㄴ요핸</h1>
+                      <h1>{detail.content}</h1>
                     </div>
                   </div>
                 </div>
@@ -103,7 +177,7 @@ function DetailPage() {
                             </div>
                           </div>
                           <div className="comment-m-b">
-                            <App1/>
+                            <App/>
                           </div>
                           <div className="comment-footer">
                             <div className="commant-f-r">

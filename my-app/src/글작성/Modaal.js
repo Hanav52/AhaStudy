@@ -103,6 +103,7 @@ export default function CustomizedDialogs() {
       });
       } else {
         // 글 작성하는 곳으로 이동
+        setOpen(true);
       }
     }
   };
@@ -125,13 +126,15 @@ export default function CustomizedDialogs() {
     const ContentValue = window.localStorage.getItem("contentvalue");
     formData.append("title", Title);
     formData.append("content", ContentValue);
-    formData.append("boardId", 1);
+    formData.append("boardId", window.localStorage.getItem("category"));
     formData.append("tags", TagStroage);
   
 
-    axios.post("http://bestinwoo.hopto.org:8080/post", formData, config).then(function (response) {
+    axios.post("http://bestinwoo.hopto.org:8080/post", formData, config)
+    .then(function (response) {
       console.log(response)
     }).catch(function (error) {
+      console.log(error)
     }).then(function() {
         // 항상 실행
     }); 
@@ -168,6 +171,7 @@ export default function CustomizedDialogs() {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        maxWidth='lg'
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           작성

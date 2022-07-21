@@ -579,6 +579,7 @@ footer {
   padding-bottom: 25px;
   text-align: right;
 }
+/* 상세페이지 부분 */
 .Detail-section {
   padding-top: 130px;
   display: flex;
@@ -831,6 +832,51 @@ footer {
   opacity: 0;
   visibility: hidden;
   z-index: 999;
+}
+/* 프로필 부분 */
+.MyProfile {
+  padding-top: 130px;
+  display: flex;
+  flex-direction: row;
+}
+.profile-content {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+
+}
+.MyProfileBody1 {
+  display: flex;
+  flex-direction: row;
+}
+.leftImage {
+  margin-left: 280px;
+  width: 170px;
+  height: 170px;
+  border-radius: 100px;
+  border: 1px solid #f1f3f5;
+  object-fit: cover;
+  max-width: 100%;
+  display: block;
+}
+.rightContent {
+  margin-left: 200px;
+}
+.rightHeader {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+.updateDelete {
+  margin-left: 220px;
+  display: flex;
+  flex-direction: row;
+}
+.rightBodyFavorite {
+
+}
+.MyProfileBody3 {
+  width: 100px;
 }
 
 @media only screen and (min-width: 1200px) {

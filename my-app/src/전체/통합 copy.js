@@ -7,6 +7,7 @@ import RealMain from '../Body/BodyImage';
 import Join from '../Login&Register/Join';
 import Posts from '../Body/Posts/Posts';
 import DetailPage from '../Body/상세페이지/DetailPage';
+import MyProfile from '../내정보/MyProfile';
 
 
 function Hole() {
@@ -31,6 +32,9 @@ function Hole() {
                 </Route>
                 <Route path="/Detail">
                     <DetailPage/>
+                </Route>
+                <Route path="/Profile">
+                    <MyProfile/>
                 </Route>
             </Switch>
             </>

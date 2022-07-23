@@ -113,6 +113,41 @@ function Section() {
   );
     
     return (
+      /// 메인페이지 화면을 map함수를 이용하여 메인페이지에서 상세페이지로 갈 수 있도록 한다.
+  //     <div class="roadmap-container">
+  //     <div class="roadmap-title-container">
+  //         <div class="roadmap-title">{localStorage.getItem("title")}</div>
+  //         <div class="roadmap-title"><CustomizedDialogs/></div>
+  //     </div>
+  //     <SerarchBar onClick={fetchMovie} onChange={searchItem} disabled={!state}></SerarchBar>
+  //     <SearchTagBar onClick={fetchTag} onChange={searchTag} disabled={state}></SearchTagBar>
+  //     <BodyBodySearch/>
+  //     <ul class="class-list1" data-position="0">
+  //     {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
+  //         <li class="class-card1" key={id}>
+  //           <img src={imgA} alt="게시글" class="class-image" />
+  //           <Link to="/Detail" onClick={() => {
+  //             localStorage.setItem("writerLoginId", writerLoginId)
+  //             localStorage.setItem("postId", id)}}>
+  //             <div class="class-container">
+  //               <div class="class-skill">
+  //                 <div class="class-type">작성자 : {writerLoginId}</div>
+  //                 <div class="class-format">{"#"+tags}</div>
+  //               </div>
+  //               <div class="class-desc">
+  //                 <div class="class-title">제목 : {title}</div>
+  //                 <div class="class-detail">게시일 : {writeDate}</div>
+  //               </div>
+  //               <div class="class-skill">
+  //               <div class="class-detail">조회수 : {views}</div>
+  //               <div class="class-detail">댓글수 : {replyCount}</div>
+  //               </div>
+  //             </div>
+  //           </Link>
+  //         </li>
+  //     ))}
+  //     </ul>
+  // </div>
       <section>
         <div class="inner">
           <div class="roadmap-container">

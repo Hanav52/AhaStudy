@@ -13,7 +13,7 @@ function DetailPage() {
   const history = useHistory();
 
   //로그인 유무 판단
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   // 게시글 본인 유무 판단
   const [ContentVisible, setContentVisible] = useState(false);
   // 댓글 본인 유무 판단
@@ -161,12 +161,13 @@ function DetailPage() {
                             완료했습니다. 이게 댓글 내용입니다.
                             <div className="comment---features">
                               <div className="comment----delete">
-                                {visible === true ? <><button>수정</button><button>삭제</button></> : <div></div>}
+                                {CommentVisible === true ? <><button>수정</button><button>삭제</button></> : <div></div>}
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                      {/* 로그인한 사용자면 댓글을 작성 할 수 있도록 만들어준다. */}
                       {visible === true ?
                       <div className="answer--comment">
                         <div className="comment-a">

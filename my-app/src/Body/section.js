@@ -22,21 +22,26 @@ function Section() {
         // 항상 실행
     });
   },[])
+  console.log(data);
   const result1 = data.filter(word => word.boardId === 1);
   const nameList1 = result1.map((name) => 
-            <li class="class-card">
-              <img src={name.imagePath} alt="게시글" class="class-image" />
+            <li className="class-card" key={name.postId}>
+              <img src={name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
-              localStorage.setItem("writerLoginId", name.writerLoginId)
-              localStorage.setItem("postId", name.postId)}}>
-                <div class="class-container">
-                  <div class="class-skill">
-                    <div class="class-type">{name.writerLoginId}</div>
-                    <div class="class-format">{name.boardTitle}</div>
+                localStorage.setItem("writerLoginId", name.writerLoginId)
+                localStorage.setItem("postId", name.postId)}}>
+                <div className="class-container">
+                  <div className="class-skill">
+                    <div className="class-type">작성자 : {name.writerLoginId}</div>
+                    <div className="class-format">{"#"+name.tags}</div>
                   </div>
-                  <div class="class-desc">
-                    <div class="class-title">{name.postTitle}</div>
-                    <div class="class-detail">{name.writeDate}</div>
+                  <div className="class-desc">
+                    <div className="class-title">제목 : {name.postTitle}</div>
+                    <div className="class-detail">게시일 : {name.writeDate}</div>
+                  </div>
+                  <div className="class-skill">
+                  <div className="class-detail">조회수 : {name.views}</div>
+                  <div className="class-detail">댓글수 : {name.replyCount}</div>
                   </div>
                 </div>
               </Link>
@@ -44,19 +49,23 @@ function Section() {
   );
   const result2 = data.filter(word => word.boardId === 2);
   const nameList2 = result2.map((name) => 
-            <li class="class-card">
-              <img src={name.imagePath} alt="게시글" class="class-image" />
+            <li className="class-card" key={name.postId}>
+              <img src={name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
-              localStorage.setItem("writerLoginId", name.writerLoginId)
-              localStorage.setItem("postId", name.postId)}}>
-                <div class="class-container">
-                  <div class="class-skill">
-                    <div class="class-type">{name.writerLoginId}</div>
-                    <div class="class-format">{name.boardTitle}</div>
+                localStorage.setItem("writerLoginId", name.writerLoginId)
+                localStorage.setItem("postId", name.postId)}}>
+                <div className="class-container">
+                  <div className="class-skill">
+                    <div className="class-type">작성자 : {name.writerLoginId}</div>
+                    <div className="class-format">{"#"+name.tags}</div>
                   </div>
-                  <div class="class-desc">
-                    <div class="class-title">{name.postTitle}</div>
-                    <div class="class-detail">{name.writeDate}</div>
+                  <div className="class-desc">
+                    <div className="class-title">제목 : {name.postTitle}</div>
+                    <div className="class-detail">게시일 : {name.writeDate}</div>
+                  </div>
+                  <div className="class-skill">
+                  <div className="class-detail">조회수 : {name.views}</div>
+                  <div className="class-detail">댓글수 : {name.replyCount}</div>
                   </div>
                 </div>
               </Link>
@@ -64,19 +73,23 @@ function Section() {
   );
   const result3 = data.filter(word => word.boardId === 3);
   const nameList3 = result3.map((name) => 
-            <li class="class-card">
-              <img src={name.imagePath} alt="게시글" class="class-image" />
+            <li className="class-card" key={name.postId}>
+              <img src={name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
-              localStorage.setItem("writerLoginId", name.writerLoginId)
-              localStorage.setItem("postId", name.postId)}}>
-                <div class="class-container">
-                  <div class="class-skill">
-                    <div class="class-type">{name.writerLoginId}</div>
-                    <div class="class-format">{name.boardTitle}</div>
+                localStorage.setItem("writerLoginId", name.writerLoginId)
+                localStorage.setItem("postId", name.postId)}}>
+                <div className="class-container">
+                  <div className="class-skill">
+                    <div className="class-type">작성자 : {name.writerLoginId}</div>
+                    <div className="class-format">{"#"+name.tags}</div>
                   </div>
-                  <div class="class-desc">
-                    <div class="class-title">{name.postTitle}</div>
-                    <div class="class-detail">{name.writeDate}</div>
+                  <div className="class-desc">
+                    <div className="class-title">제목 : {name.postTitle}</div>
+                    <div className="class-detail">게시일 : {name.writeDate}</div>
+                  </div>
+                  <div className="class-skill">
+                  <div className="class-detail">조회수 : {name.views}</div>
+                  <div className="class-detail">댓글수 : {name.replyCount}</div>
                   </div>
                 </div>
               </Link>
@@ -84,39 +97,43 @@ function Section() {
   );
   const result4 = data.filter(word => word.boardId === 4);
   const nameList4 = result4.map((name) => 
-            <li class="class-card">
-              <img src={name.imagePath} alt="게시글" class="class-image" />
-              <Link to="/Detail" onClick={() => {
+          <li className="class-card" key={name.postId}>
+            <img src={name.imgA} alt="게시글" className="class-image" />
+            <Link to="/Detail" onClick={() => {
               localStorage.setItem("writerLoginId", name.writerLoginId)
               localStorage.setItem("postId", name.postId)}}>
-                <div class="class-container">
-                  <div class="class-skill">
-                    <div class="class-type">{name.writerLoginId}</div>
-                    <div class="class-format">{name.boardTitle}</div>
-                  </div>
-                  <div class="class-desc">
-                    <div class="class-title">{name.postTitle}</div>
-                    <div class="class-detail">{name.writeDate}</div>
-                  </div>
+              <div className="class-container">
+                <div className="class-skill">
+                  <div className="class-type">작성자 : {name.writerLoginId}</div>
+                  <div className="class-format">{"#"+[name.tags]}</div>
                 </div>
-              </Link>
-            </li>
+                <div className="class-desc">
+                  <div className="class-title">제목 : {name.postTitle}</div>
+                  <div className="class-detail">게시일 : {name.writeDate}</div>
+                </div>
+                <div className="class-skill">
+                <div className="class-detail">조회수 : {name.views}</div>
+                <div className="class-detail">댓글수 : {name.replyCount}</div>
+                </div>
+              </div>
+            </Link>
+          </li>
   );
   const result5 = data.filter(word => word.boardId === 5);
   const nameList5 = result5.map((name) => 
-            <li class="class-card">
-              <img src={name.imagePath} alt="게시글" class="class-image" />
+            <li className="class-card" key={name.postId}>
+              <img src={name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
               localStorage.setItem("writerLoginId", name.writerLoginId)
               localStorage.setItem("postId", name.postId)}}>
-                <div class="class-container">
-                  <div class="class-skill">
-                    <div class="class-type">{name.writerLoginId}</div>
-                    <div class="class-format">{name.boardTitle}</div>
+                <div className="class-container">
+                  <div className="class-skill">
+                    <div className="class-type">{name.writerLoginId}</div>
+                    <div className="class-format">{name.boardTitle}</div>
                   </div>
-                  <div class="class-desc">
-                    <div class="class-title">{name.postTitle}</div>
-                    <div class="class-detail">{name.writeDate}</div>
+                  <div className="class-desc">
+                    <div className="class-title">{name.postTitle}</div>
+                    <div className="class-detail">{name.writeDate}</div>
                   </div>
                 </div>
               </Link>
@@ -124,93 +141,58 @@ function Section() {
   );
     
     return (
-      /// 메인페이지 화면을 map함수를 이용하여 메인페이지에서 상세페이지로 갈 수 있도록 한다.
-  //     <div class="roadmap-container">
-  //     <div class="roadmap-title-container">
-  //         <div class="roadmap-title">{localStorage.getItem("title")}</div>
-  //         <div class="roadmap-title"><CustomizedDialogs/></div>
-  //     </div>
-  //     <SerarchBar onClick={fetchMovie} onChange={searchItem} disabled={!state}></SerarchBar>
-  //     <SearchTagBar onClick={fetchTag} onChange={searchTag} disabled={state}></SearchTagBar>
-  //     <BodyBodySearch/>
-  //     <ul class="class-list1" data-position="0">
-  //     {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
-  //         <li class="class-card1" key={id}>
-  //           <img src={imgA} alt="게시글" class="class-image" />
-  //           <Link to="/Detail" onClick={() => {
-  //             localStorage.setItem("writerLoginId", writerLoginId)
-  //             localStorage.setItem("postId", id)}}>
-  //             <div class="class-container">
-  //               <div class="class-skill">
-  //                 <div class="class-type">작성자 : {writerLoginId}</div>
-  //                 <div class="class-format">{"#"+tags}</div>
-  //               </div>
-  //               <div class="class-desc">
-  //                 <div class="class-title">제목 : {title}</div>
-  //                 <div class="class-detail">게시일 : {writeDate}</div>
-  //               </div>
-  //               <div class="class-skill">
-  //               <div class="class-detail">조회수 : {views}</div>
-  //               <div class="class-detail">댓글수 : {replyCount}</div>
-  //               </div>
-  //             </div>
-  //           </Link>
-  //         </li>
-  //     ))}
-  //     </ul>
-  // </div>
       <section>
-        <div class="inner">
-          <div class="roadmap-container">
-              <div class="roadmap-title-container">
-                <div class="roadmap-title">공무원</div>
-                <div class="roadmap-title">더보기</div>
+        <div className="inner">
+          <div className="roadmap-container">
+              <div className="roadmap-title-container">
+                <div className="roadmap-title">공무원</div>
+                <div className="roadmap-title">더보기</div>
               </div>
-              <ul class="class-list" data-position="0">
+              <ul className="class-list" data-position="0">
                  {nameList1}
               </ul>
           </div>
         </div>
-        <div class="inner">
-          <div class="roadmap-container">
-              <div class="roadmap-title-container">
-                <div class="roadmap-title">자격증</div>
-                <div class="roadmap-title">더보기</div>
+        <div className="inner">
+          <div className="roadmap-container">
+              <div className="roadmap-title-container">
+                <div className="roadmap-title">자격증</div>
+                <div className="roadmap-title">더보기</div>
               </div>
-              <ul class="class-list" data-position="0">
+              <ul className="class-list" data-position="0">
                  {nameList2}
               </ul>
           </div>
         </div>
-        <div class="inner">
-          <div class="roadmap-container">
-              <div class="roadmap-title-container">
-                <div class="roadmap-title">개발</div>
-                <div class="roadmap-title">더보기</div>
+        <div className="inner">
+          <div className="roadmap-container">
+              <div className="roadmap-title-container">
+                <div className="roadmap-title">개발</div>
+                <div className="roadmap-title">더보기</div>
               </div>
-              <ul class="class-list" data-position="0">
+              <ul className="class-list" data-position="0">
                  {nameList3}
               </ul>
           </div>
         </div>
-        <div class="inner">
-          <div class="roadmap-container">
-              <div class="roadmap-title-container">
-                <div class="roadmap-title">외국어</div>
-                <div class="roadmap-title">더보기</div>
+        <div className="inner">
+          <div className="roadmap-container">
+              <div className="roadmap-title-container">
+                <div className="roadmap-title">외국어</div>
+                <div className="roadmap-title">더보기</div>
               </div>
-              <ul class="class-list" data-position="0">
+              <ul className="class-list" data-position="0">
                  {nameList4}
               </ul>
           </div>
         </div>
-        <div class="inner">
-          <div class="roadmap-container">
-              <div class="roadmap-title-container">
-                <div class="roadmap-title">면접</div>
-                <div class="roadmap-title">더보기</div>
+        <div className="inner">
+          <div className="roadmap-container">
+              <div className="roadmap-title-container">
+                <div className="roadmap-title">면접</div>
+                <div className="roadmap-title">더보기</div>
               </div>
-              <ul class="class-list" data-position="0">
+              <ul className="class-list" data-position="0">
                  {nameList5}
               </ul>
           </div>

@@ -3,17 +3,18 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Route, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import UpdateDetail from "./사용안함";
-import App1 from "./사용안함";
 import FormDialog from "./UpdatePage";
 import UpdatePage from "./UpdatePage";
 import App from "../../글작성/Modal";
+import moment from "moment";
+import SaveComment from "./SaveComment";
 
 function DetailPage() {
 
   const history = useHistory();
 
   //로그인 유무 판단
-  const [visible, setVisible] = useState(false);
+  const visible = window.localStorage.getItem("State");
   // 게시글 본인 유무 판단
   const [ContentVisible, setContentVisible] = useState(false);
   // 댓글 본인 유무 판단
@@ -21,10 +22,10 @@ function DetailPage() {
   // posts에서 클릭했을시 현재 사용자의 로그인 상태와 게시글이 본인 게시글인지 확인한다.
   const ContentDetail = async () => {
     try {
+      // 로그인을 하지 않아도 그냥 댓글이 보이게 만든다.
       // 로그인 유무를 visible로 판단
-        if(visible === true) {
+        if(visible === "true") {
           // 게시글이 본인껀지 판단
-          //localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId"
             if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
             console.log("본인글");
             setContentVisible(true);
@@ -74,8 +75,79 @@ function DetailPage() {
     // CommentDetail();
   },[])
 
+  // 게시글을 삭제한다.
+  const DeContent = async () => {
+        instance.delete(`/post/${postId}`, config)
+        .then(function(response) {
+          console.log(response)
+        }).then(function(error) {
+          console.log(error)
+        })
+  }
+  const t2 = new Date();
+// localstorage에서 데이터 받아오기
+  const [LoginId, setLoginId] = useState();
+  const [AccessToken, setAccessToken] = useState();
+  const [AccessTokenExpiresIn, setAccessTokenExpiresIn] = useState();
+  const [RefreshToken, setRefreshToken] = useState();
+  const [RefreshTokenExpiresIn, setRefreshTokenExpiresIn] = useState();
+
+// 날짜가 만료되면 액세스 토큰과 리프레쉬 토큰 api로 재발급받아 저장한다.
+  useEffect(() => {
+      setLoginId(window.localStorage.getItem("LoginId"));
+      setAccessToken(window.localStorage.getItem("AccessToken"));
+      setAccessTokenExpiresIn(window.localStorage.getItem("AccessTokenExpiresIn"));
+      setRefreshToken(window.localStorage.getItem("RefreshToken")); 
+      setRefreshTokenExpiresIn(window.localStorage.getItem("RefreshTokenExpiresIn"));
+  },[]);
+
+  
+  const t1 = Number(AccessTokenExpiresIn);
+  const diff2 = moment.duration(t1 - t2).asMilliseconds(); // 400000이하로 떨어지면
+  const DeleteContent = () => {
+    try {
+      if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
+        alert("글 삭제하기");
+        // 400000이하로 떨어지면
+        if(diff2 < 400000) {
+          axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+            accessToken : AccessToken,
+            refreshToken: RefreshToken
+        })
+        .then(function (response) {
+          localStorage.removeItem("AccessToken");
+          localStorage.removeItem("AccessTokenExpiresIn");
+          localStorage.removeItem("RefreshToken");
+          localStorage.removeItem("RefreshTokenExpiresIn");
+          localStorage.setItem("AccessToken", response.data.accessToken);
+          localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
+          localStorage.setItem("RefreshToken", response.data.refreshToken);
+          localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
+          // 글 삭제
+          DeContent();
+          history.push("/post");
+          history.go(0);
+        }).then(function (error) {
+          console.log(error)
+        })
+        } else {
+          // 글 삭제
+          DeContent();
+          history.push("/post");
+          history.go(0);
+        }
+      } else {
+        console.log("로그인 만료, 로그아웃")
+      }
+  } catch(e) {
+    console.log(e)
+  }
+  }
+
   //api에서 받은 response.data.data 저장하기
   const [detail, setDetail] = useState([]);
+  //api에서 받음 response.data.data.replies 저장하기
+  const [detailComment, setDetailComment] = useState([]);
 
   //  /post에서 받아온 postId와 wirterLoginId 불러오기
   const postId = localStorage.getItem("postId");
@@ -88,8 +160,9 @@ function DetailPage() {
       });
   // api header 부분 토큰이 들어가있다.
     const config = {
+      headers: {
       'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
-      };
+    }};
     
       useEffect(()=> {
         try {
@@ -97,10 +170,26 @@ function DetailPage() {
         .then(function(response) {
           console.log(response.data.data);
           setDetail(response.data.data);
+          setDetailComment(response.data.data.replies)
         })} catch(ex){
           console.log("오류")
         }
       },[])
+
+  // 댓글 저장
+  const OnSubmit = async (e) => {
+    e.preventDefault();
+    e.persist();
+
+      instance.post("/reply", {
+        comment: localStorage.getItem("comment"),
+        postId: postId
+      }, config)
+      .then(function(response) {
+        console.log(response)
+        history.go(0);
+      })
+  };
 
 
   // html 부분
@@ -125,7 +214,7 @@ function DetailPage() {
                       <h5>{detail.writerLoginId}</h5>
                       <h6>&nbsp;· {detail.writeDate}</h6>
                       <div className="subheader-changedelete">
-                        {ContentVisible === true ? <><UpdatePage/><button>삭제</button></> : <div></div>}
+                        {ContentVisible === true ? <><UpdatePage/><button onClick={DeleteContent}>삭제</button></> : <div></div>}
                       </div>
                     </div>
                   </div>
@@ -146,45 +235,47 @@ function DetailPage() {
                   <div className="community-post-info">
                     <div className="cotent-body">
                       {/* 여기부분에 기존 댓글들을 불러온다. map함수 사용하기*/}
+                      {detailComment.map((name) => 
                       <div className="answer--comment">
-                        <div className="comment-card">
-                          <div className="comment--header">
-                            <img className="comment---image" src="blank.png"></img>
-                            <div className="flex-column">
-                              <div className="flex-row">
-                                <div className="comment----username">댓글 작성자</div>
-                              </div>
-                              <span className="comment----update">댓글 작성 시간</span>
+                      <div className="comment-card">
+                        <div className="comment--header">
+                          <img className="comment---image" src="blank.png"></img>
+                          <div className="flex-column">
+                            <div className="flex-row">
+                              <div className="comment----username">{name.writerLoginId}</div>
                             </div>
+                            <span className="comment----update">{name.writeDate}</span>
                           </div>
-                          <div className="comment--body">
-                            완료했습니다. 이게 댓글 내용입니다.
-                            <div className="comment---features">
-                              <div className="comment----delete">
-                                {CommentVisible === true ? <><button>수정</button><button>삭제</button></> : <div></div>}
-                              </div>
+                        </div>
+                        <div className="comment--body">
+                          {name.comment}
+                          <div className="comment---features">
+                            <div className="comment----delete">
+                              {CommentVisible === true ? <><button>수정</button><button>삭제</button></> : <div></div>}
                             </div>
                           </div>
                         </div>
                       </div>
+                    </div>
+                    )}  
                       {/* 로그인한 사용자면 댓글을 작성 할 수 있도록 만들어준다. */}
-                      {visible === true ?
+                      {visible === "true" ?
                       <div className="answer--comment">
                         <div className="comment-a">
                           <div className="commant-b">
                             <img className="commant-u-c" src=""></img>
                             <div className="flex-column">
-                              <h5 className="comment----username">현재 로그인한 사용자님, 답글을 남겨보세요!</h5>
+                              <h5 className="comment----username">{localStorage.getItem("LoginId")}</h5>
                             </div>
                           </div>
                           <div className="comment-m-b">
-                            <App/>
+                            <SaveComment/>
                           </div>
                           <div className="comment-footer">
                             <div className="commant-f-r">
-                              <button className="commant-fb">
-                                답변 등록
-                              </button>
+                            <form onSubmit={(e) => OnSubmit(e)}>
+                              <button type="submit">답변 등록</button>
+                            </form>
                             </div>
                           </div>
                         </div>

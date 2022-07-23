@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/stylemain.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Section() {
 
@@ -25,7 +26,9 @@ function Section() {
   const nameList1 = result1.map((name) => 
             <li class="class-card">
               <img src={name.imagePath} alt="게시글" class="class-image" />
-              <a href="http://school.fastcampus.co.kr/blog/all/113/" target="blank">
+              <Link to="/Detail" onClick={() => {
+              localStorage.setItem("writerLoginId", name.writerLoginId)
+              localStorage.setItem("postId", name.postId)}}>
                 <div class="class-container">
                   <div class="class-skill">
                     <div class="class-type">{name.writerLoginId}</div>
@@ -36,14 +39,16 @@ function Section() {
                     <div class="class-detail">{name.writeDate}</div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
   );
   const result2 = data.filter(word => word.boardId === 2);
   const nameList2 = result2.map((name) => 
             <li class="class-card">
               <img src={name.imagePath} alt="게시글" class="class-image" />
-              <a href="http://school.fastcampus.co.kr/blog/all/113/" target="blank">
+              <Link to="/Detail" onClick={() => {
+              localStorage.setItem("writerLoginId", name.writerLoginId)
+              localStorage.setItem("postId", name.postId)}}>
                 <div class="class-container">
                   <div class="class-skill">
                     <div class="class-type">{name.writerLoginId}</div>
@@ -54,14 +59,16 @@ function Section() {
                     <div class="class-detail">{name.writeDate}</div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
   );
   const result3 = data.filter(word => word.boardId === 3);
   const nameList3 = result3.map((name) => 
             <li class="class-card">
               <img src={name.imagePath} alt="게시글" class="class-image" />
-              <a href="http://school.fastcampus.co.kr/blog/all/113/" target="blank">
+              <Link to="/Detail" onClick={() => {
+              localStorage.setItem("writerLoginId", name.writerLoginId)
+              localStorage.setItem("postId", name.postId)}}>
                 <div class="class-container">
                   <div class="class-skill">
                     <div class="class-type">{name.writerLoginId}</div>
@@ -72,14 +79,16 @@ function Section() {
                     <div class="class-detail">{name.writeDate}</div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
   );
   const result4 = data.filter(word => word.boardId === 4);
   const nameList4 = result4.map((name) => 
             <li class="class-card">
               <img src={name.imagePath} alt="게시글" class="class-image" />
-              <a href="http://school.fastcampus.co.kr/blog/all/113/" target="blank">
+              <Link to="/Detail" onClick={() => {
+              localStorage.setItem("writerLoginId", name.writerLoginId)
+              localStorage.setItem("postId", name.postId)}}>
                 <div class="class-container">
                   <div class="class-skill">
                     <div class="class-type">{name.writerLoginId}</div>
@@ -90,14 +99,16 @@ function Section() {
                     <div class="class-detail">{name.writeDate}</div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
   );
   const result5 = data.filter(word => word.boardId === 5);
   const nameList5 = result5.map((name) => 
             <li class="class-card">
               <img src={name.imagePath} alt="게시글" class="class-image" />
-              <a href="http://school.fastcampus.co.kr/blog/all/113/" target="blank">
+              <Link to="/Detail" onClick={() => {
+              localStorage.setItem("writerLoginId", name.writerLoginId)
+              localStorage.setItem("postId", name.postId)}}>
                 <div class="class-container">
                   <div class="class-skill">
                     <div class="class-type">{name.writerLoginId}</div>
@@ -108,7 +119,7 @@ function Section() {
                     <div class="class-detail">{name.writeDate}</div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
   );
     

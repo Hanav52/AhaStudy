@@ -45,6 +45,7 @@ export default function AccountMenu() {
         localStorage.setItem("State", false);
         alert(response.data.data);
         history.push("/");
+        history.go(0);
       }).catch(function (error) {
         alert("로그인이 만료되었습니다.");
         history.push("login");

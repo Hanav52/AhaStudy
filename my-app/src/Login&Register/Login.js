@@ -54,7 +54,7 @@ export default function SignIn() {
                 window.localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
                 window.localStorage.setItem("State", true); //false 에서 true로 변환 로그인 버튼에서 알림, 아이디, 프로필이 나와야한다.
                 history.push("/");
-    
+                history.go(0);
             }).catch(function (error) {
                 alert("아이디 및 비밀번호를 틀리셨습니다.");
             }).then(function() {

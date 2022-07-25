@@ -2,12 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Route, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import UpdateDetail from "./사용안함";
-import FormDialog from "./UpdatePage";
 import UpdatePage from "./UpdatePage";
-import App from "../../글작성/Modal";
 import moment from "moment";
 import SaveComment from "./SaveComment";
+import UpdateComment from "./UpdateComment";
 
 function DetailPage() {
 
@@ -17,8 +15,6 @@ function DetailPage() {
   const visible = window.localStorage.getItem("State");
   // 게시글 본인 유무 판단
   const [ContentVisible, setContentVisible] = useState(false);
-  // 댓글 본인 유무 판단
-  const [CommentVisible, setCommentVisible] = useState(false)
   // posts에서 클릭했을시 현재 사용자의 로그인 상태와 게시글이 본인 게시글인지 확인한다.
   const ContentDetail = async () => {
     try {
@@ -29,7 +25,6 @@ function DetailPage() {
             if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
             console.log("본인글");
             setContentVisible(true);
-            
             }
             else {
                 console.log("본인이 아닙니다.");
@@ -45,34 +40,9 @@ function DetailPage() {
         console.log(e);
     }
 }
-//   // posts에서 클릭했을시 현재 사용자의 로그인 상태와 댓글이 본인 댓글인지 확인한다.
-//   const CommentDetail = async () => {
-//     try {
-//       // 로그인 유무를 visible로 판단
-//         if(visible === true) {
-//           // 게시글이 본인껀지 판단
-//             if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
-//             console.log("본인글");
-//             setContentVisible(true);
-              
-//             }
-//             else {
-//                 console.log("본인이 아닙니다.");
-//                 setContentVisible(false);
-//             }
-//         }
-//         else {
-//             console.log("로그인x");
-//             setContentVisible(false);
-//         }
-//     }
-//     catch(e) {
-//         console.log(e);
-//     }
-// }
+
   useEffect(()=>{
     ContentDetail();
-    // CommentDetail();
   },[])
 
   // 게시글을 삭제한다.
@@ -84,6 +54,15 @@ function DetailPage() {
           console.log(error)
         })
   }
+  // 게시글을 삭제한다.
+  const DeComment = async () => {
+    instance.delete(`/reply/${localStorage.getItem("CommentId")}`, config)
+    .then(function(response) {
+      console.log(response)
+    }).then(function(error) {
+      console.log(error)
+    })
+}
   const t2 = new Date();
 // localstorage에서 데이터 받아오기
   const [LoginId, setLoginId] = useState();
@@ -143,6 +122,43 @@ function DetailPage() {
     console.log(e)
   }
   }
+  const DeleteComment = () => {
+    try {
+      if(localStorage.getItem("LoginId") === localStorage.getItem("CommentLoginId")) {
+        alert("글 삭제하기");
+        // 400000이하로 떨어지면
+        if(diff2 < 400000) {
+          axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+            accessToken : AccessToken,
+            refreshToken: RefreshToken
+        })
+        .then(function (response) {
+          localStorage.removeItem("AccessToken");
+          localStorage.removeItem("AccessTokenExpiresIn");
+          localStorage.removeItem("RefreshToken");
+          localStorage.removeItem("RefreshTokenExpiresIn");
+          localStorage.setItem("AccessToken", response.data.accessToken);
+          localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
+          localStorage.setItem("RefreshToken", response.data.refreshToken);
+          localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
+          // 글 삭제
+          DeComment();
+          history.go(0);
+        }).then(function (error) {
+          console.log(error)
+        })
+        } else {
+          // 글 삭제
+          DeComment();
+          history.go(0);
+        }
+      } else {
+        console.log("로그인 만료, 로그아웃")
+      }
+  } catch(e) {
+    console.log(e)
+  }
+  }
 
   //api에서 받은 response.data.data 저장하기
   const [detail, setDetail] = useState([]);
@@ -190,8 +206,6 @@ function DetailPage() {
         history.go(0);
       })
   };
-
-
   // html 부분
   return (
     <BrowserRouter>
@@ -237,6 +251,8 @@ function DetailPage() {
                       {/* 여기부분에 기존 댓글들을 불러온다. map함수 사용하기*/}
                       {detailComment.map((name) => 
                       <div className="answer--comment">
+                        {localStorage.setItem("CommentId", name.id)}
+                        {localStorage.setItem("CommentLoginId", name.writerLoginId)}
                       <div className="comment-card">
                         <div className="comment--header">
                           <img className="comment---image" src="blank.png"></img>
@@ -251,7 +267,7 @@ function DetailPage() {
                           {name.comment}
                           <div className="comment---features">
                             <div className="comment----delete">
-                              {CommentVisible === true ? <><button>수정</button><button>삭제</button></> : <div></div>}
+                              {name.writerLoginId === localStorage.getItem("LoginId") ? <><UpdateComment/><button onClick={DeleteComment}>삭제</button></> : <div></div>}
                             </div>
                           </div>
                         </div>

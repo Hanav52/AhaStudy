@@ -255,7 +255,7 @@ function DetailPage() {
                         {localStorage.setItem("CommentLoginId", name.writerLoginId)}
                       <div className="comment-card">
                         <div className="comment--header">
-                          <img className="comment---image" src="blank.png"></img>
+                          <img className="comment---image" src={window.localStorage.getItem("URL")} alt="댓글 이미지"></img>
                           <div className="flex-column">
                             <div className="flex-row">
                               <div className="comment----username">{name.writerLoginId}</div>
@@ -279,7 +279,7 @@ function DetailPage() {
                       <div className="answer--comment">
                         <div className="comment-a">
                           <div className="commant-b">
-                            <img className="commant-u-c" src=""></img>
+                            <img className="commant-u-c" src={window.localStorage.getItem("URL")} alt="댓글 이미지"></img>
                             <div className="flex-column">
                               <h5 className="comment----username">{localStorage.getItem("LoginId")}</h5>
                             </div>

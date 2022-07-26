@@ -5,8 +5,14 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Section() {
-
+  // 최신글 데이터 저장
   const [data, setdata] = useState([])
+  const [image, setImage] = useState([])
+
+  //api instance 생성
+  const instance = axios.create({
+    baseURL: 'http://bestinwoo.hopto.org:8080/',
+  });
    
   useEffect(() => {
     axios.get("http://bestinwoo.hopto.org:8080/board/recent", {
@@ -16,17 +22,18 @@ function Section() {
   })
     .then(function (response) {
       setdata(response.data.data)
+      console.log(response.data.data)
     }).catch(function (error) {
         // 오류발생시 실행
     }).then(function() {
         // 항상 실행
     });
   },[])
-  console.log(data);
+
   const result1 = data.filter(word => word.boardId === 1);
   const nameList1 = result1.map((name) => 
             <li className="class-card" key={name.postId}>
-              <img src={name.imagePath} alt="게시글" className="class-image" />
+              <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)}}>
@@ -50,7 +57,7 @@ function Section() {
   const result2 = data.filter(word => word.boardId === 2);
   const nameList2 = result2.map((name) => 
             <li className="class-card" key={name.postId}>
-              <img src={name.imagePath} alt="게시글" className="class-image" />
+              <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)}}>
@@ -74,7 +81,7 @@ function Section() {
   const result3 = data.filter(word => word.boardId === 3);
   const nameList3 = result3.map((name) => 
             <li className="class-card" key={name.postId}>
-              <img src={name.imagePath} alt="게시글" className="class-image" />
+              <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)}}>
@@ -98,7 +105,7 @@ function Section() {
   const result4 = data.filter(word => word.boardId === 4);
   const nameList4 = result4.map((name) => 
           <li className="class-card" key={name.postId}>
-            <img src={name.imgA} alt="게시글" className="class-image" />
+            <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
             <Link to="/Detail" onClick={() => {
               localStorage.setItem("writerLoginId", name.writerLoginId)
               localStorage.setItem("postId", name.postId)}}>

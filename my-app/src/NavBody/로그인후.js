@@ -12,7 +12,7 @@ import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import CustomizedDialogs from "../글작성/Modaal";
 
 export default function AccountMenu() {
@@ -118,9 +118,11 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
+        <Link to="/Profile">
         <MenuItem>
           <Avatar /> 내 정보
         </MenuItem>
+        </Link>
         <Divider />
         <MenuItem onClick={LogoutUser}>
           <ListItemIcon>

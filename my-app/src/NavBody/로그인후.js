@@ -24,12 +24,6 @@ export default function AccountMenu() {
 
   const history = useHistory();
 
-  const token = window.localStorage.getItem("AccessToken");
-  
-  const config = {
-    'Authorization': 'Bearer ' + token,
-  };
-
   const LogoutUser = () => {
     axios.post("http://bestinwoo.hopto.org:8080/auth/logout",{} ,{
       headers: {
@@ -79,7 +73,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>A</Avatar>
+            <Avatar sx={{ width: 32, height: 32 } } src={window.localStorage.getItem("URL")}></Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -118,11 +112,9 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Link to="/Profile">
-        <MenuItem>
-          <Avatar /> 내 정보
+        <MenuItem onClick={()=>history.go("/Profile")}>
+          <Avatar src={window.localStorage.getItem("URL")}/> 내 정보
         </MenuItem>
-        </Link>
         <Divider />
         <MenuItem onClick={LogoutUser}>
           <ListItemIcon>

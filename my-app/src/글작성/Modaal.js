@@ -190,12 +190,10 @@ export default function CustomizedDialogs() {
               type="file"
               name="profile_files"
               multiple="multiple"
+              accept='image/jpg,impge/png,image/jpeg'
             />
             <button type="submit" onClick={handleClose}>업로드</button>
-          {/* <Button autoFocus onClick={handleClose}>
-            저장하기
-          </Button> */}
-          </form>
+        </form>
         </DialogActions>
       </BootstrapDialog>
     </div>

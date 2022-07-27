@@ -4,6 +4,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import MyContent from './MyContent';
+import MyComment from './MyComment';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,10 +56,10 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        글 목록을 보여줍니다. map함수를 이용하여
+        <MyContent/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        댓글 목록을 보여줍니다.
+        <MyComment/>
       </TabPanel>
     </Box>
   );

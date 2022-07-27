@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Link, Route, useParams } from "react-router-dom";
 import Footer from "../../Footer/Footer";
 import Pagination from "../Pagination";
-import imgA from '../Posts/201845093_이준기.PNG';
 import { getComments } from "../무한스크롤/api1";
 import {  BiSearchAlt2 } from "react-icons/bi";
 import CustomizedDialogs from "../../글작성/Modaal";
@@ -158,10 +157,9 @@ function Posts() {
                 <ul class="class-list1" data-position="0">
                 {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
                     <li class="class-card1" key={id}>
-                      <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image" />
                       <Link to="/Detail" onClick={() => {
-                        localStorage.setItem("writerLoginId", writerLoginId)
                         localStorage.setItem("postId", id)}}>
+                        <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image" />
                         <div class="class-container">
                           <div class="class-skill">
                             <div class="class-type">작성자 : {writerLoginId}</div>

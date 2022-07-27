@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import InfinityScroll from './Body/무한스크롤/InfinityScroll copy';
 import reportWebVitals from './reportWebVitals';
 import TagBox1 from './Search/TagBox1';
 import MyProfile from './내정보/MyProfile';
 import Hole from './전체/통합 copy';
 ReactDOM.render(
   <React.StrictMode>
-    <InfinityScroll/>
+    <Hole/>
   </React.StrictMode>,
   document.getElementById('root')
 );

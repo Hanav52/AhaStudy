@@ -11,6 +11,38 @@ function DetailPage() {
 
   const history = useHistory();
 
+  //api에서 받은 response.data.data 저장하기
+  const [detail, setDetail] = useState([]);
+  //api에서 받음 response.data.data.replies 저장하기
+  const [detailComment, setDetailComment] = useState([]);
+
+  //  /post에서 받아온 postId와 wirterLoginId 불러오기
+  const postId = localStorage.getItem("postId");
+  // 다시 저장하기
+  window.localStorage.setItem("postId", postId);
+
+  //api instance 생성
+    const instance = axios.create({
+        baseURL: 'http://bestinwoo.hopto.org:8080/',
+      });
+  // api header 부분 토큰이 들어가있다.
+    const config = {
+      headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
+    }};
+    
+      useEffect(()=> {
+        try {
+        instance.get(`/post/${postId}`)
+        .then(function(response) {
+          setDetail(response.data.data);
+          console.log(response.data.data)
+          setDetailComment(response.data.data.replies)
+        })} catch(ex){
+          console.log("오류")
+        }
+      },[])
+
   //로그인 유무 판단
   const visible = window.localStorage.getItem("State");
   // 게시글 본인 유무 판단
@@ -159,38 +191,6 @@ function DetailPage() {
     console.log(e)
   }
   }
-
-  //api에서 받은 response.data.data 저장하기
-  const [detail, setDetail] = useState([]);
-  //api에서 받음 response.data.data.replies 저장하기
-  const [detailComment, setDetailComment] = useState([]);
-
-  //  /post에서 받아온 postId와 wirterLoginId 불러오기
-  const postId = localStorage.getItem("postId");
-  // 다시 저장하기
-  window.localStorage.setItem("postId", postId);
-
-  //api instance 생성
-    const instance = axios.create({
-        baseURL: 'http://bestinwoo.hopto.org:8080/',
-      });
-  // api header 부분 토큰이 들어가있다.
-    const config = {
-      headers: {
-      'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
-    }};
-    
-      useEffect(()=> {
-        try {
-        instance.get(`/post/${postId}`)
-        .then(function(response) {
-          console.log(response.data.data);
-          setDetail(response.data.data);
-          setDetailComment(response.data.data.replies)
-        })} catch(ex){
-          console.log("오류")
-        }
-      },[])
 
   // 댓글 저장
   const OnSubmit = async (e) => {

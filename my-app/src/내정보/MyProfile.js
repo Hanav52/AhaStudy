@@ -6,6 +6,8 @@ import Image from "./Image";
 import App from "./Image";
 import BasicTabs from "./BasicTabs";
 import UpdateIntro from "./UpdateIntro";
+import AlertDialog from "./DeleteUser";
+import DeleteUser from "./DeleteUser";
 
 function MyProfile() {
 
@@ -43,7 +45,7 @@ function MyProfile() {
                                     <h3>{detail.loginId}</h3>
                                 </div>
                                 <div className="updateDelete">
-                                    <button>탈퇴</button>
+                                    <DeleteUser/>
                                 </div>
                             </div>
                             <div className="rightFooterIntro">

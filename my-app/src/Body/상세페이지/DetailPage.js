@@ -6,6 +6,7 @@ import UpdatePage from "./UpdatePage";
 import moment from "moment";
 import SaveComment from "./SaveComment";
 import UpdateComment from "./UpdateComment";
+import normal from '../../내정보/normal.png'
 
 function DetailPage() {
 
@@ -41,6 +42,30 @@ function DetailPage() {
         })} catch(ex){
           console.log("오류")
         }
+      },[])
+
+      // 이미지 가져오기
+      const [image, setImage] = useState("");
+      // 프로필 가져오기
+      const [comment, setComment] = useState([]);
+
+      useEffect(()=> {
+          try {
+          instance.get(`/user/${localStorage.getItem("UserId")}`)
+          .then(function(response) {
+            console.log(response.data.data);
+            setComment(response.data.data)
+          })} catch(ex){
+            console.log("오류")
+          }
+        },[])
+
+      useEffect(()=> {
+        instance.get(`/image/${localStorage.getItem("imageId")}`)
+          .then(function (response) {
+            setImage(response.request.responseURL)
+            localStorage.setItem("URL", response.request.responseURL)
+        })
       },[])
 
   //로그인 유무 판단
@@ -196,16 +221,59 @@ function DetailPage() {
   const OnSubmit = async (e) => {
     e.preventDefault();
     e.persist();
-
-      instance.post("/reply", {
-        comment: localStorage.getItem("comment"),
-        postId: postId
-      }, config)
-      .then(function(response) {
-        console.log(response)
-        history.go(0);
-      })
+    try {
+      if(localStorage.getItem("LoginId")) {
+        // 400000이하로 떨어지면
+        if(diff2 < 400000) {
+          axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+            accessToken : AccessToken,
+            refreshToken: RefreshToken
+        })
+        .then(function (response) {
+          localStorage.removeItem("AccessToken");
+          localStorage.removeItem("AccessTokenExpiresIn");
+          localStorage.removeItem("RefreshToken");
+          localStorage.removeItem("RefreshTokenExpiresIn");
+          localStorage.setItem("AccessToken", response.data.accessToken);
+          localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
+          localStorage.setItem("RefreshToken", response.data.refreshToken);
+          localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
+          // 글 삭제
+          instance.post("/reply", {
+            comment: localStorage.getItem("comment"),
+            postId: postId
+          }, config)
+          .then(function(response) {
+            console.log(response)
+            history.go(0);
+          })
+        }).then(function (error) {
+          console.log(error)
+        })
+        } else {
+          instance.post("/reply", {
+            comment: localStorage.getItem("comment"),
+            postId: postId
+          }, config)
+          .then(function(response) {
+            console.log(response)
+            history.go(0);
+          })
+        }
+      } else {
+        console.log("로그인 만료, 로그아웃")
+      }
+  } catch(e) {
+    console.log(e)
+  }
   };
+
+  // if(detailComment.writerLoginId === null) {
+  //   return <div></div>
+  // } else if(detailComment.writerLoginId === )
+
+
+  
   // html 부분
   return (
     <BrowserRouter>
@@ -255,10 +323,10 @@ function DetailPage() {
                         {localStorage.setItem("CommentLoginId", name.writerLoginId)}
                       <div className="comment-card">
                         <div className="comment--header">
-                          <img className="comment---image" src={window.localStorage.getItem("URL")} alt="댓글 이미지"></img>
+                          <img className="comment---image" src={name.writerLoginId === null ? normal : localStorage.getItem("URL")} alt="댓글 이미지"></img>
                           <div className="flex-column">
                             <div className="flex-row">
-                              <div className="comment----username">{name.writerLoginId}</div>
+                              <div className="comment----username">{name.writerLoginId === null ? "탈퇴한 사용자입니다." : name.writerLoginId}</div>
                             </div>
                             <span className="comment----update">{name.writeDate}</span>
                           </div>
@@ -267,7 +335,7 @@ function DetailPage() {
                           {name.comment}
                           <div className="comment---features">
                             <div className="comment----delete">
-                              {name.writerLoginId === localStorage.getItem("LoginId") ? <><UpdateComment/><button onClick={DeleteComment}>삭제</button></> : <div></div>}
+                              {localStorage.getItem("LoginId") === null ? (<div></div>) : (name.writerLoginId === localStorage.getItem("LoginId") ? <><UpdateComment/><button onClick={DeleteComment}>삭제</button></> : <div></div>) }
                             </div>
                           </div>
                         </div>
@@ -279,7 +347,7 @@ function DetailPage() {
                       <div className="answer--comment">
                         <div className="comment-a">
                           <div className="commant-b">
-                            <img className="commant-u-c" src={window.localStorage.getItem("URL")} alt="댓글 이미지"></img>
+                            <img className="commant-u-c" src={comment.profileImagePath === null ? normal : image} alt="댓글 이미지"></img>
                             <div className="flex-column">
                               <h5 className="comment----username">{localStorage.getItem("LoginId")}</h5>
                             </div>

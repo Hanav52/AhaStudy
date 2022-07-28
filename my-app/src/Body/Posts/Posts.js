@@ -158,6 +158,7 @@ function Posts() {
                 {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
                     <li class="class-card1" key={id}>
                       <Link to="/Detail" onClick={() => {
+                        localStorage.setItem("writerLoginId", writerLoginId)
                         localStorage.setItem("postId", id)}}>
                         <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image" />
                         <div class="class-container">

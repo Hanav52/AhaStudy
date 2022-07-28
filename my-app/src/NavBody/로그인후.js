@@ -13,14 +13,42 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import CustomizedDialogs from "../글작성/Modaal";
+import normal from '../내정보/normal.png'
 
 export default function AccountMenu() {
+  //api instance 생성
+  const instance = axios.create({
+    baseURL: 'http://bestinwoo.hopto.org:8080/',
+  });
+
   // local저장소
   const [LoginId, setLoginId] = useState();
   useEffect(() => {
     setLoginId(window.localStorage.getItem("LoginId"));
   },[])
+  // 프로필 가져오기
+  const [detail, setDetail] = useState([]);
+
+  useEffect(()=> {
+      try {
+      instance.get(`/user/${localStorage.getItem("UserId")}`)
+      .then(function(response) {
+        console.log(response.data.data);
+        setDetail(response.data.data)
+      })} catch(ex){
+        console.log("오류")
+      }
+    },[])
+    // 이미지 가져오기
+  const [image, setImage] = useState("");
+
+    useEffect(()=> {
+      instance.get(`/image/${localStorage.getItem("imageId")}`)
+        .then(function (response) {
+          setImage(response.request.responseURL)
+          localStorage.setItem("URL", response.request.responseURL)
+      })
+    },[])
 
   const history = useHistory();
 
@@ -73,7 +101,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 } } src={window.localStorage.getItem("URL")}></Avatar>
+            <Avatar sx={{ width: 32, height: 32 } } src={detail.profileImagePath === null ? normal : image}></Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -113,7 +141,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={()=>history.go("/Profile")}>
-          <Avatar src={window.localStorage.getItem("URL")}/> 내 정보
+          <Avatar src={detail.profileImagePath === null ? normal : image}/> 내 정보
         </MenuItem>
         <Divider />
         <MenuItem onClick={LogoutUser}>

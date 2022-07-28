@@ -3,11 +3,12 @@ import '../css/stylemain.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import normal from '../내정보/normal.png'
 
 function Section() {
   // 최신글 데이터 저장
   const [data, setdata] = useState([])
-  const [image, setImage] = useState([])
+  
 
   //api instance 생성
   const instance = axios.create({
@@ -33,10 +34,10 @@ function Section() {
   const result1 = data.filter(word => word.boardId === 1);
   const nameList1 = result1.map((name) => 
             <li className="class-card" key={name.postId}>
-              <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)}}>
+              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -57,10 +58,10 @@ function Section() {
   const result2 = data.filter(word => word.boardId === 2);
   const nameList2 = result2.map((name) => 
             <li className="class-card" key={name.postId}>
-              <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)}}>
+              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -81,10 +82,10 @@ function Section() {
   const result3 = data.filter(word => word.boardId === 3);
   const nameList3 = result3.map((name) => 
             <li className="class-card" key={name.postId}>
-              <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)}}>
+              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -105,10 +106,10 @@ function Section() {
   const result4 = data.filter(word => word.boardId === 4);
   const nameList4 = result4.map((name) => 
           <li className="class-card" key={name.postId}>
-            <img src={"http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
             <Link to="/Detail" onClick={() => {
               localStorage.setItem("writerLoginId", name.writerLoginId)
               localStorage.setItem("postId", name.postId)}}>
+              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <div className="class-container">
                 <div className="class-skill">
                   <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -129,10 +130,10 @@ function Section() {
   const result5 = data.filter(word => word.boardId === 5);
   const nameList5 = result5.map((name) => 
             <li className="class-card" key={name.postId}>
-              <img src={name.imagePath} alt="게시글" className="class-image" />
               <Link to="/Detail" onClick={() => {
               localStorage.setItem("writerLoginId", name.writerLoginId)
               localStorage.setItem("postId", name.postId)}}>
+              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">{name.writerLoginId}</div>

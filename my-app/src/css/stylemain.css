@@ -860,7 +860,7 @@ footer {
   display: block;
 }
 .rightContent {
-  margin-left: 200px;
+  margin-left: 400px;
 }
 .rightHeader {
   display: flex;
@@ -868,7 +868,7 @@ footer {
   margin-bottom: 20px;
 }
 .updateDelete {
-  margin-left: 220px;
+  margin-left: 180px;
   display: flex;
   flex-direction: row;
 }

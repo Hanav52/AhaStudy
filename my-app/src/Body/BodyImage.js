@@ -34,7 +34,6 @@ function RealMain() {
   
   const t1 = Number(AccessTokenExpiresIn);
   const diff2 = moment.duration(t1 - t2).asMilliseconds(); // 400000이하로 떨어지면
-console.log(visible)
   const onMakeList = () => {
     if(visible === null) {
       alert("로그인 후 이용해주세요.");

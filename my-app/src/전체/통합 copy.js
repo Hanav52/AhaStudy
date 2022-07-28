@@ -15,10 +15,10 @@ function Hole() {
     <div>
         <body>
         <BrowserRouter>
-        <Nav/>
             <>
             <Switch>
                 <Route exact path="/">
+                    <Nav/>
                     <RealMain/>
                 </Route>
                 <Route path="/login">
@@ -28,12 +28,15 @@ function Hole() {
                     <Join/>
                 </Route>
                 <Route path="/post">
+                    <Nav/>
                     <Posts/>
                 </Route>
                 <Route path="/Detail">
+                    <Nav/>
                     <DetailPage/>
                 </Route>
                 <Route path="/Profile">
+                    <Nav/>
                     <MyProfile/>
                 </Route>
             </Switch>

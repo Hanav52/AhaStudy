@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import TagBox1 from './Search/TagBox1';
-import MyProfile from './내정보/MyProfile';
 import Hole from './전체/통합 copy';
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +9,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

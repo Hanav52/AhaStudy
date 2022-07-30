@@ -43,6 +43,7 @@ function DetailPage() {
           console.log("오류")
         }
       },[])
+      
 
       // 이미지 가져오기
       const [image, setImage] = useState("");

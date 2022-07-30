@@ -8,6 +8,7 @@ import Join from '../Login&Register/Join';
 import Posts from '../Body/Posts/Posts';
 import DetailPage from '../Body/상세페이지/DetailPage';
 import MyProfile from '../내정보/MyProfile';
+import PrimarySearchAppBar from '../알림/Notification';
 
 
 function Hole() {
@@ -38,6 +39,9 @@ function Hole() {
                 <Route path="/Profile">
                     <Nav/>
                     <MyProfile/>
+                </Route>
+                <Route path="/noti">
+                    <PrimarySearchAppBar/>
                 </Route>
             </Switch>
             </>

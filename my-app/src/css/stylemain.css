@@ -872,9 +872,10 @@ footer {
   display: flex;
   flex-direction: row;
 }
-.rightBodyFavorite {
+/* .read {
+  background-color: #616568;
 
-}
+} */
 .MyProfileBody3 {
   width: 100px;
 }

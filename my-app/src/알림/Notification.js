@@ -13,8 +13,8 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from "axios";
-import { Avatar, ListItemIcon, Tooltip, Typography } from '@mui/material';
-import { PersonAdd } from '@mui/icons-material';
+import { Alert, Avatar, ListItemIcon, Tooltip, Typography } from '@mui/material';
+import { NotificationAdd, Notifications, PersonAdd } from '@mui/icons-material';
 import { Link, useHistory } from 'react-router-dom';
 
 function Notification() {
@@ -69,37 +69,52 @@ function Notification() {
 
   const subscribe = () => {
     client.current.subscribe(`/topic/notify/${localStorage.getItem("UserId")}`, ({ body }) => {
-        setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
         setNoti((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+        setCount(count+1);
     });
   };
 
     // 알림 가져오기
     const [noti, setNoti] = useState([]);
+    const [count, setCount] = useState();
     const config = {
         headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
     }};
-    useEffect(() => {
+    const NNoti = () => {
         try {
         instance.get(`/notifications/${localStorage.getItem("UserId")}`, config)
         .then(function(response) {
         setNoti(response.data.data)
+        setCount(response.data.count)
         console.log(response)
         })} catch(ex){
         console.log("오류")
         }
+    }
+    useEffect(() => {
+      NNoti();
     },[])
     // 알림 삭제
-    const notidelete = () => {
+    const Notidelete = (id) => {
+      NNoti();
+      try{
         instance.delete(`/notifications/${localStorage.getItem("notiId")}`, config)
         .then(function (response) {
-            console.log(response)
-            setAnchorEl(null);
+          NNoti();
+          setNoti(noti.filter(user => user.id !== id));
+          setCount(count-1);
+          //setAnchorEl(null);
+            
         })
+      }
+      catch(e) {
+        console.log(e)
+      }
     }
 
     const [anchorEl, setAnchorEl] = useState(null);
+    const [visible, setVisible] = useState([]);
     
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -108,8 +123,19 @@ function Notification() {
     const handleClose = () => {
     setAnchorEl(null);
     };
-    const deetail = (e) => {
-      history.push("/detail")
+    const ReadNoti = () => {
+      NNoti();
+      try {
+        instance.post(`/notifications/${localStorage.getItem("notiId")}`, { } ,config)
+        .then(function (response) {
+          NNoti();
+        })
+        .then(function (error) {
+          console.log(error)
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
   return (
     <>
@@ -123,7 +149,9 @@ function Notification() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+          <Badge badgeContent={count} color="primary">
+            <Notifications sx={{ width: 32, height: 32 }}></Notifications>
+          </Badge>
           </IconButton>
         </Tooltip>
       </Box>
@@ -162,15 +190,17 @@ function Notification() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         {noti.map((_noti, index) => 
-        <MenuItem key={index}>
-        <div className="read" >
-        <Link onClick={deetail}>
+        <MenuItem key={index} >
+        <div className="read" 
+          onClick={() => { localStorage.setItem("postId", _noti.postId); localStorage.setItem("notiId", _noti.id); ReadNoti(); history.push("/detail");  }}
+          style={_noti.viewYn ? {backgroundColor: "gray"} : {backgroundColor: "white"}} 
+        >
+        <Link>
           {index+1} : {_noti.message}
-          {localStorage.setItem("notiId", _noti.id)}
-          {localStorage.setItem("postId", _noti.postId)}
         </Link>
-          <button type="button" className="btn-close" onClick={notidelete}></button>
         </div>
+
+          <button type="button" className="btn-close" onClick={() => {localStorage.setItem("notiId", _noti.id); Notidelete(_noti.id)}} ></button>
         </MenuItem>
         )}
       </Menu>

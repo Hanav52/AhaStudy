@@ -283,7 +283,7 @@ function DetailPage() {
             <div className="Detail-section">
               <div className="Detail-Side">
                 <div className="Side-B">
-                  <button className="Side-Back" onClick={()=>history.go("/post")}>뒤로
+                  <button className="Side-Back" onClick={()=>history.push("/post")}>뒤로
                   </button>
                 </div>
               </div>

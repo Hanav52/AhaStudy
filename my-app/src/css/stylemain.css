@@ -338,8 +338,17 @@ section {
 
 .class-image {
   /* 사이즈가 큰 이미지를 작은 블럭 내에 넣을 때 호환성을 위해 max-width/max-height 를 사용해야 함 */
-  max-width: 100%;
-
+  width: 240px;
+  height: 130px;
+  object-fit: fill;
+  /* border-radius: 블럭 모서리를 둥글게 하는 CSS 기능
+     top-left | top-right | bottom-right | bottom-left */
+  border-radius: 8px 8px 0 0;
+}
+.class-image1 {
+  width: 431px;
+  height: 231px;
+  object-fit: fill;
   /* border-radius: 블럭 모서리를 둥글게 하는 CSS 기능
      top-left | top-right | bottom-right | bottom-left */
   border-radius: 8px 8px 0 0;

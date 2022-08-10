@@ -10,10 +10,7 @@ function Section() {
   const [data, setdata] = useState([])
   
 
-  //api instance 생성
-  const instance = axios.create({
-    baseURL: 'http://bestinwoo.hopto.org:8080/',
-  });
+  
    
   useEffect(() => {
     axios.get("http://bestinwoo.hopto.org:8080/board/recent", {

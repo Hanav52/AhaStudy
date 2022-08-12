@@ -2,13 +2,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/stylemain.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import normal from '../내정보/normal.png'
 
 function Section() {
   // 최신글 데이터 저장
   const [data, setdata] = useState([])
-  
+  const history = useHistory();
 
   
    
@@ -33,7 +33,8 @@ function Section() {
             <li className="class-card" key={name.postId}>
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
-                localStorage.setItem("postId", name.postId)}}>
+                localStorage.setItem("postId", name.postId)
+                history.push("/Detail"); history.go(0)}}>
               <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
@@ -57,7 +58,8 @@ function Section() {
             <li className="class-card" key={name.postId}>
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
-                localStorage.setItem("postId", name.postId)}}>
+                localStorage.setItem("postId", name.postId)
+                history.push("/Detail"); history.go(0)}}>
               <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
@@ -81,7 +83,8 @@ function Section() {
             <li className="class-card" key={name.postId}>
               <Link to="/Detail" onClick={() => {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
-                localStorage.setItem("postId", name.postId)}}>
+                localStorage.setItem("postId", name.postId)
+                history.push("/Detail"); history.go(0)}}>
               <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
@@ -105,7 +108,8 @@ function Section() {
           <li className="class-card" key={name.postId}>
             <Link to="/Detail" onClick={() => {
               localStorage.setItem("writerLoginId", name.writerLoginId)
-              localStorage.setItem("postId", name.postId)}}>
+              localStorage.setItem("postId", name.postId)
+              history.push("/Detail"); history.go(0)}}>
               <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
               <div className="class-container">
                 <div className="class-skill">
@@ -129,7 +133,8 @@ function Section() {
             <li className="class-card" key={name.postId}>
               <Link to="/Detail" onClick={() => {
               localStorage.setItem("writerLoginId", name.writerLoginId)
-              localStorage.setItem("postId", name.postId)}}>
+              localStorage.setItem("postId", name.postId)
+              history.push("/Detail"); history.go(0)}}>
               <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
@@ -151,7 +156,6 @@ function Section() {
           <div className="roadmap-container">
               <div className="roadmap-title-container">
                 <div className="roadmap-title">공무원</div>
-                <div className="roadmap-title">더보기</div>
               </div>
               <ul className="class-list" data-position="0">
                  {nameList1}
@@ -162,7 +166,6 @@ function Section() {
           <div className="roadmap-container">
               <div className="roadmap-title-container">
                 <div className="roadmap-title">자격증</div>
-                <div className="roadmap-title">더보기</div>
               </div>
               <ul className="class-list" data-position="0">
                  {nameList2}
@@ -173,7 +176,6 @@ function Section() {
           <div className="roadmap-container">
               <div className="roadmap-title-container">
                 <div className="roadmap-title">개발</div>
-                <div className="roadmap-title">더보기</div>
               </div>
               <ul className="class-list" data-position="0">
                  {nameList3}
@@ -184,7 +186,6 @@ function Section() {
           <div className="roadmap-container">
               <div className="roadmap-title-container">
                 <div className="roadmap-title">외국어</div>
-                <div className="roadmap-title">더보기</div>
               </div>
               <ul className="class-list" data-position="0">
                  {nameList4}
@@ -195,7 +196,6 @@ function Section() {
           <div className="roadmap-container">
               <div className="roadmap-title-container">
                 <div className="roadmap-title">면접</div>
-                <div className="roadmap-title">더보기</div>
               </div>
               <ul className="class-list" data-position="0">
                  {nameList5}

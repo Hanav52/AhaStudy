@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Link, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Link, Route, useHistory, useParams } from "react-router-dom";
 import Footer from "../../Footer/Footer";
 import Pagination from "../Pagination";
 import { getComments } from "../무한스크롤/api1";
@@ -139,6 +139,7 @@ function Posts() {
     useEffect(() => {
       loadComments(page, Desc);
     }, [page, Desc]);
+    const history = useHistory();
 
   return (
     <>
@@ -159,7 +160,8 @@ function Posts() {
                     <li class="class-card1" key={id}>
                       <Link to="/Detail" onClick={() => {
                         localStorage.setItem("writerLoginId", writerLoginId)
-                        localStorage.setItem("postId", id)}}>
+                        localStorage.setItem("postId", id)
+                        history.push("/Detail"); history.go(0)}}>
                         <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image1" />
                         <div class="class-container">
                           <div class="class-skill">

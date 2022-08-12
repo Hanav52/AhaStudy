@@ -12,8 +12,8 @@ function Nav() {
             <header>
                 <div className="inner">
                     <Nav1/>
-                </div>
                     <Nav2/>
+                </div>
             </header>
         </BrowserRouter>
   );

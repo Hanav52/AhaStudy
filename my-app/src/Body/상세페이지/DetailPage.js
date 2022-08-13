@@ -327,7 +327,7 @@ function DetailPage() {
                           <img className="comment---image" src={name.writerLoginId === null ? normal : localStorage.getItem("URL")} alt="댓글 이미지"></img>
                           <div className="flex-column">
                             <div className="flex-row">
-                              <div className="comment----username">{name.writerLoginId === null ? "탈퇴한 사용자입니다." : name.writerLoginId}</div>
+                              <div className="comment----username">{name.writerLoginId === null ? "회원탈퇴한 사용자입니다." : name.writerLoginId}</div>
                             </div>
                             <span className="comment----update">{name.writeDate}</span>
                           </div>

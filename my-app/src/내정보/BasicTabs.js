@@ -3,9 +3,24 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MyContent from './MyContent';
 import MyComment from './MyComment';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#ff9800',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#ff9800',
+    },
+  },
+});
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,10 +65,12 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" textColor="secondary" indicatorColor="secondary">
+      <ThemeProvider theme={theme}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" textColor="primary" indicatorColor="secondary">
           <Tab label="작성 글" {...a11yProps(0)} />
           <Tab label="작성 댓글" {...a11yProps(1)} />
         </Tabs>
+      </ThemeProvider>
       </Box>
       <TabPanel value={value} index={0}>
         <MyContent/>

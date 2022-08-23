@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import normal from './normal.png'
@@ -65,8 +66,8 @@ const Image = () => {
   // input태그는 display:"none" 을 이용해 안보이게 숨겨준다.
   return (
   	<>
-      <input ref={imageInput} type="file" className="imgInput" id="logoImg" accept="image/*" name="file" onChange={onImgChange}multiple="multiple" style={{ display: "none" }}/>
-      <button onClick={onImgInputBtnClick}>이미지업로드</button>
+      <input ref={imageInput} type="file" className="imgInput" id="logoImg" accept="image/*" name="file" onChange={onImgChange} multiple="multiple" style={{ display: "none" }}/>
+      <Button onClick={onImgInputBtnClick} style={{color: '#ffca28', borderColor: '#ffca28', backgroundColor: '#fff'}} variant="outlined">이미지업로드</Button>
       <img className="lftimg" src={detail.profileImagePath === null ? normal : image} alt="프로필이미지"></img>
 	</>
   );

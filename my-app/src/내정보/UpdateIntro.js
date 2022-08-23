@@ -97,7 +97,7 @@ export default function UpdateIntro() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button style={{color: '#ffca28', borderColor: '#ffca28', backgroundColor: '#fff'}} variant="outlined" onClick={handleClickOpen}>
         수정
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
@@ -107,9 +107,9 @@ export default function UpdateIntro() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button onClick={handleClose}>취소</button>
+          <Button onClick={handleClose} style={{color: '#ff8f00', borderColor: '#ff8f00', backgroundColor: '#fff'}} >취소</Button>
             <form onSubmit={(e) => onSubmit(e)}>
-          <button onClick={handleClose} >저장</button>
+          <Button onClick={handleClose} style={{color: '#ff8f00', borderColor: '#ff8f00', backgroundColor: '#fff'}} >저장</Button>
           </form>
         </DialogActions>
       </Dialog>

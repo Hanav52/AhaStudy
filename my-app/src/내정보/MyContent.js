@@ -57,7 +57,7 @@ function MyContent() {
                   <Link to="/Detail" onClick={() => {
                     localStorage.setItem("writerLoginId", writerLoginId)
                     localStorage.setItem("postId", id)}}>
-                      <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image" />
+                      <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image2" />
                       <div class="class-container">
                         <div class="class-skill">
                           <div class="class-type">작성자 : {writerLoginId}</div>

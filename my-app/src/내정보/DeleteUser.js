@@ -106,7 +106,7 @@ export default function DeleteUser() {
   }
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button style={{color: '#ffca28', borderColor: '#ffca28', backgroundColor: '#fff'}} variant="outlined" onClick={handleClickOpen}>
         회원 탈퇴
       </Button>
       <Dialog

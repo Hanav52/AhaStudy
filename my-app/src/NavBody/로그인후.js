@@ -209,7 +209,7 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={()=>history.go("/Profile")}>
+        <MenuItem onClick={()=> {history.push("/Profile"); history.go(0)}}>
           <Avatar src={detail.profileImagePath === null ? normal : image}/> 내 정보
         </MenuItem>
         <Divider />

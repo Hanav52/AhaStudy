@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Route, Link, useHistory } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AccountMenu from '../NavBody/로그인후';
 

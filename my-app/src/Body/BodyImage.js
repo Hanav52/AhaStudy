@@ -97,8 +97,8 @@ function RealMain() {
                 </div>
               </div>
               <div className="login-mainsubtitle">
-              {!visible ?  <button type="button" className="head-blog btn btn lg btn-warning"><Link to='login'>로그인</Link></button> : 
-                          <button type="button" className="head-blog btn btn lg btn-warning"><Link to='login'>로그아웃</Link></button>}
+              {!visible ?  <button type="button" className="head-blog btn btn lg btn-warning" style={{marginRight: '10px'}}><Link to='login'>로그인</Link></button> : 
+                          <button type="button" className="head-blog btn btn lg btn-warning" style={{marginRight: '10px'}}><Link to='login'>로그아웃</Link></button>}
               <button onClick={onMakeList} type="button" className="head-blog btn btn lg btn-outline-warning" ><Link>글 작성하기</Link></button>
               </div>
             </div>

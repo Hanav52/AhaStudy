@@ -798,6 +798,8 @@ footer {
   display: flex;
   align-items: center;
   margin-left: auto;
+  justify-content: flex-end;
+  margin: 10px;
 }
 .commant-fb {
   border-color: #f1c232;
@@ -902,6 +904,18 @@ footer {
 } */
 .MyProfileBody3 {
   width: 100px;
+}
+.inputHalf {
+  width: 250px;
+  margin-right: 15px;
+}
+.inputHalf1 {
+  width: 250px;
+}
+.search-double {
+  display: flex;
+  margin-top: 30px;
+  justify-content: flex-end;
 }
 
 @media only screen and (min-width: 1200px) {

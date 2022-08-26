@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getComments } from "./MyApi";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Link, useHistory } from "react-router-dom";
 
 function MyContent() {
+  const history = useHistory();
   const [comments, setComments] = useState([]);
   const [page, setPage] = useState(0);
   let timeInterver = '';
@@ -56,7 +57,8 @@ function MyContent() {
               <li class="class-card1" key={id}>
                   <Link to="/Detail" onClick={() => {
                     localStorage.setItem("writerLoginId", writerLoginId)
-                    localStorage.setItem("postId", id)}}>
+                    localStorage.setItem("postId", id)
+                    history.push("/Detail"); history.go(0)}}>
                       <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image2" />
                       <div class="class-container">
                         <div class="class-skill">

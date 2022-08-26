@@ -8,6 +8,24 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from "moment";
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffc107'
+    },
+    four: {
+      main: '#fff'
+    }
+  },
+});
 
 export default function DeleteUser() {
   const [open, setOpen] = useState(false);
@@ -106,9 +124,11 @@ export default function DeleteUser() {
   }
   return (
     <div>
-      <Button style={{color: '#ffca28', borderColor: '#ffca28', backgroundColor: '#fff'}} variant="outlined" onClick={handleClickOpen}>
+      <ThemeProvider theme={theme}>
+      <Button style={{color: '#fff', fontWeight: 'bold'}} color="secondary" variant="contained" onClick={handleClickOpen}>
         회원 탈퇴
       </Button>
+      </ThemeProvider>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -116,19 +136,21 @@ export default function DeleteUser() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"회원탈퇴"}
+          {"회원 탈퇴"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            회원탈퇴를 하시면 작성하신 글과 댓글이 모두 사라지게 됩니다.
-            <br></br>정말 회원탈퇴 하시겠습니까?
+            회원 탈퇴를 하시면 작성하신 글과 댓글이 모두 사라지게 됩니다.
+            <br></br>정말 회원 탈퇴 하시겠습니까?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+        <ThemeProvider theme={theme}>
           <Button onClick={handleClose}>취소</Button>
-          <Button onClick={DeleteUs} autoFocus>
+          <Button onClick={DeleteUs} color="secondary"autoFocus>
             탈퇴
           </Button>
+        </ThemeProvider>
         </DialogActions>
       </Dialog>
     </div>

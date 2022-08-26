@@ -10,6 +10,24 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import moment from 'moment';
 import UpdateIntroDetail from './UpdateIntroDetail';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffc107'
+    },
+    four: {
+      main: '#fff'
+    }
+  },
+});
 
 export default function UpdateIntro() {
     const [open, setOpen] = useState(false);
@@ -97,9 +115,11 @@ export default function UpdateIntro() {
 
   return (
     <div>
-      <Button style={{color: '#ffca28', borderColor: '#ffca28', backgroundColor: '#fff'}} variant="outlined" onClick={handleClickOpen}>
+      <ThemeProvider theme={theme}>
+      <Button style={{color: '#fff', fontWeight: 'bold'}} variant="contained" onClick={handleClickOpen} color="three">
         수정
       </Button>
+      </ThemeProvider>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogContent>
           <DialogContentText>
@@ -107,10 +127,12 @@ export default function UpdateIntro() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} style={{color: '#ff8f00', borderColor: '#ff8f00', backgroundColor: '#fff'}} >취소</Button>
+        <ThemeProvider theme={theme}>
+          <Button onClick={handleClose} style={{margin: '10px'}} color="four" variant="contained">취소</Button>
             <form onSubmit={(e) => onSubmit(e)}>
-          <Button onClick={handleClose} style={{color: '#ff8f00', borderColor: '#ff8f00', backgroundColor: '#fff'}} >저장</Button>
+          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff'}}>저장</Button>
           </form>
+        </ThemeProvider>
         </DialogActions>
       </Dialog>
     </div>

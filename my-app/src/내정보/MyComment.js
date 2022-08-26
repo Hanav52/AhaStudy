@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getComments } from "./MyApiComment";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Link, useHistory } from "react-router-dom";
 
 function MyComment() {
+  const history = useHistory();
   const [comments, setComments] = useState([]);
   const [page, setPage] = useState(0);
   let timeInterver = '';
@@ -56,7 +57,8 @@ function MyComment() {
               <li class="class-card1" key={id}>
                   <Link to="/Detail" onClick={() => {
                     localStorage.setItem("writerLoginId", postWriterLoginId)
-                    localStorage.setItem("postId", postId)}}>
+                    localStorage.setItem("postId", postId)
+                    history.push("/Detail"); history.go(0)}}>
                       <div class="class-container">
                         <div class="class-skill">
                           <div class="class-type">작성자 : {writerLoginId}</div>

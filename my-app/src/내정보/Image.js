@@ -1,7 +1,24 @@
-import { Button } from "@mui/material";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import normal from './normal.png'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffc107'
+    },
+    four: {
+      main: '#fff'
+    }
+  },
+});
 
 const Image = () => {
   // useRef를 이용해 input태그에 접근한다.
@@ -67,7 +84,9 @@ const Image = () => {
   return (
   	<>
       <input ref={imageInput} type="file" className="imgInput" id="logoImg" accept="image/*" name="file" onChange={onImgChange} multiple="multiple" style={{ display: "none" }}/>
-      <Button onClick={onImgInputBtnClick} style={{color: '#ffca28', borderColor: '#ffca28', backgroundColor: '#fff'}} variant="outlined">이미지업로드</Button>
+      <ThemeProvider theme={theme}>
+      <Button onClick={onImgInputBtnClick} style={{color: '#fff', fontWeight: 'bold'}} color="three" variant="contained">이미지 업로드</Button>
+      </ThemeProvider>
       <img className="lftimg" src={detail.profileImagePath === null ? normal : image} alt="프로필이미지"></img>
 	</>
   );

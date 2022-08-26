@@ -15,12 +15,19 @@ import { useState } from 'react';
 import axios from 'axios';
 import normal from '../내정보/normal.png'
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffc107',
+    },
+  },
+});
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1">
+      <Link color="inherit" href="https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1" style={{cursor: 'pointer'}} underline="hover">
       Aha Study
       </Link>{' '}
       {new Date().getFullYear()}
@@ -30,7 +37,6 @@ function Copyright(props) {
 }
 
 
-const theme = createTheme();
 
 export default function SignIn() {
     const history = useHistory({forceRefresh: true});
@@ -116,6 +122,7 @@ export default function SignIn() {
               value={password}
               onChange={changePassword}
             />
+            <ThemeProvider theme={theme}>
             <Button
               fullWidth
               variant="contained"
@@ -124,11 +131,12 @@ export default function SignIn() {
             >
               로그인
             </Button>
+            </ThemeProvider>
             <Grid container>
               <Grid item xs>
               </Grid>
               <Grid item>
-                <Link underline="hover" href="register">
+                <Link underline="hover" href="register" style={{cursor: 'pointer'}}>
                   계정이 없으십니까? 회원가입
                 </Link>
               </Grid>

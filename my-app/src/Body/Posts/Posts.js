@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, ButtonGroup, createTheme, ThemeProvider } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Link, Route, useHistory, useParams } from "react-router-dom";
@@ -7,12 +7,31 @@ import Pagination from "../Pagination";
 import { getComments } from "../무한스크롤/api1";
 import {  BiSearchAlt2 } from "react-icons/bi";
 import CustomizedDialogs from "../../글작성/Modaal";
+import normal from '../../내정보/normal.png'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffa000'
+    },
+    four: {
+      main: '#fff'
+    }
+  },
+});
 
 //제목 검색 부분
 function SerarchBar({ onClick, onChange }) {
   return (
     <>
-      <div className="input-group">
+    <div className="inputHalf">
+    <div className="input-group">
         <input
           type="search"
           className="form-control"
@@ -23,6 +42,8 @@ function SerarchBar({ onClick, onChange }) {
           <BiSearchAlt2 className="search_icon"></BiSearchAlt2>
         </button>
       </div>
+    </div>
+      
     </>
   );
 }
@@ -30,6 +51,7 @@ function SerarchBar({ onClick, onChange }) {
 function SearchTagBar({ onClick, onChange }) {
   return (
     <>
+    <div className="inputHalf1">
       <div className="input-group">
         <input
           type="search"
@@ -41,6 +63,7 @@ function SearchTagBar({ onClick, onChange }) {
           <BiSearchAlt2 className="search_icon"></BiSearchAlt2>
         </button>
       </div>
+    </div>
     </>
   );
 }
@@ -117,11 +140,13 @@ function Posts() {
     return(
         <div className='inner'>
           <div className='bodybodyheader'>
+          <ThemeProvider theme={theme}>
             <ButtonGroup variant="text" aria-label="text button group">
-              <Button onClick={() => setDesc("writeDate,desc")}>최신순</Button>
-              <Button onClick={() => setDesc("views,desc")}>조회순</Button>
-              <Button onClick={() => setDesc("replyCount,desc")}>댓글순</Button>
+              <Button onClick={() => setDesc("writeDate,desc")} color="three">최신순</Button>
+              <Button onClick={() => setDesc("views,desc")} color="three">조회순</Button>
+              <Button onClick={() => setDesc("replyCount,desc")} color="three">댓글순</Button>
             </ButtonGroup>
+          </ThemeProvider>
           </div>  
         </div>
     )
@@ -152,8 +177,10 @@ function Posts() {
                     <div class="roadmap-title">{localStorage.getItem("title")}</div>
                     <div class="roadmap-title"><CustomizedDialogs/></div>
                 </div>
+                <div className="search-double">
                 <SerarchBar onClick={fetchMovie} onChange={searchItem} disabled={!state}></SerarchBar>
                 <SearchTagBar onClick={fetchTag} onChange={searchTag} disabled={state}></SearchTagBar>
+                </div>
                 <BodyBodySearch/>
                 <ul class="class-list1" data-position="0">
                 {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
@@ -162,7 +189,7 @@ function Posts() {
                         localStorage.setItem("writerLoginId", writerLoginId)
                         localStorage.setItem("postId", id)
                         history.push("/Detail"); history.go(0)}}>
-                        <img src={"http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image1" />
+                        <img src={imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image1" />
                         <div class="class-container">
                           <div class="class-skill">
                             <div class="class-type">작성자 : {writerLoginId}</div>

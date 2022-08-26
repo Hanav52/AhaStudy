@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -24,6 +24,23 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
+
+const theme1 = createTheme({
+  palette: {
+    primary: {
+      main: '#ffc107',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffa000'
+    },
+    four: {
+      main: '#ff9800'
+    }
+  },
+});
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
@@ -164,9 +181,11 @@ export default function CustomizedDialogs() {
   
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <ThemeProvider theme={theme1}>
+      <Button variant="contained" onClick={handleClickOpen} style={{color: '#fff', fontWeight: 'bold'}}>
         글 쓰기
       </Button>
+      </ThemeProvider>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -192,7 +211,9 @@ export default function CustomizedDialogs() {
               multiple="multiple"
               accept='image/jpg,impge/png,image/jpeg'
             />
-            <button type="submit" onClick={handleClose}>업로드</button>
+            <ThemeProvider theme={theme1}>
+            <Button type="submit" onClick={handleClose} variant="contained" style={{color: '#fff', fontWeight: 'bold'}}>업로드</Button>
+            </ThemeProvider>
         </form>
         </DialogActions>
       </BootstrapDialog>

@@ -46,7 +46,7 @@ const Button = styled.button`
   font-size: 1rem;
 
   &:hover {
-    background: tomato;
+    background: #ffb74d;
     cursor: pointer;
     transform: translateY(-2px);
   }
@@ -58,7 +58,7 @@ const Button = styled.button`
   }
 
   &[aria-current] {
-    background: deeppink;
+    background: #ff8f00;
     font-weight: bold;
     cursor: revert;
     transform: revert;

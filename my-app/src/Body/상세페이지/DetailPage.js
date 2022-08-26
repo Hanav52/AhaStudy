@@ -7,6 +7,24 @@ import moment from "moment";
 import SaveComment from "./SaveComment";
 import UpdateComment from "./UpdateComment";
 import normal from '../../내정보/normal.png'
+import { Button, createTheme, ThemeProvider } from "@mui/material";
+
+const theme1 = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffa000'
+    },
+    four: {
+      main: '#ffc107'
+    }
+  },
+});
 
 function DetailPage() {
 
@@ -297,7 +315,9 @@ function DetailPage() {
                       <h5>{detail.writerLoginId}</h5>
                       <h6>&nbsp;· {detail.writeDate}</h6>
                       <div className="subheader-changedelete">
-                        {ContentVisible === true ? <><UpdatePage/><button onClick={DeleteContent}>삭제</button></> : <div></div>}
+                      <ThemeProvider theme={theme1}>
+                        {ContentVisible === true ? <><UpdatePage/><Button onClick={DeleteContent} color="secondary" style={{margin: '10px'}} variant="contained">삭제</Button></> : <div></div>}
+                      </ThemeProvider>
                       </div>
                     </div>
                   </div>
@@ -336,7 +356,9 @@ function DetailPage() {
                           {name.comment}
                           <div className="comment---features">
                             <div className="comment----delete">
-                              {localStorage.getItem("LoginId") === null ? (<div></div>) : (name.writerLoginId === localStorage.getItem("LoginId") ? <><UpdateComment/><button onClick={DeleteComment}>삭제</button></> : <div></div>) }
+                            <ThemeProvider theme={theme1}>
+                              {localStorage.getItem("LoginId") === null ? (<div></div>) : (name.writerLoginId === localStorage.getItem("LoginId") ? <><UpdateComment/><Button onClick={DeleteComment} color="secondary">삭제</Button></> : <div></div>) }
+                            </ThemeProvider>
                             </div>
                           </div>
                         </div>
@@ -359,7 +381,9 @@ function DetailPage() {
                           <div className="comment-footer">
                             <div className="commant-f-r">
                             <form onSubmit={(e) => OnSubmit(e)}>
-                              <button type="submit">답변 등록</button>
+                            <ThemeProvider theme={theme1}>
+                              <Button type="submit" variant="contained" color="four" style={{color: '#fff'}}>답변 등록</Button>
+                            </ThemeProvider>
                             </form>
                             </div>
                           </div>

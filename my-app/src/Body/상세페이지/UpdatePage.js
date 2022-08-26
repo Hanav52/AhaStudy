@@ -11,6 +11,24 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import moment from 'moment';
 import UpdateDetailModal from './UpdateDetailModal';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme2 = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffc107'
+    },
+    four: {
+      main: '#fff'
+    }
+  },
+});
 
 export default function UpdatePage() {
     const [open, setOpen] = useState(false);
@@ -111,9 +129,11 @@ export default function UpdatePage() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <ThemeProvider theme={theme2}>
+      <Button onClick={handleClickOpen} variant="contained" color="four">
         수정
       </Button>
+      </ThemeProvider>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle>제목</DialogTitle>
         <DialogContent>
@@ -122,10 +142,12 @@ export default function UpdatePage() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button onClick={handleClose}>취소</button>
+        <ThemeProvider theme={theme2}>
+          <Button onClick={handleClose} style={{marginRight: '10px'}} color="four" variant="contained">취소</Button>
             <form onSubmit={(e) => onSubmit(e)}>
-          <button onClick={handleClose} >저장</button>
+          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff'}}>저장</Button>
           </form>
+        </ThemeProvider>
         </DialogActions>
       </Dialog>
     </div>

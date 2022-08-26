@@ -12,6 +12,24 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import UpdateDetailModal from './UpdateDetailModal';
 import UpdateCommentModal from './UpdateCommentModal';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme3 = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+    },
+    secondary: {
+      main: '#ff7473',
+    },
+    three: {
+      main: '#ffc107'
+    },
+    four: {
+      main: '#fff'
+    }
+  },
+});
 
 export default function UpdateComment() {
     const [open, setOpen] = useState(false);
@@ -101,9 +119,11 @@ export default function UpdateComment() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <ThemeProvider theme={theme3}>
+      <Button variant="text" onClick={handleClickOpen} style={{marginRight: '10px'}}>
         수정
       </Button>
+      </ThemeProvider>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle>내용</DialogTitle>
         <DialogContent>
@@ -112,10 +132,12 @@ export default function UpdateComment() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button onClick={handleClose}>취소</button>
+        <ThemeProvider theme={theme3}>
+          <Button onClick={handleClose} style={{margin: '10px'}} color="four" variant="contained">취소</Button>
             <form onSubmit={(e) => onSubmit(e)}>
-          <button onClick={handleClose} >저장</button>
+          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff'}}>저장</Button>
           </form>
+        </ThemeProvider>
         </DialogActions>
       </Dialog>
     </div>

@@ -898,10 +898,16 @@ footer {
   display: flex;
   flex-direction: row;
 }
-/* .read {
-  background-color: #616568;
-
-} */
+.read {
+  padding: 5px 14px;
+}
+.read1 {
+  display: flex;
+  padding: 12px, 12px, 12px, 22px;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
 .MyProfileBody3 {
   width: 100px;
 }

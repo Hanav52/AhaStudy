@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,9 +11,21 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from "axios";
-import { Alert, Avatar, ListItemIcon, Tooltip, Typography } from '@mui/material';
+import { Alert, Avatar, Button, createTheme, ListItemIcon, ThemeProvider, Tooltip, Typography } from '@mui/material';
 import { NotificationAdd, Notifications, PersonAdd } from '@mui/icons-material';
 import { Link, useHistory } from 'react-router-dom';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffc107',
+    },
+    secondary: {
+      main: '#ffe082',
+    },
+  },
+});
 
 function Notification() {
   const client = useRef({});
@@ -141,18 +151,23 @@ function Notification() {
     <>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="알림">
+        <ThemeProvider theme={theme}>
           <IconButton
             onClick={handleClick}
             size="small"
             sx={{ ml: 2 }}
-            aria-controls={open ? "account-menu" : undefined}
+            aria-controls={open ? "account-menu" : "알림이 없습니다."}
             aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
+            aria-expanded={open ? "true" : "알림이 없습니다."}
+            color="secondary"
           >
+          <ThemeProvider theme={theme}>
           <Badge badgeContent={count} color="primary">
             <Notifications sx={{ width: 32, height: 32 }}></Notifications>
           </Badge>
+          </ThemeProvider>
           </IconButton>
+        </ThemeProvider>
         </Tooltip>
       </Box>
       <Menu
@@ -190,18 +205,18 @@ function Notification() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         {noti.map((_noti, index) => 
-        <MenuItem key={index} >
-        <div className="read" 
-          onClick={() => { localStorage.setItem("postId", _noti.postId); localStorage.setItem("notiId", _noti.id); ReadNoti(); history.push("/detail");  }}
-          style={_noti.viewYn ? {backgroundColor: "gray"} : {backgroundColor: "white"}} 
+        <div className='read'>
+        <MenuItem key={index} style={_noti.viewYn ? {backgroundColor: '#ffebee'} : {backgroundColor: '#fff'}}>
+        <div className="read1" 
+          onClick={() => { localStorage.setItem("postId", _noti.postId); localStorage.setItem("notiId", _noti.id); ReadNoti(); history.push("/detail");  history.go(0)}} 
         >
-        <Link>
-          {index+1} : {_noti.message}
-        </Link>
+          <CheckOutlinedIcon style={_noti.viewYn ? {color: "ff7473", marginRight: '5px'} : {color: 'black', marginRight: '5px'}}/>  {_noti.message}
         </div>
 
-          <button type="button" className="btn-close" onClick={() => {localStorage.setItem("notiId", _noti.id); Notidelete(_noti.id)}} ></button>
+          <button type="button" style={{marginLeft: '5px'}} className="btn-close" onClick={() => {localStorage.setItem("notiId", _noti.id); Notidelete(_noti.id)}} ></button>
+        
         </MenuItem>
+        </div>
         )}
       </Menu>
     </>

@@ -77,6 +77,7 @@ export default function AccountMenu() {
         localStorage.removeItem("State")
         alert("로그인이 만료되었습니다.");
         history.push("/login");
+        history.go(1);
         console.log(error)
       }).then(function() {
         localStorage.removeItem("State")

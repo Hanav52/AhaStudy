@@ -55,8 +55,8 @@ function DetailPage() {
         instance.get(`/post/${postId}`)
         .then(function(response) {
           setDetail(response.data.data);
-          console.log(response.data.data)
           setDetailComment(response.data.data.replies)
+          console.log(response.data.data.replies)
         })} catch(ex){
           console.log("오류")
         }
@@ -67,25 +67,28 @@ function DetailPage() {
       const [image, setImage] = useState("");
       // 프로필 가져오기
       const [comment, setComment] = useState([]);
+      // 다른 사용자 이미지 가져오기
+      const [image1, setImage1] = useState("");
 
       useEffect(()=> {
           try {
           instance.get(`/user/${localStorage.getItem("UserId")}`)
           .then(function(response) {
-            console.log(response.data.data);
             setComment(response.data.data)
+            setImage1(response.data.data.profileImagePath)
           })} catch(ex){
             console.log("오류")
           }
         },[])
-
-      useEffect(()=> {
-        instance.get(`/image/${localStorage.getItem("imageId")}`)
-          .then(function (response) {
-            setImage(response.request.responseURL)
-            localStorage.setItem("URL", response.request.responseURL)
-        })
-      },[])
+      
+      // useEffect(()=> {
+      //   instance.get(`/image/${localStorage.getItem("imageId")}`)
+      //     .then(function (response) {
+      //       setImage(response.request.responseURL)
+      //       console.log(response.request.responseURL)
+      //       localStorage.setItem("URL", response.request.responseURL)
+      //   })
+      // },[])
 
   //로그인 유무 판단
   const visible = window.localStorage.getItem("State");
@@ -257,7 +260,7 @@ function DetailPage() {
           localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
           localStorage.setItem("RefreshToken", response.data.refreshToken);
           localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
-          // 글 삭제
+          // 글 저장
           instance.post("/reply", {
             comment: localStorage.getItem("comment"),
             postId: postId
@@ -286,12 +289,6 @@ function DetailPage() {
     console.log(e)
   }
   };
-
-  // if(detailComment.writerLoginId === null) {
-  //   return <div></div>
-  // } else if(detailComment.writerLoginId === )
-
-
   
   // html 부분
   return (
@@ -344,7 +341,7 @@ function DetailPage() {
                         {localStorage.setItem("CommentLoginId", name.writerLoginId)}
                       <div className="comment-card">
                         <div className="comment--header">
-                          <img className="comment---image" src={name.writerLoginId === null ? normal : localStorage.getItem("URL")} alt="댓글 이미지"></img>
+                          <img className="comment---image" src={name.writerLoginId === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.writerImagePath} alt="댓글 이미지"></img>
                           <div className="flex-column">
                             <div className="flex-row">
                               <div className="comment----username">{name.writerLoginId === null ? "회원탈퇴한 사용자입니다." : name.writerLoginId}</div>
@@ -370,7 +367,7 @@ function DetailPage() {
                       <div className="answer--comment">
                         <div className="comment-a">
                           <div className="commant-b">
-                            <img className="commant-u-c" src={comment.profileImagePath === null ? normal : image} alt="댓글 이미지"></img>
+                            <img className="commant-u-c" src={comment.profileImagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + image1} alt="댓글 이미지"></img>
                             <div className="flex-column">
                               <h5 className="comment----username">{localStorage.getItem("LoginId")}</h5>
                             </div>

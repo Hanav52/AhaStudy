@@ -105,7 +105,7 @@ function Join() {
                  alert(response.data.data);
                  setRegister(true);
                 }).catch(function (error) {
-                alert(error.response.data.errorMessages)
+                alert("아이디를 다시 입력하세요.")
                 }).then(function() {
                                     // 항상 실행
                 });
@@ -115,42 +115,47 @@ function Join() {
     return (
         <BrowserRouter>
         <Route path="/register">
-        <div>
+        <div className='register-main'>
+            <div className='register-sub'>
         <Popup open = {popup.open} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
             <Container className="panel">
                 <Form>
-                    <Form.Group as={Row} className="col-10 mb-3">
+                    <Form.Group as={Row} className="mb-3">
                         <Col sm>
-                            <Form.Control maxLength={20} placeholder="UserID" value={userId} onChange={onChangeUserId} />
+                            <Form.Control maxLength={20} placeholder="아이디" value={userId} onChange={onChangeUserId} />
                             {userIdError && <div className="invalid-input">아이디는 4글자 이상 영어와 숫자를 사용해야 합니다. 예시 : AhaStudy52</div>}
                         </Col>
-                        <Button variant="secondary" onClick={onIdSubmit}>
+                        <Button variant="secondary" onClick={onIdSubmit} style={{width: '90px', height: '38px'}}>
                             중복확인
                         </Button>
                     </Form.Group>
+                    <div className="password-main">
                     <Form.Group as={Row} className="mb-3">
                         <Col sm>
-                            <Form.Control maxLength={20} type="password" placeholder="Password" value={password} onChange={onChangePassword} />
+                            <Form.Control maxLength={20} type="password" placeholder="비밀번호" value={password} onChange={onChangePassword} style={{width: '308px'}}/>
                             {passwordError && <div className="invalid-input">비밀번호는 8글자 이상입니다.</div>}
                         </Col>
                     </Form.Group>
+                    <div>&nbsp;&nbsp;</div>
                     <Form.Group as={Row} className="mb-3">
                         <Col sm>
-                            <Form.Control maxLength={20} type="password" placeholder="Confirm Password" value={confirmPassword} onChange={onChangeConfirmPassword} />
+                            <Form.Control maxLength={20} type="password" placeholder="비밀번호 확인" value={confirmPassword} onChange={onChangeConfirmPassword} style={{width: '310px'}}/>
                             {confirmPasswordError && <div className="invalid-input">비밀번호가 맞지 않습니다.</div>}
                         </Col>
                     </Form.Group>
+                    </div>
                     <br />
                     <div className="d-grid gap-1">
-                    <Button variant="secondary" onClick={onSubmit} disabled={!register}>
+                    <Button variant="secondary" onClick={onSubmit} disabled={!register} style={{width: '626px'}}>
                             회원가입
                         </Button>
                     </div>
                 </Form>
                 <br />
-                <span className="text">계정을 가지고 계십니까?<Link to="/login" className="link">로그인</Link></span>
+                <span className="text" style={{cursor: "pointer"}}>계정을 가지고 계십니까?<Link to="/login" className="link" underline="hover">&nbsp;로그인</Link></span>
             </Container>
-        </div>
+            </div>
+            </div>
         </Route>
         </BrowserRouter>
     );

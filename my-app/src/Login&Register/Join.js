@@ -106,9 +106,7 @@ function Join() {
                  setRegister(true);
                 }).catch(function (error) {
                 alert("아이디를 다시 입력하세요.")
-                }).then(function() {
-                                    // 항상 실행
-                });
+                })
         
         return;
     }

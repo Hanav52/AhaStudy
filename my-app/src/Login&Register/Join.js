@@ -10,6 +10,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/RRegister.css'
 import axios from 'axios';
 import Popup from './Popup';
+import { Typography } from '@mui/material';
+
+function Copyright(props) {
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1" style={{cursor: 'pointer'}} underline="hover">
+        Aha Study
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
 
 function Join() {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
@@ -153,6 +167,7 @@ function Join() {
                 <span className="text" style={{cursor: "pointer"}}>계정을 가지고 계십니까?<Link to="/login" className="link" underline="hover">&nbsp;로그인</Link></span>
             </Container>
             </div>
+            <Copyright sx={{ mt: 8, mb: 4 }} />
             </div>
         </Route>
         </BrowserRouter>

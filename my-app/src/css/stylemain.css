@@ -533,7 +533,7 @@ footer {
   padding: 200px 10rem;
   font-size: 2rem;
   display: flex;
-  color: #efdeab;
+  color: #ffffff;
   font-weight: bold;
   height: 360px; /* 화면 이미지 고정 */
 }
@@ -930,7 +930,7 @@ footer {
   padding: 0rem 2rem;
 }
 .register-sub {
-  margin-top: 300px;
+  margin-top: 100px;
 }
 .password-main {
   display: flex;

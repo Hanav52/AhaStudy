@@ -10,7 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/RRegister.css'
 import axios from 'axios';
 import Popup from './Popup';
-import { Typography } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
+import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 
 function Copyright(props) {
     return (
@@ -129,15 +130,26 @@ function Join() {
         <Route path="/register">
         <div className='register-main'>
             <div className='register-sub'>
+            <Typography component="h1" variant="h5" style={{
+                    margin: '50px 270px', 
+                }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'warning.main' }} style={{marginLeft: '30px'}}>
+                <DriveFileRenameOutlineRoundedIcon/>
+
+          </Avatar>
+
+            회원가입
+          </Typography>
         <Popup open = {popup.open} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
             <Container className="panel">
                 <Form>
+                
                     <Form.Group as={Row} className="mb-3">
                         <Col sm>
-                            <Form.Control maxLength={20} placeholder="아이디" value={userId} onChange={onChangeUserId} />
+                            <Form.Control maxLength={20} placeholder="아이디" value={userId} onChange={onChangeUserId}/>
                             {userIdError && <div className="invalid-input">아이디는 4글자 이상 영어와 숫자를 사용해야 합니다. 예시 : AhaStudy52</div>}
                         </Col>
-                        <Button variant="secondary" onClick={onIdSubmit} style={{width: '90px', height: '38px'}}>
+                        <Button variant="warning" onClick={onIdSubmit} style={{width: '90px', height: '38px'}}>
                             중복확인
                         </Button>
                     </Form.Group>
@@ -158,13 +170,13 @@ function Join() {
                     </div>
                     <br />
                     <div className="d-grid gap-1">
-                    <Button variant="secondary" onClick={onSubmit} disabled={!register} style={{width: '626px'}}>
+                    <Button variant="warning" onClick={onSubmit} disabled={!register} style={{width: '626px'}}>
                             회원가입
                         </Button>
                     </div>
                 </Form>
                 <br />
-                <span className="text" style={{cursor: "pointer"}}>계정을 가지고 계십니까?<Link to="/login" className="link" underline="hover">&nbsp;로그인</Link></span>
+                <span className="text">계정을 가지고 계십니까?<Link to="/login" className="link" underline="hover" onClick={()=> {history.push("/login"); history.go(0)}} style={{cursor: 'pointer'}}>&nbsp;로그인</Link></span>
             </Container>
             </div>
             <Copyright sx={{ mt: 8, mb: 4 }} />

@@ -81,6 +81,7 @@ export default function SignIn() {
     }
   return (
     <Route path='/login'>
+    <div>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -95,7 +96,7 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: 'warning.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" style={{ fontFamily: 'CookieRun-Regular' }}>
             로그인
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
@@ -109,7 +110,6 @@ export default function SignIn() {
               autoFocus
               value={userId}
               onChange={changeUser}
-              
             />
             <TextField
               margin="normal"
@@ -128,6 +128,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={onSubmit}
+              style={{ fontFamily: 'CookieRun-Regular' }}
             >
               로그인
             </Button>
@@ -146,6 +147,7 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </div>
     </Route>
   );
 }

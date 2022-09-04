@@ -132,6 +132,7 @@ function Join() {
             <div className='register-sub'>
             <Typography component="h1" variant="h5" style={{
                     margin: '50px 270px', 
+                    fontFamily: 'CookieRun-Regular'
                 }}>
                     <Avatar sx={{ m: 1, bgcolor: 'warning.main' }} style={{marginLeft: '30px'}}>
                 <DriveFileRenameOutlineRoundedIcon/>

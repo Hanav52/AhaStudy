@@ -344,9 +344,7 @@ function DetailPage() {
                           <img className="comment---image" src={name.writerLoginId === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.writerImagePath} alt="댓글 이미지"></img>
                           <div className="flex-column">
                             <div className="flex-row">
-                              <Link to="/Profile">
                               <div className="comment----username">{name.writerLoginId === null ? "회원탈퇴한 사용자입니다." : name.writerLoginId}</div>
-                              </Link>
                             </div>
                             <span className="comment----update">{name.writeDate}</span>
                           </div>

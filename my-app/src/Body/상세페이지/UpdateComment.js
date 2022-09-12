@@ -120,12 +120,12 @@ export default function UpdateComment() {
   return (
     <div>
       <ThemeProvider theme={theme3}>
-      <Button variant="text" onClick={handleClickOpen} style={{marginRight: '10px'}}>
+      <Button variant="text" onClick={handleClickOpen} style={{marginRight: '10px', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
         수정
       </Button>
       </ThemeProvider>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-        <DialogTitle>내용</DialogTitle>
+        <DialogTitle style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>내용</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <UpdateCommentModal/>
@@ -133,9 +133,9 @@ export default function UpdateComment() {
         </DialogContent>
         <DialogActions>
         <ThemeProvider theme={theme3}>
-          <Button onClick={handleClose} style={{margin: '10px'}} color="four" variant="contained">취소</Button>
+          <Button onClick={handleClose} style={{margin: '10px', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}} color="four" variant="contained">취소</Button>
             <form onSubmit={(e) => onSubmit(e)}>
-          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff'}}>저장</Button>
+          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>저장</Button>
           </form>
         </ThemeProvider>
         </DialogActions>

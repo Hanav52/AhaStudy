@@ -313,7 +313,7 @@ function DetailPage() {
                       <h6>&nbsp;· {detail.writeDate}</h6>
                       <div className="subheader-changedelete">
                       <ThemeProvider theme={theme1}>
-                        {ContentVisible === true ? <><UpdatePage/><Button onClick={DeleteContent} color="secondary" style={{margin: '10px'}} variant="contained">삭제</Button></> : <div></div>}
+                        {ContentVisible === true ? <><UpdatePage/><Button onClick={DeleteContent} color="secondary" style={{margin: '10px', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}} variant="contained">삭제</Button></> : <div></div>}
                       </ThemeProvider>
                       </div>
                     </div>
@@ -354,7 +354,7 @@ function DetailPage() {
                           <div className="comment---features">
                             <div className="comment----delete">
                             <ThemeProvider theme={theme1}>
-                              {localStorage.getItem("LoginId") === null ? (<div></div>) : (name.writerLoginId === localStorage.getItem("LoginId") ? <><UpdateComment/><Button onClick={DeleteComment} color="secondary">삭제</Button></> : <div></div>) }
+                              {localStorage.getItem("LoginId") === null ? (<div></div>) : (name.writerLoginId === localStorage.getItem("LoginId") ? <><UpdateComment/><Button onClick={DeleteComment} color="secondary" style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>삭제</Button></> : <div></div>) }
                             </ThemeProvider>
                             </div>
                           </div>

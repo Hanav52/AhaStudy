@@ -130,12 +130,12 @@ export default function UpdatePage() {
   return (
     <div>
       <ThemeProvider theme={theme2}>
-      <Button onClick={handleClickOpen} variant="contained" color="four">
+      <Button onClick={handleClickOpen} variant="contained" color="four" style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
         수정
       </Button>
       </ThemeProvider>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-        <DialogTitle>제목</DialogTitle>
+        <DialogTitle style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>제목</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <UpdateDetailModal/>
@@ -143,9 +143,9 @@ export default function UpdatePage() {
         </DialogContent>
         <DialogActions>
         <ThemeProvider theme={theme2}>
-          <Button onClick={handleClose} style={{marginRight: '10px'}} color="four" variant="contained">취소</Button>
+          <Button onClick={handleClose} style={{marginRight: '10px', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}} color="four" variant="contained">취소</Button>
             <form onSubmit={(e) => onSubmit(e)}>
-          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff'}}>저장</Button>
+          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>저장</Button>
           </form>
         </ThemeProvider>
         </DialogActions>

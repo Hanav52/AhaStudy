@@ -134,7 +134,7 @@ function Join() {
                     margin: '50px 270px', 
                     fontFamily: 'CookieRun-Regular'
                 }}>
-                    <Avatar sx={{ m: 1, bgcolor: 'warning.main' }} style={{marginLeft: '30px'}}>
+                    <Avatar sx={{ m: 1, bgcolor: 'warning.main' }} style={{marginLeft: '25px'}}>
                 <DriveFileRenameOutlineRoundedIcon/>
 
           </Avatar>

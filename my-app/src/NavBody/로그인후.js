@@ -106,7 +106,7 @@ export default function AccountMenu() {
     <div>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Notification/>
-        <Typography sx={{ minWidth: 100 }}>{LoginId}</Typography>
+        <Typography sx={{ minWidth: 100 }} style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>{LoginId}</Typography>
         <Tooltip title="계정 설정">
           <IconButton
             onClick={handleClick}
@@ -155,11 +155,11 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={()=> {history.push("/Profile"); history.go(0)}}>
+        <MenuItem onClick={()=> {history.push("/Profile"); history.go(0)}} style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
           <Avatar src={detail.profileImagePath === null ? normal : image}/> 내 정보
         </MenuItem>
         <Divider />
-        <MenuItem onClick={LogoutUser}>
+        <MenuItem onClick={LogoutUser} style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

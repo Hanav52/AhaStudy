@@ -142,9 +142,9 @@ function Posts() {
           <div className='bodybodyheader'>
           <ThemeProvider theme={theme}>
             <ButtonGroup variant="text" aria-label="text button group">
-              <Button onClick={() => setDesc("writeDate,desc")} color="three">최신순</Button>
-              <Button onClick={() => setDesc("views,desc")} color="three">조회순</Button>
-              <Button onClick={() => setDesc("replyCount,desc")} color="three">댓글순</Button>
+              <Button onClick={() => setDesc("writeDate,desc")} color="three" style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>최신순</Button>
+              <Button onClick={() => setDesc("views,desc")} color="three" style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>조회순</Button>
+              <Button onClick={() => setDesc("replyCount,desc")} color="three" style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>댓글순</Button>
             </ButtonGroup>
           </ThemeProvider>
           </div>  

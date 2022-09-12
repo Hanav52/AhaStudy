@@ -182,7 +182,7 @@ export default function CustomizedDialogs() {
   return (
     <div>
       <ThemeProvider theme={theme1}>
-      <Button variant="contained" onClick={handleClickOpen} style={{color: '#fff', fontWeight: 'bold'}}>
+      <Button variant="contained" onClick={handleClickOpen} style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
         글 쓰기
       </Button>
       </ThemeProvider>
@@ -192,7 +192,7 @@ export default function CustomizedDialogs() {
         open={open}
         maxWidth='lg'
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
           작성
         </BootstrapDialogTitle>
         <DialogContent dividers>
@@ -212,7 +212,7 @@ export default function CustomizedDialogs() {
               accept='image/jpg,impge/png,image/jpeg'
             />
             <ThemeProvider theme={theme1}>
-            <Button type="submit" onClick={handleClose} variant="contained" style={{color: '#fff', fontWeight: 'bold'}}>업로드</Button>
+            <Button type="submit" onClick={handleClose} variant="contained" style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>업로드</Button>
             </ThemeProvider>
         </form>
         </DialogActions>

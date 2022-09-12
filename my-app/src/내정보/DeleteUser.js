@@ -125,7 +125,7 @@ export default function DeleteUser() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-      <Button style={{color: '#fff', fontWeight: 'bold'}} color="secondary" variant="contained" onClick={handleClickOpen}>
+      <Button style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'noraml', fontStyle: 'normal'}} color="secondary" variant="contained" onClick={handleClickOpen}>
         회원 탈퇴
       </Button>
       </ThemeProvider>
@@ -135,19 +135,19 @@ export default function DeleteUser() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title" style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
           {"회원 탈퇴"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
             회원 탈퇴를 하시면 작성하신 글과 댓글이 모두 사라지게 됩니다.
             <br></br>정말 회원 탈퇴 하시겠습니까?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
         <ThemeProvider theme={theme}>
-          <Button onClick={handleClose}>취소</Button>
-          <Button onClick={DeleteUs} color="secondary"autoFocus>
+          <Button onClick={handleClose} style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>취소</Button>
+          <Button onClick={DeleteUs} color="secondary"autoFocus style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>
             탈퇴
           </Button>
         </ThemeProvider>

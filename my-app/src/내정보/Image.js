@@ -85,7 +85,7 @@ const Image = () => {
   	<>
       <input ref={imageInput} type="file" className="imgInput" id="logoImg" accept="image/*" name="file" onChange={onImgChange} multiple="multiple" style={{ display: "none" }}/>
       <ThemeProvider theme={theme}>
-      <Button onClick={onImgInputBtnClick} style={{color: '#fff', fontWeight: 'bold'}} color="three" variant="contained">이미지 업로드</Button>
+      <Button onClick={onImgInputBtnClick} style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}} color="three" variant="contained">이미지 업로드</Button>
       </ThemeProvider>
       <img className="lftimg" src={detail.profileImagePath === null ? normal : image} alt="프로필이미지"></img>
 	</>

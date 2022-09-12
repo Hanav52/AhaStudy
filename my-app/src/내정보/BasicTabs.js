@@ -67,8 +67,8 @@ export default function BasicTabs() {
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <ThemeProvider theme={theme}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" textColor="primary" indicatorColor="secondary">
-          <Tab label="작성 글" {...a11yProps(0)} />
-          <Tab label="작성 댓글" {...a11yProps(1)} />
+          <Tab label="작성 글" {...a11yProps(0)} style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}/>
+          <Tab label="작성 댓글" {...a11yProps(1)} style={{fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}/>
         </Tabs>
       </ThemeProvider>
       </Box>

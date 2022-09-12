@@ -116,7 +116,7 @@ export default function UpdateIntro() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-      <Button style={{color: '#fff', fontWeight: 'bold'}} variant="contained" onClick={handleClickOpen} color="three">
+      <Button style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}} variant="contained" onClick={handleClickOpen} color="three">
         수정
       </Button>
       </ThemeProvider>
@@ -128,9 +128,9 @@ export default function UpdateIntro() {
         </DialogContent>
         <DialogActions>
         <ThemeProvider theme={theme}>
-          <Button onClick={handleClose} style={{margin: '10px'}} color="four" variant="contained">취소</Button>
+          <Button onClick={handleClose} style={{margin: '10px', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}} color="four" variant="contained">취소</Button>
             <form onSubmit={(e) => onSubmit(e)}>
-          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff'}}>저장</Button>
+          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>저장</Button>
           </form>
         </ThemeProvider>
         </DialogActions>

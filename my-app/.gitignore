@@ -10,7 +10,9 @@
 
 # production
 /build
-
+/src/내정보/MyApi.js
+.MyApi.js
+.MyApiComment.js
 # misc
 .DS_Store
 .env.local

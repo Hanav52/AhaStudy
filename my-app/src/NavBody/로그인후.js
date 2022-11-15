@@ -11,17 +11,12 @@ import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import normal from '../내정보/normal.png'
-import { PersonAdd } from '@mui/icons-material';
 import Notification from "../알림/Notification";
+import { instance } from "../내정보/MyApi";
 
 export default function AccountMenu() {
-  //api instance 생성
-  const instance = axios.create({
-    baseURL: 'http://bestinwoo.hopto.org:8080/',
-  });
 
   // local저장소
   const [LoginId, setLoginId] = useState();
@@ -58,7 +53,7 @@ export default function AccountMenu() {
   const history = useHistory();
 
   const LogoutUser = () => {
-    axios.post("http://bestinwoo.hopto.org:8080/auth/logout",{} ,{
+    instance.post("/auth/logout",{} ,{
       headers: {
         'Authorization': `Bearer ` + window.localStorage.getItem("AccessToken")
       }
@@ -74,34 +69,26 @@ export default function AccountMenu() {
         history.push("/");
         history.go(0);
       }).catch(function (error) {
-        localStorage.removeItem("State")
+        localStorage.clear()
+        localStorage.setItem("State", false);
         alert("로그인이 만료되었습니다.");
         history.push("/login");
         history.go(1);
         console.log(error)
       }).then(function() {
-        localStorage.removeItem("State")
+        localStorage.setItem("State", false);
         
       });
   }
  
-
   const [anchorEl, setAnchorEl] = useState(null);
-  //const [anchorEl1, setAnchorEl1] = useState(null);
   const open = Boolean(anchorEl);
-  //const open1 = Boolean(anchorEl1);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // const handleClick1 = (event1) => {
-  //   setAnchorEl1(event1.currentTarget);
-  // };
-  // const handleClose1 = () => {
-  //   setAnchorEl1(null);
-  // };
   return (
     <div>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>

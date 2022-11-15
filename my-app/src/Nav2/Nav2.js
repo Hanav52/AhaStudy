@@ -1,21 +1,16 @@
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Route, Link, useHistory } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { instance } from '../내정보/MyApi';
 
 function Nav2() {
-
   // 문의
   const mail = () => {
     Swal.fire("wnsrl8329@gmail.com으로 연락 주시면 감사하겠습니다.");
   }
   const history = useHistory();
   const [data, setData] = useState([]);
-
-  const instance = axios.create({
-    baseURL: 'http://bestinwoo.hopto.org:8080/',
-  });
 
   useEffect(()=> {
     instance.get("/board")

@@ -3,24 +3,22 @@ import '../css/stylemain.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import normal from '../내정보/normal.png'
+import normal from '../내정보/normalimage.png'
+import { apiUrl, instance } from '../내정보/MyApi';
 
 function Section() {
   // 최신글 데이터 저장
   const [data, setdata] = useState([])
   const history = useHistory();
 
-  
-   
   useEffect(() => {
-    axios.get("http://bestinwoo.hopto.org:8080/board/recent", {
+    instance.get("/board/recent", {
     headers: {
       'Content-Type': 'application/json'
       }
   })
     .then(function (response) {
       setdata(response.data.data)
-      console.log(response.data.data)
     }).catch(function (error) {
         // 오류발생시 실행
     }).then(function() {
@@ -35,7 +33,7 @@ function Section() {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)
                 history.push("/Detail"); history.go(0)}}>
-              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
+              <img src={name.imagePath === null ? normal : `${apiUrl}/image/${name.imagePath}`} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -60,7 +58,7 @@ function Section() {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)
                 history.push("/Detail"); history.go(0)}}>
-              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
+              <img src={name.imagePath === null ? normal : `${apiUrl}/image/${name.imagePath}`} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -85,7 +83,7 @@ function Section() {
                 localStorage.setItem("writerLoginId", name.writerLoginId)
                 localStorage.setItem("postId", name.postId)
                 history.push("/Detail"); history.go(0)}}>
-              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
+              <img src={name.imagePath === null ? normal : `${apiUrl}/image/${name.imagePath}`} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -110,7 +108,7 @@ function Section() {
               localStorage.setItem("writerLoginId", name.writerLoginId)
               localStorage.setItem("postId", name.postId)
               history.push("/Detail"); history.go(0)}}>
-              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
+              <img src={name.imagePath === null ? normal : `${apiUrl}/image/${name.imagePath}`} alt="게시글" className="class-image" />
               <div className="class-container">
                 <div className="class-skill">
                   <div className="class-type">작성자 : {name.writerLoginId}</div>
@@ -135,7 +133,7 @@ function Section() {
               localStorage.setItem("writerLoginId", name.writerLoginId)
               localStorage.setItem("postId", name.postId)
               history.push("/Detail"); history.go(0)}}>
-              <img src={name.imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.imagePath} alt="게시글" className="class-image" />
+              <img src={name.imagePath === null ? normal : `${apiUrl}/image/${name.imagePath}`} alt="게시글" className="class-image" />
                 <div className="class-container">
                   <div className="class-skill">
                     <div className="class-type">{name.writerLoginId}</div>

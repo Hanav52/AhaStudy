@@ -9,15 +9,15 @@ import { useHistory } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/RRegister.css'
 import axios from 'axios';
-import Popup from './Popup';
 import { Avatar, Typography } from '@mui/material';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import { instance } from '../내정보/MyApi';
 
 function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1" style={{cursor: 'pointer'}} underline="hover">
+        <Link color="inherit" href="https://github.com/Hanav52/AhaStudy" style={{cursor: 'pointer'}} underline="hover">
         Aha Study
         </Link>{' '}
         {new Date().getFullYear()}
@@ -76,42 +76,28 @@ function Join() {
     const data = { id: userId, password: password };
 
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
-    // axios.defaults.withCredentials = true;
     const onSubmit = (e) => {
         if(validation()) {
-            axios.post('http://bestinwoo.hopto.org:8080/auth/signup', data, {
+            instance.post('/auth/signup', data, {
                 headers: {
                 'Content-Type': 'application/json'
                 }
               }
             ).then(function (response) {
-                console.log(response)
                 if(response.data.count == 1) {
-                    setPopup({
-                        open: true,
-                        title: "가입 축하드립니다.",
-                        mesaage: "가입 완료!",
-                        callback: function(){
-                            history.push("/login");
-                        }
-                    })
+                    history.push("/login");
+                    history.go(1);
+                    history.go(0);
+                    alert(response.data.data.loginId + "님 안녕하세요")
                     
                 }
             }).catch(function (error) {
-                
-            }).then(function() {
-
+                console.log(error)
             })
-        
         }return;
-        
-
-        
-        
-
     }
     const onIdSubmit = (e) => {
-        axios.get(`http://bestinwoo.hopto.org:8080/auth/user/${userId}` , userId , {
+        instance.get(`/auth/user/${userId}` , userId , {
             headers: {
                 'Content-Type': 'application/json'
                 }
@@ -138,10 +124,8 @@ function Join() {
                 <DriveFileRenameOutlineRoundedIcon/>
 
           </Avatar>
-
             회원가입
           </Typography>
-        <Popup open = {popup.open} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
             <Container className="panel">
                 <Form>
                 

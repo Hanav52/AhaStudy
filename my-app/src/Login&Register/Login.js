@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Route, Router, Switch, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import normal from '../내정보/normal.png'
+import { apiUrl, instance } from '../내정보/MyApi';
 
 const theme = createTheme({
   palette: {
@@ -27,7 +27,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1" style={{cursor: 'pointer'}} underline="hover">
+      <Link color="inherit" href="https://github.com/Hanav52/AhaStudy" style={{cursor: 'pointer'}} underline="hover">
       Aha Study
       </Link>{' '}
       {new Date().getFullYear()}
@@ -36,19 +36,15 @@ function Copyright(props) {
   );
 }
 
-
-
 export default function SignIn() {
     const history = useHistory({forceRefresh: true});
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
     const data = { id: userId, password: password };
-    const [state, setState] = useState(false);
 
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
-    // axios.defaults.withCredentials = true;
     const onSubmit = (e) => {
-            axios.post('http://bestinwoo.hopto.org:8080/auth/login', data, {
+            axios.post(`${apiUrl}/auth/login`, data, {
                 headers: {
                 'Content-Type': 'application/json'
                 }
@@ -69,9 +65,6 @@ export default function SignIn() {
             }).then(function() {
 
             })
-        
-        
-
     }
     const changeUser = (e) => {
       setUserId(e.target.value);
@@ -81,7 +74,6 @@ export default function SignIn() {
     }
   return (
     <Route path='/login'>
-    <div>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -147,7 +139,6 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
-    </div>
     </Route>
   );
 }

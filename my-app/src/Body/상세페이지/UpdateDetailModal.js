@@ -4,7 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import styled from "styled-components";
 import axios from "axios";
 import UpdateTagBox from './UpdateTagBox';
-
+import { editorKey, instance } from '../../내정보/MyApi';
 
 const TitleInput = styled.input`
   outline: none;
@@ -36,11 +36,6 @@ export default function UpdateDetailModal() {
   //  /post에서 받아온 postId와 wirterLoginId 불러오기
   const postId = localStorage.getItem("postId");
 
-  //api instance 생성
-    const instance = axios.create({
-        baseURL: 'http://bestinwoo.hopto.org:8080/',
-      });
-
       useEffect(()=> {
         try {
         instance.get(`/post/${postId}`)
@@ -51,9 +46,6 @@ export default function UpdateDetailModal() {
           console.log("오류")
         }
       },[])
-  // useEffect(()=>{
-  //   ContentDetail();
-  // },[])
 
   return (
     <>
@@ -64,7 +56,7 @@ export default function UpdateDetailModal() {
         <p></p>
       </div> 
       <Editor
-        apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
+        apiKey={editorKey}
         onChange={log}
         initialValue={detail.content}
         init={{

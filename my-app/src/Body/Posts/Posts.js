@@ -1,13 +1,13 @@
 import { Button, ButtonGroup, createTheme, ThemeProvider } from "@mui/material";
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Link, Route, useHistory, useParams } from "react-router-dom";
+import { Link, Route, useHistory, useParams } from "react-router-dom";
 import Footer from "../../Footer/Footer";
 import Pagination from "../Pagination";
-import { getComments } from "../무한스크롤/api1";
+import { getComments, instance1 } from "../무한스크롤/api1";
 import {  BiSearchAlt2 } from "react-icons/bi";
 import CustomizedDialogs from "../../글작성/Modaal";
-import normal from '../../내정보/normal.png'
+import normal from './normaldesk.png'
+import { apiUrl, instance } from "../../내정보/MyApi";
 
 const theme = createTheme({
   palette: {
@@ -79,7 +79,6 @@ function Posts() {
   
 
 //검색 호출시 사용
-  const url = "http://bestinwoo.hopto.org:8080/post";
   const [item, setItem] = useState("");
 
   const searchItem = event => {
@@ -88,7 +87,7 @@ function Posts() {
 
   const fetchMovie = async () => {
     try {
-      const response = await axios.get(url, {
+      const response = await instance1.get("/post", {
         params: {
           boardId: localStorage.getItem("category"),
           keyword: item,
@@ -98,9 +97,7 @@ function Posts() {
       })
       const newMovieList = response.data.data.content;
       setPosts(newMovieList);
-      console.log(posts);
       localStorage.setItem("totalElements", response.data.data.totalElements);
-      
     } catch (e) {
       console.log(e);
     }
@@ -110,14 +107,11 @@ function Posts() {
 
   const searchTag = event => {
     setTag(event.target.value);
-    console.log(tag);
   };
-  console.log(url);
 
   const fetchTag = async () => {
-    console.log("클릭");
     try {
-      const response = await axios.get(url, {
+      const response = await instance1.get("/post", {
         params: {
           boardId: localStorage.getItem("category"),
           tagName: tag,
@@ -134,7 +128,7 @@ function Posts() {
       console.log(e);
     }
   };
-
+// 정렬부분
   function BodyBodySearch() {
 
     return(
@@ -155,7 +149,6 @@ function Posts() {
     const loadComments = async (page, Desc) => {
       try {
         const temp = await getComments(localStorage.getItem("category"), page-1, 9, Desc);
-        console.log(temp)
         setPosts(temp);
       } catch (e) {
         console.error(e);
@@ -189,7 +182,11 @@ function Posts() {
                         localStorage.setItem("writerLoginId", writerLoginId)
                         localStorage.setItem("postId", id)
                         history.push("/Detail"); history.go(0)}}>
-                        <img src={imagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + imagePath} alt="게시글" class="class-image1" />
+                        <div className="fillImage">
+                        <img src={imagePath === undefined ? normal : `${apiUrl}/image/${imagePath}`} alt="게시글" class="class-image1" style={{
+                          backgroundSize: "cover",
+                        }}/>
+                        </div>
                         <div class="class-container">
                           <div class="class-skill">
                             <div class="class-type">작성자 : {writerLoginId}</div>

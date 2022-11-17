@@ -73,7 +73,6 @@ const TagList = React.memo(({ tags, onRemove }) => (
 const UpdateTagBox = () => {
   const [input, setInput] = useState('');
   const [localTags, setLocalTags] = useState([]);
-  console.log(localTags)
   const insertTag = useCallback(
     tag => {
       if (!tag) return; // 공백이라면 추가하지 않음
@@ -103,7 +102,6 @@ const UpdateTagBox = () => {
     [input, insertTag],
   );
   // 태그들 새로 등록한다.
-    //window.localStorage.setItem("localTags",localTags);
   return (
     <TagBoxBlock>
       <h6>태그</h6>

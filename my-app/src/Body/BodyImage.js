@@ -3,16 +3,15 @@ import Footer from "../Footer/Footer";
 import { BrowserRouter as Link, useHistory } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
-import Swal from 'sweetalert2'
 import Section from "./section";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import moment from "moment";
-import axios from 'axios';
+import { instance } from '../내정보/MyApi';
 
 function RealMain() {
-  const history = useHistory();
   const t2 = new Date();
+  const history = useHistory();
 // localstorage에서 데이터 받아오기
   const [visible, setVisible] = useState();
   const [LoginId, setLoginId] = useState();
@@ -31,7 +30,6 @@ function RealMain() {
       setRefreshTokenExpiresIn(window.localStorage.getItem("RefreshTokenExpiresIn"));
   },[]);
 
-  
   const t1 = Number(AccessTokenExpiresIn);
   const diff2 = moment.duration(t1 - t2).asMilliseconds(); // 400000이하로 떨어지면
   const onMakeList = () => {
@@ -41,7 +39,7 @@ function RealMain() {
       alert("글 작성하기");
       // 400000이하로 떨어지면
       if(diff2 < 400000) {
-        axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+        instance.post("/auth/reissue", {
           accessToken : AccessToken,
           refreshToken: RefreshToken
       })
@@ -64,11 +62,43 @@ function RealMain() {
         // 글 작성하는 곳으로 이동
       }
     }
-
+  }
+  const LogoutUser = () => {
+    instance.post("/auth/logout",{} ,{
+      headers: {
+        'Authorization': `Bearer ` + window.localStorage.getItem("AccessToken")
+      }
+    })
+      .then(function (response) {
+        window.localStorage.removeItem("LoginId");
+        window.localStorage.removeItem("AccessToken");
+        window.localStorage.removeItem("AccessTokenExpiresIn");
+        window.localStorage.removeItem("RefreshToken");
+        window.localStorage.removeItem("RefreshTokenExpiresIn");
+        window.localStorage.removeItem("UserId");
+        window.localStorage.removeItem("State");
+        alert(response.data.data);
+        history.push("/");
+        history.go(1);
+        history.go(0);
+      }).catch(function (error) {
+        window.localStorage.removeItem("LoginId");
+        window.localStorage.removeItem("AccessToken");
+        window.localStorage.removeItem("AccessTokenExpiresIn");
+        window.localStorage.removeItem("RefreshToken");
+        window.localStorage.removeItem("RefreshTokenExpiresIn");
+        window.localStorage.removeItem("UserId");
+        window.localStorage.removeItem("State");
+        alert("로그인이 만료되었습니다.");
+        history.push("/login");
+        history.go(1);
+        history.go(0);
+        console.log(error)
+      }).then(function() {
+      });
   }
   
   return (
-    /* 메인 이미지 섹션  footer 부분 */
     <div>
         <BrowserRouter>
         <Route exact path="/">
@@ -86,22 +116,24 @@ function RealMain() {
         <Section/>
         <section>
           <div className="inner3">
+            <div className='widthloginlogout'>
           <div className="program12-container">
             <div className="login-explain">
               <div className="login-maintitle">
                 <div className="login-title">
                   자신이 원하는 유형의 스터디를 모집하거나 신청 해보세요.
                 </div>
-                <div className="login-subtitle">
+                {visible === null ? null : <div className="login-subtitle">
                   로그인 후 사용할 수 있습니다.
-                </div>
+                </div>}
               </div>
               <div className="login-mainsubtitle">
-              {!visible ?  <button type="button" className="head-blog btn btn lg btn-warning" style={{marginRight: '10px'}}><Link to='login'>로그인</Link></button> : 
-                          <button type="button" className="head-blog btn btn lg btn-warning" style={{marginRight: '10px'}}><Link to='login'>로그아웃</Link></button>}
+              {visible === null ?  <button type="button" className="head-blog btn btn lg btn-warning" style={{marginRight: '10px'}} onClick={()=> {history.push("/login"); history.go(0)}}><Link>로그인</Link></button> : 
+                          <button type="button" className="head-blog btn btn lg btn-warning"  onClick={LogoutUser} style={{marginRight: '10px'}}><Link>로그아웃</Link></button>}
               <button onClick={onMakeList} type="button" className="head-blog btn btn lg btn-outline-warning" ><Link>글 작성하기</Link></button>
               </div>
             </div>
+          </div>
           </div>
           </div>
         </section>

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import axios from "axios";
+import { editorKey } from '../../내정보/MyApi';
 
 export default function UpdateCommentModal() {
   // 내용
   const [CommentValue, setCommentValue] = useState();
-  //setCommentValue(localStorage.getItem("comment"))
   // 제목과 내용을 localStorage에 덮어서 저장한다.
   useEffect(()=> {
   window.localStorage.setItem("comment", CommentValue);
@@ -20,7 +20,7 @@ console.log(window.localStorage.getItem("comment"))
   return (
     <>
       <Editor
-        apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
+        apiKey={editorKey}
         onChange={log}
         initialValue={window.localStorage.getItem("comment")}
         init={{

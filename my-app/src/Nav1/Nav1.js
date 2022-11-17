@@ -16,7 +16,7 @@ function Nav1() {
             <div className="head-brand">
                 <Link onClick={()=> {history.push("/"); history.go(0)}} style={{color: '#ffb300'}}>Aha Study</Link>
             </div>
-            {!visible ? <button type="button" className="head-blog btn btn lg btn-warning"><Link onClick={()=> {history.push("/login"); history.go(0)}}>로그인</Link></button> : <AccountMenu/>}
+            {visible === null ? <button type="button" className="head-blog btn btn lg btn-warning"><Link onClick={()=> {history.push("/login"); history.go(0)}}>로그인</Link></button> : <AccountMenu/>}
         </div>
     )
 }

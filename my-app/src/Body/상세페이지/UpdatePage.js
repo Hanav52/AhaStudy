@@ -6,12 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import moment from 'moment';
 import UpdateDetailModal from './UpdateDetailModal';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { instance } from '../../내정보/MyApi';
 
 const theme2 = createTheme({
   palette: {
@@ -32,12 +32,6 @@ const theme2 = createTheme({
 
 export default function UpdatePage() {
     const [open, setOpen] = useState(false);
-    // 제목을 저장한다.
-    const Title = window.localStorage.getItem("titlevalue");
-    // 태그들을 저장한다.
-    const TagStroage = window.localStorage.getItem("localTags");
-    // 내용을 저장한다.
-    const ContentValue = window.localStorage.getItem("contentvalue");
     //  /post에서 받아온 postId와 wirterLoginId 불러오기
     const postId = localStorage.getItem("postId");
     
@@ -45,10 +39,6 @@ export default function UpdatePage() {
     const config = {
         'Authorization': `Bearer ` + window.localStorage.getItem("AccessToken")
       }
-    //api instance 생성
-    const instance = axios.create({
-        baseURL: 'http://bestinwoo.hopto.org:8080/',
-      });
 
     const handleClickOpen = () => {
         if(visible === null) {
@@ -56,7 +46,7 @@ export default function UpdatePage() {
         } else {
         // 400000이하로 떨어지면
         if(diff2 < 400000) {
-            axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+            instance.post("/auth/reissue", {
             accessToken : AccessToken,
             refreshToken: RefreshToken
         }, config)
@@ -89,7 +79,7 @@ export default function UpdatePage() {
         e.preventDefault();
         e.persist();
 
-        axios.put(`http://bestinwoo.hopto.org:8080/post/${postId}`, {
+        instance.put(`/post/${postId}`, {
             title: window.localStorage.getItem("titlevalue"),
             boardId: window.localStorage.getItem("category"),
             tags: [window.localStorage.getItem("localTags")],
@@ -103,9 +93,6 @@ export default function UpdatePage() {
           history.go("/post")
         })
     }
-    // 토큰 재발행
-    //axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
-    //axios.defaults.withCredentials = false;
     const history = useHistory();
     const t2 = new Date();
     // localstorage에서 데이터 받아오기

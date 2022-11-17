@@ -12,28 +12,24 @@ import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import normal from '../내정보/normal.png'
+import normal from '../내정보/normalimage.png'
 import Notification from "../알림/Notification";
 import { instance } from "../내정보/MyApi";
 
 export default function AccountMenu() {
 
-  // local저장소
   const [LoginId, setLoginId] = useState();
   useEffect(() => {
     setLoginId(window.localStorage.getItem("LoginId"));
   },[])
-  // 프로필 가져오기
   const [detail, setDetail] = useState([]);
 
   useEffect(()=> {
       try {
       instance.get(`/user/${localStorage.getItem("UserId")}`)
       .then(function(response) {
-        console.log(response.data.data);
         setDetail(response.data.data)
       })} catch(ex){
-        console.log("오류")
       }
     },[])
 
@@ -41,7 +37,6 @@ export default function AccountMenu() {
 
     // 이미지 가져오기
   const [image, setImage] = useState("");
-
     useEffect(()=> {
       instance.get(`/image/${localStorage.getItem("imageId")}`)
         .then(function (response) {
@@ -59,25 +54,29 @@ export default function AccountMenu() {
       }
     })
       .then(function (response) {
-        localStorage.removeItem("LoginId");
-        localStorage.removeItem("AccessToken");
-        localStorage.removeItem("AccessTokenExpiresIn");
-        localStorage.removeItem("RefreshToken");
-        localStorage.removeItem("RefreshTokenExpiresIn");
-        localStorage.setItem("State", false);
+        window.localStorage.removeItem("LoginId");
+        window.localStorage.removeItem("AccessToken");
+        window.localStorage.removeItem("AccessTokenExpiresIn");
+        window.localStorage.removeItem("RefreshToken");
+        window.localStorage.removeItem("RefreshTokenExpiresIn");
+        window.localStorage.removeItem("UserId");
+        window.localStorage.removeItem("State");
         alert(response.data.data);
         history.push("/");
         history.go(0);
       }).catch(function (error) {
-        localStorage.clear()
-        localStorage.setItem("State", false);
+        window.localStorage.removeItem("LoginId");
+        window.localStorage.removeItem("AccessToken");
+        window.localStorage.removeItem("AccessTokenExpiresIn");
+        window.localStorage.removeItem("RefreshToken");
+        window.localStorage.removeItem("RefreshTokenExpiresIn");
+        window.localStorage.removeItem("UserId");
+        window.localStorage.removeItem("State");
         alert("로그인이 만료되었습니다.");
         history.push("/login");
         history.go(1);
-        console.log(error)
+        history.go(0);
       }).then(function() {
-        localStorage.setItem("State", false);
-        
       });
   }
  

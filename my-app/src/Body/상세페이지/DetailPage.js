@@ -1,13 +1,13 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Link, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import UpdatePage from "./UpdatePage";
 import moment from "moment";
 import SaveComment from "./SaveComment";
 import UpdateComment from "./UpdateComment";
-import normal from '../../내정보/normal.png'
+import normal from '../../내정보/normalimage.png'
 import { Button, createTheme, ThemeProvider } from "@mui/material";
+import { apiUrl, instance } from "../../내정보/MyApi";
 
 const theme1 = createTheme({
   palette: {
@@ -40,10 +40,6 @@ function DetailPage() {
   // 다시 저장하기
   window.localStorage.setItem("postId", postId);
 
-  //api instance 생성
-    const instance = axios.create({
-        baseURL: 'http://bestinwoo.hopto.org:8080/',
-      });
   // api header 부분 토큰이 들어가있다.
     const config = {
       headers: {
@@ -56,15 +52,11 @@ function DetailPage() {
         .then(function(response) {
           setDetail(response.data.data);
           setDetailComment(response.data.data.replies)
-          console.log(response.data.data.replies)
         })} catch(ex){
           console.log("오류")
         }
       },[])
       
-
-      // 이미지 가져오기
-      const [image, setImage] = useState("");
       // 프로필 가져오기
       const [comment, setComment] = useState([]);
       // 다른 사용자 이미지 가져오기
@@ -80,15 +72,6 @@ function DetailPage() {
             console.log("오류")
           }
         },[])
-      
-      // useEffect(()=> {
-      //   instance.get(`/image/${localStorage.getItem("imageId")}`)
-      //     .then(function (response) {
-      //       setImage(response.request.responseURL)
-      //       console.log(response.request.responseURL)
-      //       localStorage.setItem("URL", response.request.responseURL)
-      //   })
-      // },[])
 
   //로그인 유무 판단
   const visible = window.localStorage.getItem("State");
@@ -102,16 +85,13 @@ function DetailPage() {
         if(visible === "true") {
           // 게시글이 본인껀지 판단
             if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
-            console.log("본인글");
             setContentVisible(true);
             }
             else {
-                console.log("본인이 아닙니다.");
                 setContentVisible(false);
             }
         }
         else {
-            console.log("로그인x");
             setContentVisible(false);
         }
     }
@@ -128,16 +108,14 @@ function DetailPage() {
   const DeContent = async () => {
         instance.delete(`/post/${postId}`, config)
         .then(function(response) {
-          console.log(response)
         }).then(function(error) {
           console.log(error)
         })
   }
-  // 게시글을 삭제한다.
+  // 댓글을 삭제한다.
   const DeComment = async () => {
     instance.delete(`/reply/${localStorage.getItem("CommentId")}`, config)
     .then(function(response) {
-      console.log(response)
     }).then(function(error) {
       console.log(error)
     })
@@ -159,7 +137,6 @@ function DetailPage() {
       setRefreshTokenExpiresIn(window.localStorage.getItem("RefreshTokenExpiresIn"));
   },[]);
 
-  
   const t1 = Number(AccessTokenExpiresIn);
   const diff2 = moment.duration(t1 - t2).asMilliseconds(); // 400000이하로 떨어지면
   const DeleteContent = () => {
@@ -168,7 +145,7 @@ function DetailPage() {
         alert("글 삭제하기");
         // 400000이하로 떨어지면
         if(diff2 < 400000) {
-          axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+          instance.post("/auth/reissue", {
             accessToken : AccessToken,
             refreshToken: RefreshToken
         })
@@ -207,7 +184,7 @@ function DetailPage() {
         alert("글 삭제하기");
         // 400000이하로 떨어지면
         if(diff2 < 400000) {
-          axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+          instance.post("/auth/reissue", {
             accessToken : AccessToken,
             refreshToken: RefreshToken
         })
@@ -247,7 +224,7 @@ function DetailPage() {
       if(localStorage.getItem("LoginId")) {
         // 400000이하로 떨어지면
         if(diff2 < 400000) {
-          axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+          instance.post("/auth/reissue", {
             accessToken : AccessToken,
             refreshToken: RefreshToken
         })
@@ -266,7 +243,6 @@ function DetailPage() {
             postId: postId
           }, config)
           .then(function(response) {
-            console.log(response)
             history.go(0);
           })
         }).then(function (error) {
@@ -278,7 +254,6 @@ function DetailPage() {
             postId: postId
           }, config)
           .then(function(response) {
-            console.log(response)
             history.go(0);
           })
         }
@@ -320,7 +295,7 @@ function DetailPage() {
                   </div>
                   <div className="Detail-title Ccontent">
                     <div className="Detail-body">
-                      <h1>{detail.content}</h1>
+                      {detail.content}
                     </div>
                   </div>
                 </div>
@@ -341,7 +316,7 @@ function DetailPage() {
                         {localStorage.setItem("CommentLoginId", name.writerLoginId)}
                       <div className="comment-card">
                         <div className="comment--header">
-                          <img className="comment---image" src={name.writerLoginId === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + name.writerImagePath} alt="댓글 이미지"></img>
+                          <img className="comment---image" src={name.writerImagePath === null ? normal : `${apiUrl}/image/` + name.writerImagePath} alt="댓글 이미지"></img>
                           <div className="flex-column">
                             <div className="flex-row">
                               <div className="comment----username">{name.writerLoginId === null ? "회원탈퇴한 사용자입니다." : name.writerLoginId}</div>
@@ -367,7 +342,7 @@ function DetailPage() {
                       <div className="answer--comment">
                         <div className="comment-a">
                           <div className="commant-b">
-                            <img className="commant-u-c" src={comment.profileImagePath === null ? normal : "http://bestinwoo.hopto.org:8080/image/" + image1} alt="댓글 이미지"></img>
+                            <img className="commant-u-c" src={comment.profileImagePath === null ? normal : `${apiUrl}/image/` + image1} alt="댓글 이미지"></img>
                             <div className="flex-column">
                               <h5 className="comment----username">{localStorage.getItem("LoginId")}</h5>
                             </div>
@@ -379,7 +354,7 @@ function DetailPage() {
                             <div className="commant-f-r">
                             <form onSubmit={(e) => OnSubmit(e)}>
                             <ThemeProvider theme={theme1}>
-                              <Button type="submit" variant="contained" color="four" style={{color: '#fff'}}>답변 등록</Button>
+                              <Button type="submit" variant="contained" color="four" style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>답변 등록</Button>
                             </ThemeProvider>
                             </form>
                             </div>

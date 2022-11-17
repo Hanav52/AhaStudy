@@ -11,7 +11,7 @@ import '../css/RRegister.css'
 import axios from 'axios';
 import { Avatar, Typography } from '@mui/material';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
-import { instance } from '../내정보/MyApi';
+import { instance } from '../MyProfile/MyApi';
 
 function Copyright(props) {
     return (

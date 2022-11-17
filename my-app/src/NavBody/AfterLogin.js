@@ -12,9 +12,9 @@ import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import normal from '../내정보/normalimage.png'
-import Notification from "../알림/Notification";
-import { instance } from "../내정보/MyApi";
+import normal from '../MyProfile/normalimage.png'
+import Notification from "../Notification/Notification";
+import { instance } from "../MyProfile/MyApi";
 
 export default function AccountMenu() {
 

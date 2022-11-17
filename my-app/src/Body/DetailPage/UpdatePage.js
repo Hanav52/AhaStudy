@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import UpdateDetailModal from './UpdateDetailModal';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { instance } from '../../내정보/MyApi';
+import { instance } from '../../MyProfile/MyApi';
 
 const theme2 = createTheme({
   palette: {

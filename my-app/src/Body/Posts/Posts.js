@@ -5,9 +5,9 @@ import Footer from "../../Footer/Footer";
 import Pagination from "../Pagination";
 import { getComments, instance1 } from "../Infinitiscroll/api1";
 import {  BiSearchAlt2 } from "react-icons/bi";
-import CustomizedDialogs from "../../글작성/Modaal";
+import CustomizedDialogs from "../../WordWrite/Modaal";
 import normal from './normaldesk.png'
-import { apiUrl, instance } from "../../내정보/MyApi";
+import { apiUrl, instance } from "../../MyProfile/MyApi";
 
 const theme = createTheme({
   palette: {

@@ -6,9 +6,9 @@ import Nav from '../NavBody/Nav';
 import RealMain from '../Body/BodyImage';
 import Join from '../Login&Register/Join';
 import Posts from '../Body/Posts/Posts';
-import DetailPage from '../Body/상세페이지/DetailPage';
-import MyProfile from '../내정보/MyProfile';
-import PrimarySearchAppBar from '../알림/Notification';
+import DetailPage from '../Body/DetailPage/DetailPage';
+import MyProfile from '../MyProfile/MyProfile';
+import PrimarySearchAppBar from '../Notification/Notification';
 
 
 function Hole() {

@@ -7,7 +7,7 @@ import Section from "./section";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import moment from "moment";
-import { instance } from '../내정보/MyApi';
+import { instance } from '../MyProfile/MyApi';
 
 function RealMain() {
   const t2 = new Date();

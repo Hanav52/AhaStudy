@@ -3,8 +3,8 @@ import '../css/stylemain.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import normal from '../내정보/normalimage.png'
-import { apiUrl, instance } from '../내정보/MyApi';
+import normal from '../MyProfile/normalimage.png'
+import { apiUrl, instance } from '../MyProfile/MyApi';
 
 function Section() {
   // 최신글 데이터 저장

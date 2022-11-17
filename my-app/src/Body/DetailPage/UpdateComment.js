@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import UpdateCommentModal from './UpdateCommentModal';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { instance } from '../../내정보/MyApi';
+import { instance } from '../../MyProfile/MyApi';
 
 const theme3 = createTheme({
   palette: {

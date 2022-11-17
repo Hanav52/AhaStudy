@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Route, Router, Switch, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { apiUrl, instance } from '../내정보/MyApi';
+import { apiUrl, instance } from '../MyProfile/MyApi';
 
 const theme = createTheme({
   palette: {

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import axios from "axios";
-import { editorKey } from '../../내정보/MyApi';
+import { editorKey } from '../../MyProfile/MyApi';
 
 export default function UpdateCommentModal() {
   // 내용

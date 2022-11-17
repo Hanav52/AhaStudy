@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Route, Link, useHistory } from "react-router-dom";
 import Swal from 'sweetalert2'
-import { instance } from '../내정보/MyApi';
+import { instance } from '../MyProfile/MyApi';
 
 function Nav2() {
   // 문의

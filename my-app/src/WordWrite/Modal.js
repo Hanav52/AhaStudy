@@ -4,6 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import styled from "styled-components";
 import TagBox from './TagBox';
 import axios from "axios";
+import { editorKey } from '../MyProfile/MyApi';
 
 
 const TitleInput = styled.input`
@@ -27,7 +28,6 @@ export default function App() {
   const log = (e) => {
     setContentValue(e.level.content);
   }
-
   return (
     <>
       <div>
@@ -37,7 +37,7 @@ export default function App() {
       </div>
       
       <Editor
-        apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
+        apiKey={editorKey}
         onChange={log}
         initialValue="글 작성시 위에있는 태그 포함과 Enter를 쳐주세요"
         init={{

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import styled from "styled-components";
 import axios from "axios";
-import { editorKey } from '../../내정보/MyApi';
+import { editorKey } from '../../MyProfile/MyApi';
 
 export default function SaveComment() {
   // 댓글 내용

@@ -4,7 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import styled from "styled-components";
 import axios from "axios";
 import UpdateTagBox from './UpdateTagBox';
-import { editorKey, instance } from '../../내정보/MyApi';
+import { editorKey, instance } from '../../MyProfile/MyApi';
 
 const TitleInput = styled.input`
   outline: none;

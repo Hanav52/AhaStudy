@@ -5,9 +5,9 @@ import UpdatePage from "./UpdatePage";
 import moment from "moment";
 import SaveComment from "./SaveComment";
 import UpdateComment from "./UpdateComment";
-import normal from '../../내정보/normalimage.png'
+import normal from '../../MyProfile/normalimage.png'
 import { Button, createTheme, ThemeProvider } from "@mui/material";
-import { apiUrl, instance } from "../../내정보/MyApi";
+import { apiUrl, instance } from "../../MyProfile/MyApi";
 
 const theme1 = createTheme({
   palette: {

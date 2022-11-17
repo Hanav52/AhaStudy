@@ -3,15 +3,7 @@ import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import styled from "styled-components";
 import axios from "axios";
-
-
-const TitleInput = styled.input`
-  outline: none;
-  border: none;
-  font-size: 1.5rem;
-  padding-bottom: 0.5rem;
-  width: 100%;
-`;
+import { editorKey } from '../../내정보/MyApi';
 
 export default function SaveComment() {
   // 댓글 내용
@@ -29,7 +21,7 @@ export default function SaveComment() {
   return (
     <>
       <Editor
-        apiKey='ddupi2ztkb24zhtcpzr2qfxgk6wmxllctw3ffxsycl85hqaf'
+        apiKey={editorKey}
         onChange={log}
         initialValue="내용을 꼭 적어주세요"
         init={{

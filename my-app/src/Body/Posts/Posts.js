@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, Route, useHistory, useParams } from "react-router-dom";
 import Footer from "../../Footer/Footer";
 import Pagination from "../Pagination";
-import { getComments, instance1 } from "../무한스크롤/api1";
+import { getComments, instance1 } from "../Infinitiscroll/api1";
 import {  BiSearchAlt2 } from "react-icons/bi";
 import CustomizedDialogs from "../../글작성/Modaal";
 import normal from './normaldesk.png'

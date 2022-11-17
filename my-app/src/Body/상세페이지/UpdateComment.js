@@ -10,9 +10,9 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import moment from 'moment';
-import UpdateDetailModal from './UpdateDetailModal';
 import UpdateCommentModal from './UpdateCommentModal';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { instance } from '../../내정보/MyApi';
 
 const theme3 = createTheme({
   palette: {
@@ -48,7 +48,7 @@ export default function UpdateComment() {
         } else {
         // 400000이하로 떨어지면
         if(diff2 < 400000) {
-            axios.post("http://bestinwoo.hopto.org:8080/auth/reissue", {
+            instance.post("/auth/reissue", {
             accessToken : AccessToken,
             refreshToken: RefreshToken
         }, config)
@@ -81,7 +81,7 @@ export default function UpdateComment() {
         e.preventDefault();
         e.persist();
         
-        axios.patch(`http://bestinwoo.hopto.org:8080/reply/${CommentId}`, {
+        instance.patch(`/reply/${CommentId}`, {
             comment: window.localStorage.getItem("comment"),
             postId : window.localStorage.getItem("postId")
         }, {
@@ -94,8 +94,6 @@ export default function UpdateComment() {
         })
     }
     // 토큰 재발행
-    //axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
-    //axios.defaults.withCredentials = false;
     const history = useHistory();
     const t2 = new Date();
     // localstorage에서 데이터 받아오기

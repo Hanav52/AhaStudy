@@ -8,23 +8,23 @@ import { editorKey } from '../../MyProfile/MyApi';
 export default function SaveComment() {
   // 댓글 내용
   const [comment, setComment] = useState();
-  // 내용을 localStorage에 덮어서 저장한다.
-  useEffect(()=> {
-  window.localStorage.setItem("comment", comment);
-  },[comment])
-
+  
   // 제목, 태그, 내용을 보낸다.
   const log = (e) => {
     setComment(e.level.content);
   }
+  // // 내용을 localStorage에 덮어서 저장한다.
+  useEffect(()=> {
+    window.localStorage.setItem("comment", comment);
+    },[comment])
 
   return (
     <>
       <Editor
         apiKey={editorKey}
         onChange={log}
-        initialValue="내용을 꼭 적어주세요"
         init={{
+          placeholder: "내용을 꼭 적어주세요",
           forced_root_block : false,
           height: 500,
           menubar: false,

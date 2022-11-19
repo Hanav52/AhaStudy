@@ -314,6 +314,7 @@ function DetailPage() {
                       <div className="answer--comment">
                         {localStorage.setItem("CommentId", name.id)}
                         {localStorage.setItem("CommentLoginId", name.writerLoginId)}
+                        {localStorage.setItem("comment", name.comment)}
                       <div className="comment-card">
                         <div className="comment--header">
                           <img className="comment---image" src={name.writerImagePath === null ? normal : `${apiUrl}/image/` + name.writerImagePath} alt="댓글 이미지"></img>

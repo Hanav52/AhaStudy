@@ -11,18 +11,16 @@ export default function UpdateCommentModal() {
   useEffect(()=> {
   window.localStorage.setItem("comment", CommentValue);
   },[CommentValue])
-
   // 제목, 태그, 내용을 보낸다.
   const log = (e) => {
     setCommentValue(e.level.content);
   }
-console.log(window.localStorage.getItem("comment"))
   return (
     <>
       <Editor
         apiKey={editorKey}
         onChange={log}
-        initialValue={window.localStorage.getItem("comment")}
+        initialValue={localStorage.getItem("comment")}
         init={{
           forced_root_block : false,
           height: 500,

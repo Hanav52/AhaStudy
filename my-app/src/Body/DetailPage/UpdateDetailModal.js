@@ -52,7 +52,7 @@ export default function UpdateDetailModal() {
       <div>
         <TitleInput placeholder={detail.title} calss="title" name={detail.title} onChange={(event) => setTitleValue(event.target.value)}>
         </TitleInput>
-        <UpdateTagBox></UpdateTagBox>
+        <UpdateTagBox/>
         <p></p>
       </div> 
       <Editor

@@ -90,7 +90,8 @@ export default function UpdatePage() {
         }})
         .then(function(response) {
           alert("수정 완료");
-          history.go("/post")
+          handleClose();
+          history.go(0);
         })
     }
     const history = useHistory();
@@ -131,9 +132,7 @@ export default function UpdatePage() {
         <DialogActions>
         <ThemeProvider theme={theme2}>
           <Button onClick={handleClose} style={{marginRight: '10px', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}} color="four" variant="contained">취소</Button>
-            <form onSubmit={(e) => onSubmit(e)}>
-          <Button onClick={handleClose} color="three" variant="contained" style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>저장</Button>
-          </form>
+          <Button onClick={(e) => onSubmit(e)} color="three" variant="contained" style={{color: '#fff', fontFamily: 'CookieRun-Regular', fontWeight: 'normal', fontStyle: 'normal'}}>저장</Button>
         </ThemeProvider>
         </DialogActions>
       </Dialog>

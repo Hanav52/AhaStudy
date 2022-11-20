@@ -1,12 +1,6 @@
 * {
   box-sizing: border-box;
 }
-/* @font-face {
-  font-family: 'BMDOHYEON';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-} */
 @font-face {
   font-family: 'CookieRun-Regular';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
@@ -326,6 +320,7 @@ section {
   overflow: hidden;
   gap: 20px 2%;  
   flex-wrap: wrap;
+  justify-content: center;
 }
 .class-card1 {
   width: 240px;
@@ -373,8 +368,7 @@ section {
   width: 431px;
   height: 231px;
   object-fit: fill;
-  /* border-radius: 블럭 모서리를 둥글게 하는 CSS 기능
-     top-left | top-right | bottom-right | bottom-left */
+  background-size: cover;
   border-radius: 8px 8px 0 0;
 }
 .class-image2 {
@@ -399,7 +393,7 @@ section {
 }
 
 .class-type {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #949393;
 }
 
@@ -642,6 +636,9 @@ footer {
   position: relative;
   padding: 42px 30px;
 }
+.Ccontent {
+  font-size: 2rem;
+}
 .Detail-titl-header {
   margin-bottom: 10px;
   align-items: center;
@@ -664,7 +661,6 @@ footer {
   min-width: 200px;
   max-width: 980px;
   margin: 0 auto;
-  font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
 }
@@ -982,4 +978,28 @@ footer {
   .roadmap-desc {
     display: none;
   }
+  .main1 {
+    display:none;
+  }
+  .widthloginlogout{
+    display: none;
+  }
 }
+@media only screen and (max-width: 1500px) {
+  .class-card1{
+    min-width: 431px;
+  }
+  .class-image1{
+    min-width: 270px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .subheader-changedelete{
+    display: none;
+  }
+}  
+@media only screen and (max-width: 1200px) {
+  .Side-B {
+    display: none;
+  }
+}  

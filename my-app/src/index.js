@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import PrimarySearchAppBar from './알림/Notification';
-import Hole from './전체/통합 copy';
+import Hole from './AllFile/Hole';
+import './css/title.css';
+
 ReactDOM.render(
-  <React.StrictMode>
-    <Hole/>
-  </React.StrictMode>,
+    <Hole/>,
   document.getElementById('root')
 );
-
 reportWebVitals();

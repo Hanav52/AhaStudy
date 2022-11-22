@@ -876,8 +876,6 @@ footer {
 /* 프로필 부분 */
 .MyProfile {
   padding-top: 130px;
-  display: flex;
-  flex-direction: row;
 }
 .profile-content {
   padding: 4rem;
@@ -887,10 +885,9 @@ footer {
 }
 .MyProfileBody1 {
   display: flex;
-  flex-direction: row;
+  justify-content: space-around;
 }
 .lftimg {
-  margin-left: 280px;
   width: 170px;
   height: 170px;
   border-radius: 100px;
@@ -898,9 +895,6 @@ footer {
   object-fit: cover;
   max-width: 100%;
   display: block;
-}
-.rightContent {
-  margin-left: 400px;
 }
 .rightHeader {
   display: flex;
@@ -949,20 +943,18 @@ footer {
 .password-main {
   display: flex;
 }
+.leftImage {
+  display: flex;
+}
 
 @media only screen and (min-width: 1200px) {
-  .inner {
+  .inner, .MyProfile, .MyProfileBody1, .program1 {
     max-width: 1500px;
   }
-  .program1 {
-    max-width: 1500px;
-  }
-  
 }
 @media only screen and (min-width: 1200px) {
   .inner3 {
     max-width: 1500px;
-
   }
 }
 @media only screen and (min-width: 700px) {
@@ -970,18 +962,8 @@ footer {
     max-width: 700px;
   }
 }
-
 @media only screen and (max-width: 980px) {
-  .skill-container {
-    display: none;
-  }
-  .roadmap-desc {
-    display: none;
-  }
-  .main1 {
-    display:none;
-  }
-  .widthloginlogout{
+  .skill-container, .leftImage, .updateDelete, .roadmap-desc, .widthloginlogout {
     display: none;
   }
 }

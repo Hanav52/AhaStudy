@@ -1,6 +1,5 @@
 # AhaStudy
-프로젝트 Jira 주소 : https://bestinu.atlassian.net/jira/software/projects/AHA/boards/1/roadmap<br/>
-프로젝트 Notion 주소 : 
+Jira 스프린트 & Notion을 사용하여 협업 및 일정 관리
 
   <h2>Description</h2>
   카페마다 분산된 스터디 모집 글을 편하게 한 사이트 내에서 구할 수 있도록 사이트입니다.
@@ -8,7 +7,7 @@
   
   <br/>
   <h2>Project Date</h2>
-  2022. 07. 04. ~ 2022. 08. 01.<br>
+  2022. 06 ~ 2022. 08<br>
   
   <h2>환경 & 기술</h2>
 

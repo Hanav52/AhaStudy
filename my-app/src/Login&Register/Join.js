@@ -117,45 +117,52 @@ function Join() {
         <div className='register-main'>
             <div className='register-sub'>
             <Typography component="h1" variant="h5" style={{
-                    margin: '50px 270px', 
-                    fontFamily: 'CookieRun-Regular'
+                    width: "90px", 
+                    fontFamily: 'CookieRun-Regular',
+                    padding: "50px 0",
+                    textAlign: "center",
+                    margin: "0 auto",
                 }}>
                     <Avatar sx={{ m: 1, bgcolor: 'warning.main' }} style={{marginLeft: '25px'}}>
                 <DriveFileRenameOutlineRoundedIcon/>
-
           </Avatar>
             회원가입
           </Typography>
             <Container className="panel">
                 <Form>
-                
-                    <Form.Group as={Row} className="mb-3">
+                    <div className='password-main'>
+                    <Form.Group as={Row} className="mb-3" style={{width: "80%"}}>
                         <Col sm>
                             <Form.Control maxLength={20} placeholder="아이디" value={userId} onChange={onChangeUserId}/>
                             {userIdError && <div className="invalid-input">아이디는 4글자 이상 영어와 숫자를 사용해야 합니다. 예시 : AhaStudy52</div>}
                         </Col>
-                        <Button variant="warning" onClick={onIdSubmit} style={{width: '90px', height: '38px'}}>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" style={{width: "20%"}}>
+                        <Col sm style={{width: "100%"}}>
+                            <Button variant="warning" onClick={onIdSubmit} style={{width: "100%"}}>
                             중복확인
                         </Button>
+                        </Col>
                     </Form.Group>
+                    </div>
                     <div className="password-main">
-                    <Form.Group as={Row} className="mb-3">
+                    <Form.Group as={Row} className="mb-3" style={{width: "100%"}}>
                         <Col sm>
-                            <Form.Control maxLength={20} type="password" placeholder="비밀번호" value={password} onChange={onChangePassword} style={{width: '308px'}}/>
+                            <Form.Control maxLength={20} type="password" placeholder="비밀번호" value={password} onChange={onChangePassword} style={{width: '100%'}}/>
                             {passwordError && <div className="invalid-input">비밀번호는 8글자 이상입니다.</div>}
                         </Col>
                     </Form.Group>
                     <div>&nbsp;&nbsp;</div>
-                    <Form.Group as={Row} className="mb-3">
+                    <Form.Group as={Row} className="mb-3" style={{width: "100%"}}>
                         <Col sm>
-                            <Form.Control maxLength={20} type="password" placeholder="비밀번호 확인" value={confirmPassword} onChange={onChangeConfirmPassword} style={{width: '310px'}}/>
+                            <Form.Control maxLength={20} type="password" placeholder="비밀번호 확인" value={confirmPassword} onChange={onChangeConfirmPassword} style={{width: '100%'}}/>
                             {confirmPasswordError && <div className="invalid-input">비밀번호가 맞지 않습니다.</div>}
                         </Col>
                     </Form.Group>
                     </div>
                     <br />
                     <div className="d-grid gap-1">
-                    <Button variant="warning" onClick={onSubmit} disabled={!register} style={{width: '626px'}}>
+                    <Button variant="warning" onClick={onSubmit} disabled={!register} style={{width: '100%'}}>
                             회원가입
                         </Button>
                     </div>

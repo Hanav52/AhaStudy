@@ -951,6 +951,7 @@ footer {
 }
 .password-main {
   display: flex;
+  justify-content: space-between;
 }
 .leftImage {
   display: flex;
@@ -1004,3 +1005,8 @@ footer {
     padding: 0 10px;
   }
 }  
+/* @media only screen and (min-width: 300px) {
+  .register-main {
+    max-width: 1500px;
+  }
+} */

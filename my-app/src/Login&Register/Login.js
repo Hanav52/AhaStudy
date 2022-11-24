@@ -120,7 +120,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={onSubmit}
-              style={{ fontFamily: 'CookieRun-Regular' }}
+              style={{ fontFamily: 'CookieRun-Regular', fontWeight: "bold"}}
             >
               로그인
             </Button>

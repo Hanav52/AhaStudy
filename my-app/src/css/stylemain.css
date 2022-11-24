@@ -20,7 +20,7 @@ div {
   font-style: normal;
 }
 a {
-  font-family: 'CookieRun-Regular';
+  font-family: 'CookieRun-Regular' !important;
   font-weight: normal;
   font-style: normal;
 }
@@ -1001,9 +1001,6 @@ footer {
 }  
 @media only screen and (max-width: 550px) {
   .inner {
-    padding: 1px;
-  }
-  .inner {
-    padding: 1px;
+    padding: 0 10px;
   }
 }  

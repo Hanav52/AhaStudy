@@ -27,6 +27,8 @@ function Nav2() {
         localStorage.setItem("category", name.id);
         localStorage.setItem("title", name.title);
         history.push("/post"); history.go(0);
+      }} style={{
+        fontFamily: 'CookieRun-Regular', fontStyle: 'normal'
       }}>{name.title}</Link>
     </li>
   );
@@ -37,7 +39,9 @@ function Nav2() {
     <ul className="nav justify-content-center">
         {nameList1}
         <li className="nav-item fw-bold link-warning">
-          <Link className="nav-link fw-bold link-warning" onClick={mail}>문의</Link>
+          <Link className="nav-link fw-bold link-warning" onClick={mail} style={{
+            fontFamily: 'CookieRun-Regular', fontStyle: 'normal'
+          }}>문의</Link>
         </li>
     </ul>
     </div>

@@ -19,6 +19,16 @@ div {
   font-weight: normal;
   font-style: normal;
 }
+a {
+  font-family: 'CookieRun-Regular';
+  font-weight: normal;
+  font-style: normal;
+}
+p {
+  font-family: 'CookieRun-Regular';
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* a 링크 태그 스타일 초기화 */
 a {
@@ -528,7 +538,7 @@ footer {
   background-image: url("https://modo-phinf.pstatic.net/20180304_283/1520151276251GkP1Q_JPEG/mosaOtd1XG.jpeg?type=w1100");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: -15%;
+  background-position: 0%;
   z-index: 1;
 }
 
@@ -963,7 +973,7 @@ footer {
   }
 }
 @media only screen and (max-width: 980px) {
-  .skill-container, .leftImage, .updateDelete, .roadmap-desc, .widthloginlogout {
+  .skill-container, .leftImage, .updateDelete, .roadmap-desc, .widthloginlogout, .subheader-changedelete {
     display: none;
   }
 }
@@ -982,6 +992,11 @@ footer {
 }  
 @media only screen and (max-width: 1200px) {
   .Side-B {
+    display: none;
+  }
+}  
+@media only screen and (max-width: 830px) {
+  .frontmain {
     display: none;
   }
 }  

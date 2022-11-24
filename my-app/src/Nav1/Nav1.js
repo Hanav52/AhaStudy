@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Route, Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AccountMenu from '../NavBody/AfterLogin';
+import '../css/title.css'
 
 
 //첫번째 줄 메뉴

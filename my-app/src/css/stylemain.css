@@ -313,9 +313,8 @@ section {
 }
 
 .class-list {
-  display: grid;
+  display: flex;
   list-style: none;
-  grid-template-columns: repeat(4, 1fr);
   padding: 1rem 0;
   margin: 0;
   overflow: hidden;
@@ -998,5 +997,13 @@ footer {
 @media only screen and (max-width: 830px) {
   .frontmain {
     display: none;
+  }
+}  
+@media only screen and (max-width: 550px) {
+  .inner {
+    padding: 1px;
+  }
+  .inner {
+    padding: 1px;
   }
 }  

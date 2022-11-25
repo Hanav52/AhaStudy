@@ -1,22 +1,21 @@
 # 스터디 팀원 모집 웹 서비스
 ## AhaStudy
-Jira 스프린트 & Notion을 사용하여 협업 및 일정 관리
-
-  <h2>설명</h2>
   카페마다 분산된 스터디 모집 글을 편하게 한 사이트 내에서 구할 수 있도록 사이트입니다.
   종류 별로 나누어져있는 카페에 공부를 위해서 스터디 모집글을 구할 때 불편함을 느껴 한번에 다양한 분야에서 스터디를 모집 할 수 있도록 만들었습니다.
   
-  <br/>
   <h2>Project Date</h2>
   2022. 06 ~ 2022. 08<br>
   
   <h2>환경 & 기술</h2>
 
-> JavaScript ES6+, React
+> JavaScript ES6+, React를 사용하여 기능 구현
 > 
-> HTML5, CSS3, Bootstrap5, Mui, ReactStrap
+> HTML5, CSS3, Bootstrap5, Mui, ReactStrap를 사용하여 사이트 구조 및 css 작업
 >
-> Web Socket, JWT, axios API
+> Web Socket, JWT, axios API를 사용하여 백엔드와 실시간 통신 및 JSON 파일로 데이터 공유
+>
+>Jira 스프린트 & Notion을 사용하여 협업 및 일정 관리
+ 
   
 ## 팀원
 <div>

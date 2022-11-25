@@ -8,13 +8,15 @@
   
   <h2>환경 & 기술</h2>
 
-> JavaScript ES6+, React를 사용하여 기능 구현
+> JavaScript ES6+, React를 사용하여 기능 구현 및 SPA 구조
 > 
 > HTML5, CSS3, Bootstrap5, Mui, ReactStrap를 사용하여 사이트 구조 및 css 작업
 >
 > Web Socket, JWT, axios API를 사용하여 백엔드와 실시간 통신 및 JSON 파일로 데이터 공유
 >
->Jira 스프린트 & Notion을 사용하여 협업 및 일정 관리
+> Jira 스프린트 & Notion을 사용하여 협업 및 일정 관리
+>
+> AWS EC2를 이용하여 배포
  
   
 ## 팀원

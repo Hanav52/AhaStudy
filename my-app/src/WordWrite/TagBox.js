@@ -110,6 +110,7 @@ const TagBox = () => {
           placeholder="태그를 입력하세요." 
           value={input} 
           onChange={onChange}
+          maxLength={15}
         />
         <button type="submit">추가</button>
       </TagForm>

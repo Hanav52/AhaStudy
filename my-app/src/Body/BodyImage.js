@@ -6,11 +6,9 @@ import { Route } from "react-router-dom";
 import Section from "./section";
 import { useState } from 'react';
 import { useEffect } from 'react';
-import moment from "moment";
 import { instance } from '../MyProfile/MyApi';
 
 function RealMain() {
-  const t2 = new Date();
   const history = useHistory();
 // localstorage에서 데이터 받아오기
   const [visible, setVisible] = useState();
@@ -30,39 +28,6 @@ function RealMain() {
       setRefreshTokenExpiresIn(window.localStorage.getItem("RefreshTokenExpiresIn"));
   },[]);
 
-  const t1 = Number(AccessTokenExpiresIn);
-  const diff2 = moment.duration(t1 - t2).asMilliseconds(); // 400000이하로 떨어지면
-  const onMakeList = () => {
-    if(visible === null) {
-      alert("로그인 후 이용해주세요.");
-    } else {
-      alert("글 작성하기");
-      // 400000이하로 떨어지면
-      if(diff2 < 400000) {
-        instance.post("/auth/reissue", {
-          accessToken : AccessToken,
-          refreshToken: RefreshToken
-      })
-      .then(function (response) {
-        localStorage.removeItem("AccessToken");
-        localStorage.removeItem("AccessTokenExpiresIn");
-        localStorage.removeItem("RefreshToken");
-        localStorage.removeItem("RefreshTokenExpiresIn");
-        localStorage.setItem("AccessToken", response.data.accessToken);
-        localStorage.setItem("AccessTokenExpiresIn", response.data.accessTokenExpiresIn);
-        localStorage.setItem("RefreshToken", response.data.refreshToken);
-        localStorage.setItem("RefreshTokenExpiresIn", response.data.refreshTokenExpiresIn);
-        // 글작성하는 곳으로
-      }).catch(function (error) {
-        console.log(error)
-      }).then(function() {
-          // 항상 실행
-      });
-      } else {
-        // 글 작성하는 곳으로 이동
-      }
-    }
-  }
   const LogoutUser = () => {
     instance.post("/auth/logout",{} ,{
       headers: {
@@ -130,7 +95,6 @@ function RealMain() {
               <div className="login-mainsubtitle">
               {visible === null ?  <button type="button" className="head-blog btn btn lg btn-warning" style={{marginRight: '10px'}} onClick={()=> {history.push("/login"); history.go(0)}}><Link>로그인</Link></button> : 
                           <button type="button" className="head-blog btn btn lg btn-warning"  onClick={LogoutUser} style={{marginRight: '10px'}}><Link>로그아웃</Link></button>}
-              <button onClick={onMakeList} type="button" className="head-blog btn btn lg btn-outline-warning" ><Link>글 작성하기</Link></button>
               </div>
             </div>
           </div>

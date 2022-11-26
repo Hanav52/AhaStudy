@@ -29,7 +29,7 @@ function Nav2() {
         history.push("/post"); history.go(0);
       }} style={{
         fontFamily: 'CookieRun-Regular', fontStyle: 'normal'
-      }}>{name.title}</Link>
+      }} to="undifined">{name.title}</Link>
     </li>
   );
   }
@@ -41,7 +41,7 @@ function Nav2() {
         <li className="nav-item fw-bold link-warning">
           <Link className="nav-link fw-bold link-warning" onClick={mail} style={{
             fontFamily: 'CookieRun-Regular', fontStyle: 'normal'
-          }}>문의</Link>
+          }} to="undifined">문의</Link>
         </li>
     </ul>
     </div>

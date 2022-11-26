@@ -17,7 +17,7 @@ function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="https://github.com/Hanav52/AhaStudy" style={{cursor: 'pointer'}} underline="hover">
+        <Link color="inherit" href="https://github.com/Hanav52/AhaStudy" style={{cursor: 'pointer'}} underline="hover" to="undifined">
         Aha Study
         </Link>{' '}
         {new Date().getFullYear()}

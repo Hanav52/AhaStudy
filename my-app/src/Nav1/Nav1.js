@@ -21,11 +21,11 @@ function Nav1() {
                     fontSize: "1.7rem",
                     fontFamily: 'CookieRun-Regular', 
                     fontStyle: 'normal'
-                    }}>Aha Study</Link>
+                    }} to="undifined">Aha Study</Link>
             </div>
             {visible === null ? <button type="button" className="head-blog btn btn lg btn-warning"><Link onClick={()=> {history.push("/login"); history.go(0)}} style={{
                 fontFamily: 'CookieRun-Regular', fontWeight: 'bold', fontStyle: 'normal'
-            }}>로그인</Link></button> : <AccountMenu/>}
+            }} to="undifined">로그인</Link></button> : <AccountMenu/>}
         </div>
     )
 }

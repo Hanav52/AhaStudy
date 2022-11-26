@@ -30,8 +30,6 @@ const theme = createTheme({
 
 function Notification() {
   const client = useRef({});
-  const [chatMessages, setChatMessages] = useState([]);
-  const [message, setMessage] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -39,10 +37,6 @@ function Notification() {
 
     return () => disconnect();
   }, []);
-  const configNoBearer = {
-    headers: {
-    'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),
-}};
 
   const connect = () => {
     client.current = new StompJs.Client({
@@ -115,8 +109,6 @@ function Notification() {
     }
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [visible, setVisible] = useState([]);
-    
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -124,7 +116,8 @@ function Notification() {
     const handleClose = () => {
     setAnchorEl(null);
     };
-    const ReadNoti = () => {
+    const result = noti.filter(_noti => _noti.viewYn === false).length;
+    const ReadNoti = (id) => {
       NNoti();
       try {
         instance.post(`/notifications/${localStorage.getItem("notiId")}`, { } ,config)
@@ -153,7 +146,7 @@ function Notification() {
             color="secondary"
           >
           <ThemeProvider theme={theme}>
-          <Badge badgeContent={count} color="primary">
+          <Badge badgeContent={result} color="primary">
             <Notifications sx={{ width: 32, height: 32 }}></Notifications>
           </Badge>
           </ThemeProvider>
@@ -199,13 +192,11 @@ function Notification() {
         <div className='read'>
         <MenuItem key={index} style={_noti.viewYn ? {backgroundColor: '#ffebee'} : {backgroundColor: '#fff'}}>
         <div className="read1" 
-          onClick={() => { localStorage.setItem("postId", _noti.postId); localStorage.setItem("notiId", _noti.id); ReadNoti(); history.push("/detail");  history.go(0)}} 
+          onClick={() => { localStorage.setItem("postId", _noti.postId); localStorage.setItem("notiId", _noti.id); ReadNoti(); history.push("/detail");  history.go(0);}} 
         >
           <CheckOutlinedIcon style={_noti.viewYn ? {color: "ff7473", marginRight: '5px'} : {color: 'black', marginRight: '5px'}}/>  {_noti.message}
         </div>
-
           <button type="button" style={{marginLeft: '5px'}} className="btn-close" onClick={() => {localStorage.setItem("notiId", _noti.id); Notidelete(_noti.id)}} ></button>
-        
         </MenuItem>
         </div>
         )}

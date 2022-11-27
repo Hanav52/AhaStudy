@@ -97,7 +97,6 @@ export default function CustomizedDialogs() {
     if (visible === null) {
       alert("로그인 후 이용해주세요.");
     } else {
-      alert("글 작성하기");
       // 400000이하로 떨어지면
       if (diff2 < 400000) {
         instance1
@@ -164,6 +163,7 @@ export default function CustomizedDialogs() {
       })
       .catch(function (error) {
         console.log(error);
+        alert("제목 작성, 태그 작성, 본문 작성, 이미지를 넣으셨는지 다시 한번 확인해주세요.");
       })
       .then(function () {
         // 항상 실행

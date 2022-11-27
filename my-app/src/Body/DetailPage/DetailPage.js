@@ -142,7 +142,7 @@ function DetailPage() {
   const DeleteContent = () => {
     try {
       if(localStorage.getItem("LoginId") === localStorage.getItem("writerLoginId")) {
-        alert("글 삭제하기");
+        alert("삭제하시겠습니까?");
         // 400000이하로 떨어지면
         if(diff2 < 400000) {
           instance.post("/auth/reissue", {
@@ -181,7 +181,7 @@ function DetailPage() {
   const DeleteComment = () => {
     try {
       if(localStorage.getItem("LoginId") === localStorage.getItem("CommentLoginId")) {
-        alert("글 삭제하기");
+        alert("삭제하시겠습니까?");
         // 400000이하로 떨어지면
         if(diff2 < 400000) {
           instance.post("/auth/reissue", {

@@ -89,7 +89,6 @@ export default function UpdateComment() {
             'Authorization': `Bearer ` + window.localStorage.getItem("AccessToken")
         }})
         .then(function(response) {
-          alert("수정 완료");
           handleClose();
           history.go(0);
         })

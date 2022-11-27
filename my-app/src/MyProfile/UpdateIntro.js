@@ -83,7 +83,6 @@ export default function UpdateIntro() {
             'Authorization': `Bearer ` + window.localStorage.getItem("AccessToken")
         }})
         .then(function(response) {
-          alert("자기소개 수정 완료");
           handleClose();
         })
     }

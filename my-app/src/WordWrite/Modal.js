@@ -43,7 +43,9 @@ export default function App() {
         init={{
           height: 500,
           menubar: false,
-          toolbar: '',
+          forced_root_block : false,
+          deprecation_warnings: false,
+          toolbar: 'undo redo | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />

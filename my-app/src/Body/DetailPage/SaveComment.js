@@ -25,14 +25,11 @@ export default function SaveComment() {
         onChange={log}
         init={{
           placeholder: "내용을 꼭 적어주세요",
+          forced_root_block : false,
+          deprecation_warnings: false,
           height: 500,
           menubar: false,
-          plugins: [
-            'advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media table paste code help wordcount'
-          ],
-          toolbar: '',
+          toolbar: 'undo redo | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}></Editor>
     </>

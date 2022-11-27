@@ -25,7 +25,6 @@ export default function SaveComment() {
         onChange={log}
         init={{
           placeholder: "내용을 꼭 적어주세요",
-          forced_root_block : false,
           height: 500,
           menubar: false,
           plugins: [
@@ -33,10 +32,7 @@ export default function SaveComment() {
             'searchreplace visualblocks code fullscreen',
             'insertdatetime media table paste code help wordcount'
           ],
-          toolbar: 'undo redo | formatselect | ' +
-          'bold italic backcolor | alignleft aligncenter ' +
-          'alignright alignjustify | bullist numlist outdent indent | ' +
-          'removeformat | help',
+          toolbar: '',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}></Editor>
     </>

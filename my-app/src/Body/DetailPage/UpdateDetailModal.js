@@ -60,9 +60,12 @@ export default function UpdateDetailModal() {
         onChange={log}
         initialValue={detail.content}
         init={{
+          width: 500,
           height: 500,
           menubar: false,
           forced_root_block : false,
+          force_br_newlines : true,
+          force_p_newlines : false,
           deprecation_warnings: false,
           toolbar: 'undo redo | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'

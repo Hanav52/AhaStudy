@@ -41,9 +41,12 @@ export default function App() {
         onChange={log}
         initialValue="글 작성시 위에있는 태그 포함과 Enter를 쳐주세요"
         init={{
+          width: 500,
           height: 500,
           menubar: false,
           forced_root_block : false,
+          force_br_newlines : true,
+          force_p_newlines : false,
           deprecation_warnings: false,
           toolbar: 'undo redo | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'

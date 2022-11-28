@@ -82,7 +82,7 @@ export default function UpdateComment() {
         e.persist();
         
         instance.patch(`/reply/${CommentId}`, {
-            comment: window.localStorage.getItem("comment"),
+            comment: localStorage.getItem("comment"),
             postId : window.localStorage.getItem("postId")
         }, {
             headers: {
@@ -91,6 +91,8 @@ export default function UpdateComment() {
         .then(function(response) {
           handleClose();
           history.go(0);
+        })
+        .then(function(error) {
         })
     }
     // 토큰 재발행

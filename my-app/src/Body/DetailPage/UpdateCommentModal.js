@@ -20,12 +20,15 @@ export default function UpdateCommentModal() {
       <Editor
         apiKey={editorKey}
         onChange={log}
-        initialValue={localStorage.getItem("comment")}
         init={{
+          width: 500,
           height: 500,
+          placeholder: localStorage.getItem("comment"),
           menubar: false,
-          forced_root_block : false,
           deprecation_warnings: false,
+          forced_root_block : false,
+          force_br_newlines : true,
+          force_p_newlines : false,
           toolbar: 'undo redo | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}></Editor>

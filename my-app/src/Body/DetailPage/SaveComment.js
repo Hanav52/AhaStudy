@@ -26,6 +26,8 @@ export default function SaveComment() {
         init={{
           placeholder: "내용을 꼭 적어주세요",
           forced_root_block : false,
+          force_br_newlines : true,
+          force_p_newlines : false,
           deprecation_warnings: false,
           height: 500,
           menubar: false,

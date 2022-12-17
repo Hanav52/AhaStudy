@@ -77,16 +77,6 @@ export default function CustomizedDialogs() {
   const [open, setOpen] = useState(false);
   const token = window.localStorage.getItem("AccessToken");
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  const Title = window.localStorage.getItem("titlevalue");
-  const TagStroage = window.localStorage.getItem("localTags");
-  const ContentValue = window.localStorage.getItem("contentvalue");
-  let frm = new FormData();
-  frm.append("title", Title);
-  frm.append("content", ContentValue);
-  frm.append("boardId", 1);
-  frm.append("tags", TagStroage);
-  let photoFile = document.getElementById("photo");
-  frm.append("file", photoFile);
 
   const config = {
     'Authorization': 'Bearer ' + localStorage.getItem("AccessToken"),

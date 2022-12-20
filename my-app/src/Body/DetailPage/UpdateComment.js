@@ -64,7 +64,6 @@ export default function UpdateComment() {
             // 글작성하는 곳으로
             setOpen(true);
         }).catch(function (error) {
-            console.log(error)
         }).then(function() {
             // 항상 실행
         });

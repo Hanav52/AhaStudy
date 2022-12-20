@@ -99,7 +99,6 @@ function Posts() {
       setPosts(newMovieList);
       localStorage.setItem("totalElements", response.data.data.totalElements);
     } catch (e) {
-      console.log(e);
     }
   };
   //태그 검색시 사용
@@ -125,7 +124,6 @@ function Posts() {
       setPosts(newMovieList);
       
     } catch (e) {
-      console.log(e);
     }
   };
 // 정렬부분
@@ -151,7 +149,6 @@ function Posts() {
         const temp = await getComments(localStorage.getItem("category"), page-1, 9, Desc);
         setPosts(temp);
       } catch (e) {
-        console.error(e);
       }
     };
     useEffect(() => {
@@ -164,41 +161,41 @@ function Posts() {
       <Route path="/post">
       <div className="bodybody"> 
       <section>
-            <div class="inner">
-            <div class="roadmap-container">
-                <div class="roadmap-title-container">
-                    <div class="roadmap-title">{localStorage.getItem("title")}</div>
-                    <div class="roadmap-title"><CustomizedDialogs/></div>
+            <div className="inner">
+            <div className="roadmap-container">
+                <div className="roadmap-title-container">
+                    <div className="roadmap-title">{localStorage.getItem("title")}</div>
+                    <div className="roadmap-title"><CustomizedDialogs/></div>
                 </div>
                 <div className="search-double">
                 <SerarchBar onClick={fetchMovie} onChange={searchItem} disabled={!state}></SerarchBar>
                 <SearchTagBar onClick={fetchTag} onChange={searchTag} disabled={state}></SearchTagBar>
                 </div>
                 <BodyBodySearch/>
-                <ul class="class-list1" data-position="0">
+                <ul className="class-list1" data-position="0">
                 {posts.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
-                    <li class="class-card1" key={id}>
+                    <li className="class-card1" key={id}>
                       <Link to="/Detail" onClick={() => {
                         localStorage.setItem("writerLoginId", writerLoginId)
                         localStorage.setItem("postId", id)
                         history.push("/Detail"); history.go(0)}}>
                         <div className="fillImage">
-                        <img src={imagePath === undefined ? normal : `${apiUrl}/image/${imagePath}`} alt="게시글" class="class-image1" style={{
+                        <img src={imagePath === undefined ? normal : `${apiUrl}/image/${imagePath}`} alt="게시글" className="class-image1" style={{
                           backgroundSize: "cover",
                         }}/>
                         </div>
-                        <div class="class-container">
-                          <div class="class-skill">
-                            <div class="class-type">작성자 : {writerLoginId}</div>
-                            <div class="class-format">{"#"+tags}</div>
+                        <div className="class-container">
+                          <div className="class-skill">
+                            <div className="class-type">작성자 : {writerLoginId}</div>
+                            <div className="class-format">{"#"+tags}</div>
                           </div>
-                          <div class="class-desc">
-                            <div class="class-title">제목 : {title}</div>
-                            <div class="class-detail">게시일 : {writeDate}</div>
+                          <div className="class-desc">
+                            <div className="class-title">제목 : {title}</div>
+                            <div className="class-detail">게시일 : {writeDate}</div>
                           </div>
-                          <div class="class-skill">
-                          <div class="class-detail">조회수 : {views}</div>
-                          <div class="class-detail">댓글수 : {replyCount}</div>
+                          <div className="class-skill">
+                          <div className="class-detail">조회수 : {views}</div>
+                          <div className="class-detail">댓글수 : {replyCount}</div>
                           </div>
                         </div>
                       </Link>

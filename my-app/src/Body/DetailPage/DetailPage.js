@@ -53,9 +53,8 @@ function DetailPage() {
           setDetail(response.data.data);
           setDetailComment(response.data.data.replies)
         })} catch(ex){
-          console.log("오류")
         }
-      },[])
+      },[postId])
       
       // 프로필 가져오기
       const [comment, setComment] = useState([]);
@@ -96,7 +95,6 @@ function DetailPage() {
         }
     }
     catch(e) {
-        console.log(e);
     }
 }
 
@@ -109,7 +107,6 @@ function DetailPage() {
         instance.delete(`/post/${postId}`, config)
         .then(function(response) {
         }).then(function(error) {
-          console.log(error)
         })
   }
   // 댓글을 삭제한다.
@@ -117,7 +114,6 @@ function DetailPage() {
     instance.delete(`/reply/${localStorage.getItem("CommentId")}`, config)
     .then(function(response) {
     }).then(function(error) {
-      console.log(error)
     })
 }
   const t2 = new Date();
@@ -163,7 +159,6 @@ function DetailPage() {
           history.push("/post");
           history.go(0);
         }).then(function (error) {
-          console.log(error)
         })
         } else {
           // 글 삭제
@@ -172,10 +167,8 @@ function DetailPage() {
           history.go(0);
         }
       } else {
-        console.log("로그인 만료, 로그아웃")
       }
   } catch(e) {
-    console.log(e)
   }
   }
   const DeleteComment = () => {
@@ -201,7 +194,6 @@ function DetailPage() {
           DeComment();
           history.go(0);
         }).then(function (error) {
-          console.log(error)
         })
         } else {
           // 글 삭제
@@ -209,10 +201,8 @@ function DetailPage() {
           history.go(0);
         }
       } else {
-        console.log("로그인 만료, 로그아웃")
       }
   } catch(e) {
-    console.log(e)
   }
   }
 
@@ -246,7 +236,6 @@ function DetailPage() {
             history.go(0);
           })
         }).then(function (error) {
-          console.log(error)
         })
         } else {
           instance.post("/reply", {
@@ -258,10 +247,8 @@ function DetailPage() {
           })
         }
       } else {
-        console.log("로그인 만료, 로그아웃")
       }
   } catch(e) {
-    console.log(e)
   }
   };
   

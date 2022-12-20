@@ -313,7 +313,9 @@ section {
 }
 
 .class-list {
-  display: flex;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(4,1fr);
   list-style: none;
   padding: 1rem 0;
   margin: 0;
@@ -1004,7 +1006,13 @@ footer {
   .inner {
     padding: 0 10px;
   }
-}  
+} 
+@media only screen and (max-width: 620px) {
+  .class-list {
+    display: flex;
+  }
+} 
+
 /* @media only screen and (min-width: 300px) {
   .register-main {
     max-width: 1500px;

@@ -68,10 +68,8 @@ export default function DeleteUser() {
   const DeUser = async () => {
     instance.delete(`/user/${localStorage.getItem("UserId")}`, config)
     .then(function(response) {
-      console.log(response)
     localStorage.clear();
     }).then(function(error) {
-    console.log(error)
     })
   }
   const DeleteUs = () => {
@@ -98,7 +96,6 @@ export default function DeleteUser() {
           history.push("/");
           history.go(0);
         }).then(function (error) {
-          console.log(error)
         })
         } else {
           // 회원 삭제
@@ -109,7 +106,6 @@ export default function DeleteUser() {
           history.go(0);
         }
       } catch(e) {
-    console.log(e)
   }
   }
   return (

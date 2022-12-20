@@ -49,7 +49,6 @@ const Image = () => {
       localStorage.setItem("imageId",response.data.data)
       history.go(0);
     }).catch(function (error) {
-      console.log(error)
     }).then(function() {
         // 항상 실행
     }); 
@@ -72,7 +71,6 @@ const Image = () => {
       .then(function(response) {
         setDetail(response.data.data)
       })} catch(ex){
-        console.log("오류")
       }
     },[])
 

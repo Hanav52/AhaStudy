@@ -14,7 +14,6 @@ function MyComment() {
       const tempComments = comments.concat(temp);
       setComments(tempComments);
     } catch (e) {
-      console.error(e);
     }
   };
 
@@ -49,22 +48,22 @@ function MyComment() {
     <>
     <BrowserRouter>
       <section>
-        <div class="inner">
-          <div class="roadmap-container">
-            <ul class="class-list1" data-position="0">
+        <div className="inner">
+          <div className="roadmap-container">
+            <ul className="class-list1" data-position="0">
               {comments.map(({ postId, id, writeDate, writerLoginId, comment, postWriterLoginId }) => (
-              <li class="class-card1" key={id}>
+              <li className="class-card1" key={id}>
                   <Link to="/Detail" onClick={() => {
                     localStorage.setItem("writerLoginId", postWriterLoginId)
                     localStorage.setItem("postId", postId)
                     history.push("/Detail"); history.go(0)}}>
-                      <div class="class-container">
-                        <div class="class-skill">
-                          <div class="class-type">작성자 : {writerLoginId}</div>
+                      <div className="class-container">
+                        <div className="class-skill">
+                          <div className="class-type">작성자 : {writerLoginId}</div>
                           </div>
-                          <div class="class-desc">
-                            <div class="class-title">내용 : {comment}</div>
-                            <div class="class-detail">작성일 : {writeDate}</div>
+                          <div className="class-desc">
+                            <div className="class-title">내용 : {comment}</div>
+                            <div className="class-detail">작성일 : {writeDate}</div>
                           </div>
                       </div>
                   </Link>

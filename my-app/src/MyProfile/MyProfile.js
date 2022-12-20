@@ -20,7 +20,6 @@ function MyProfile() {
         .then(function(response) {
           setDetail(response.data.data)
         })} catch(ex){
-          console.log("오류")
         }
       },[])
   

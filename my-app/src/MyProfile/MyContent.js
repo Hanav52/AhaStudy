@@ -14,7 +14,6 @@ function MyContent() {
       const tempComments = comments.concat(temp);
       setComments(tempComments);
     } catch (e) {
-      console.error(e);
     }
   };
 
@@ -49,28 +48,28 @@ function MyContent() {
     <>
     <BrowserRouter>
       <section>
-        <div class="inner">
-          <div class="roadmap-container">
-            <ul class="class-list1" data-position="0">
+        <div className="inner">
+          <div className="roadmap-container">
+            <ul className="class-list1" data-position="0">
               {comments.map(({ boardId, id, imagePath, replyCount, tags, title, views, writeDate, writerId, writerLoginId }) => (
-              <li class="class-card1" key={id}>
+              <li className="class-card1" key={id}>
                   <Link to="/Detail" onClick={() => {
                     localStorage.setItem("writerLoginId", writerLoginId)
                     localStorage.setItem("postId", id)
                     history.push("/Detail"); history.go(0)}}>
-                      <img src={`${apiUrl}/image/` + imagePath} alt="게시글" class="class-image2" />
-                      <div class="class-container">
-                        <div class="class-skill">
-                          <div class="class-type">작성자 : {writerLoginId}</div>
-                            <div class="class-format">{"#"+tags}</div>
+                      <img src={`${apiUrl}/image/` + imagePath} alt="게시글" className="class-image2" />
+                      <div className="class-container">
+                        <div className="class-skill">
+                          <div className="class-type">작성자 : {writerLoginId}</div>
+                            <div className="class-format">{"#"+tags}</div>
                           </div>
-                          <div class="class-desc">
-                            <div class="class-title">제목 : {title}</div>
-                            <div class="class-detail">게시일 : {writeDate}</div>
+                          <div className="class-desc">
+                            <div className="class-title">제목 : {title}</div>
+                            <div className="class-detail">게시일 : {writeDate}</div>
                           </div>
-                          <div class="class-skill">
-                          <div class="class-detail">조회수 : {views}</div>
-                          <div class="class-detail">댓글수 : {replyCount}</div>
+                          <div className="class-skill">
+                          <div className="class-detail">조회수 : {views}</div>
+                          <div className="class-detail">댓글수 : {replyCount}</div>
                           </div>
                       </div>
                   </Link>

@@ -28,7 +28,6 @@ export default function UpdateIntroDetail() {
         .then(function(response) {
           setDetail(response.data.data);
         })} catch(ex){
-          console.log("오류")
         }
       },[])
 

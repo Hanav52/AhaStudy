@@ -4,16 +4,13 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import * as StompJs from "@stomp/stompjs";
-import * as SockJS from "sockjs-client";
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import axios from "axios";
-import { Alert, Avatar, Button, createTheme, ListItemIcon, ThemeProvider, Tooltip, Typography } from '@mui/material';
-import { NotificationAdd, Notifications, PersonAdd } from '@mui/icons-material';
-import { Link, useHistory } from 'react-router-dom';
+import { createTheme, ThemeProvider, Tooltip } from '@mui/material';
+import { Notifications } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import { api, instance } from '../MyProfile/MyApi';
 
@@ -84,7 +81,6 @@ function Notification() {
         setNoti(response.data.data)
         setCount(response.data.count)
         })} catch(ex){
-        console.log("오류")
         }
     }
     useEffect(() => {
@@ -99,12 +95,9 @@ function Notification() {
           NNoti();
           setNoti(noti.filter(user => user.id !== id));
           setCount(count-1);
-          //setAnchorEl(null);
-            
         })
       }
       catch(e) {
-        console.log(e)
       }
     }
 
@@ -125,10 +118,8 @@ function Notification() {
           NNoti();
         })
         .then(function (error) {
-          console.log(error)
         })
       } catch (error) {
-        console.log(error)
       }
     }
   return (

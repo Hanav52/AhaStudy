@@ -40,12 +40,10 @@ export default function UpdateDetailModal() {
         try {
         instance.get(`/post/${postId}`)
         .then(function(response) {
-          console.log(response.data.data);
           setDetail(response.data.data);
         })} catch(ex){
-          console.log("오류")
         }
-      },[])
+      },[postId])
 
   return (
     <>

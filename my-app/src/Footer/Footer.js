@@ -12,8 +12,7 @@ function Footer() {
              <div className="footer-copyright" >© Aha Study. Study with People!</div>
             </div>
         </footer>
-        <a id="backtotop"></a>
-        <script src="js/main.js"></script>
+        <div id="backtotop"></div>
     </div>
   );
 }

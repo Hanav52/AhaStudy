@@ -113,7 +113,6 @@ export default function CustomizedDialogs() {
             setOpen(true);
           })
           .catch(function (error) {
-            console.log(error);
           })
           .then(function () {
             // 항상 실행
@@ -152,7 +151,6 @@ export default function CustomizedDialogs() {
         history.go(0);
       })
       .catch(function (error) {
-        console.log(error);
         alert("제목 작성, 태그 작성, 본문 작성, 이미지를 넣으셨는지 다시 한번 확인해주세요.");
       })
       .then(function () {
